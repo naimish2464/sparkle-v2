@@ -1,0 +1,821 @@
+/**
+ * Goldiama Revolution Slider + viewport layout
+ * Complements assests/css/style.css (Phlox/Elementor theme) for the Services hero.
+ * RevSlider-specific rules live here; style.css provides aux/elementor theme tokens.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* Elementor visibility helpers (from Elementor core) */
+@media (max-width: 767px) {
+  .elementor-hidden-phone {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .elementor-hidden-tablet {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .elementor-hidden-desktop {
+    display: none !important;
+  }
+}
+
+/* Viewport-fit section shell */
+.goldiama-services-scope {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+/* Centered section header above slider */
+.goldiama-services-scope .rs-services-header {
+  width: 100%;
+  text-align: center;
+  padding: clamp(40px, 5vw, 72px) clamp(20px, 4vw, 40px) clamp(24px, 3vw, 36px);
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.goldiama-services-scope .rs-services-title {
+  font-family: Poppins, sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #1e293b;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.goldiama-services-scope .rs-services-title::after {
+  content: "";
+  display: block;
+  width: clamp(48px, 8vw, 80px);
+  height: 3px;
+  margin: clamp(12px, 1.5vw, 18px) auto 0;
+  background: linear-gradient(90deg, #1e40af, #3b82f6);
+  border-radius: 2px;
+}
+
+.goldiama-services-scope *,
+.goldiama-services-scope *::before,
+.goldiama-services-scope *::after {
+  box-sizing: border-box;
+}
+
+.goldiama-services-scope .elementor-section-stretched {
+  width: 100% !important;
+  left: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.goldiama-services-scope .elementor-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.goldiama-services-scope .elementor-column-gap-no {
+  gap: 0;
+}
+
+.goldiama-services-scope .elementor-col-100 {
+  width: 100%;
+}
+
+/* Fullwidth revslider wrapper — aspect ratio matches Goldiama 1440×720 */
+.goldiama-services-scope .rs-fullwidth-wrap {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.goldiama-services-scope .rs-fw-forcer {
+  width: 100%;
+  height: clamp(480px, 50vw, 720px);
+  pointer-events: none;
+}
+
+@media (max-width: 778px) {
+  .goldiama-services-scope .rs-fw-forcer {
+    height: clamp(540px, 125vw, 960px);
+  }
+}
+
+@media (max-width: 480px) {
+  .goldiama-services-scope .rs-fw-forcer {
+    height: clamp(480px, 141.67vw, 680px);
+  }
+}
+
+.goldiama-services-scope .rs-module-wrap {
+  visibility: visible;
+  background: transparent;
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  height: 100%;
+}
+
+.goldiama-services-scope .rs-module {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  overflow: hidden;
+}
+
+.goldiama-services-scope .rs-slides {
+  overflow: hidden;
+  position: absolute;
+  visibility: visible;
+  max-height: none;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* Embla carousel — horizontal slide + infinite loop */
+.goldiama-services-scope .rs-embla-viewport {
+  touch-action: pan-y pinch-zoom;
+}
+
+.goldiama-services-scope .rs-embla-container {
+  display: flex;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.goldiama-services-scope .rs-embla-slide {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  height: 100%;
+}
+
+.goldiama-services-scope .rs-slide.is-active {
+  z-index: 2;
+}
+
+.goldiama-services-scope .rs-sbg-px,
+.goldiama-services-scope .rs-sbg-wrap,
+.goldiama-services-scope .rs-sbg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.goldiama-services-scope .rs-sbg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+/* 50% text | 50% image — all slides */
+.goldiama-services-scope .rs-slide-split {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+.goldiama-services-scope .rs-slide-split .rs-slide-content-pane {
+  position: relative;
+  flex: 0 0 50%;
+  width: 50%;
+  max-width: 50%;
+  min-width: 0;
+  min-height: 0;
+  background: #fff;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(20px, 2.8vw, 48px) clamp(20px, 3vw, 52px);
+  overflow: hidden;
+}
+
+.goldiama-services-scope .rs-slide-content-inner {
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1vw, 14px);
+  font-family: Poppins, sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(45, 45, 45, 0.25) transparent;
+}
+
+.goldiama-services-scope .rs-slide-content-inner::-webkit-scrollbar {
+  width: 4px;
+}
+
+.goldiama-services-scope .rs-slide-content-inner::-webkit-scrollbar-thumb {
+  background: rgba(45, 45, 45, 0.25);
+  border-radius: 4px;
+}
+
+.goldiama-services-scope .rs-slide-split .rs-slide-image-pane {
+  position: relative;
+  flex: 0 0 50%;
+  width: 50%;
+  max-width: 50%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #f5f5f5;
+  z-index: 1;
+}
+
+.goldiama-services-scope .rs-slide-split .rs-split-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.goldiama-services-scope .rs-slide-split .rs-layer-title-top,
+.goldiama-services-scope .rs-slide-fullscreen .rs-layer-title-top {
+  margin: 0;
+}
+
+.goldiama-services-scope .rs-slide-split .rs-layer-title-bold,
+.goldiama-services-scope .rs-slide-fullscreen .rs-layer-title-bold {
+  margin: 0;
+}
+
+.goldiama-services-scope .rs-slide-split .rs-layer-subtitle,
+.goldiama-services-scope .rs-slide-fullscreen .rs-layer-subtitle {
+  margin: 0;
+  max-width: 100%;
+}
+
+.goldiama-services-scope .rs-slide-split .rs-layer-title-top,
+.goldiama-services-scope .rs-slide-split .rs-layer-title-bold,
+.goldiama-services-scope .rs-slide-split .rs-layer-subtitle {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 100%;
+  max-width: 100%;
+  white-space: normal;
+}
+
+@media (max-width: 778px) {
+  .goldiama-services-scope .rs-slide-split {
+    flex-direction: column;
+  }
+
+  .goldiama-services-scope .rs-slide-split .rs-slide-content-pane,
+  .goldiama-services-scope .rs-slide-split .rs-slide-image-pane {
+    flex: 0 0 50%;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .goldiama-services-scope .rs-slide-split .rs-slide-content-pane {
+    order: 2;
+    padding: clamp(24px, 5vw, 40px) clamp(20px, 4vw, 28px);
+  }
+
+  .goldiama-services-scope .rs-slide-split .rs-slide-image-pane {
+    order: 1;
+  }
+}
+
+/* Bullets sit in the left text column */
+.goldiama-services-scope .rs-module:has(.rs-slide-split.is-active) .tp-bullets {
+  transform: translate(clamp(24px, 3.5vw, 64px), -38px);
+}
+
+/* Available Shapes — fancy.png full-screen only */
+.goldiama-services-scope .rs-slide-fullscreen {
+  display: block;
+  background: #000;
+  overflow: hidden;
+}
+
+.goldiama-services-scope .rs-slide-fullscreen .rs-slide-fullscreen-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  flex: none;
+  z-index: 1;
+  background: #000;
+}
+
+.goldiama-services-scope .rs-slide-fullscreen .rs-fullscreen-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.goldiama-services-scope .rs-slide-fullscreen .rs-slide-text-pane {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.55) 42%,
+    transparent 65%
+  );
+}
+
+.goldiama-services-scope .rs-slide-fullscreen .rs-slide-content-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: min(520px, 50%);
+  max-width: 50%;
+  height: 100%;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(32px, 4vw, 72px) clamp(24px, 3.5vw, 64px);
+  background: transparent;
+  pointer-events: auto;
+}
+
+.goldiama-services-scope .rs-slide-fullscreen .rs-slide-content-overlay.text-light .rs-layer,
+.goldiama-services-scope .rs-slide-fullscreen .rs-slide-content-overlay.text-light .rs-layer-subtitle {
+  color: #fff;
+}
+
+.goldiama-services-scope .rs-slide-fullscreen .rev-btn.text-light {
+  color: #fff;
+  border-color: #fff;
+}
+
+.goldiama-services-scope .rs-module:has(.rs-slide-fullscreen.is-active) .tp-bullets {
+  transform: translate(clamp(24px, 3.5vw, 64px), -38px);
+}
+
+.goldiama-services-scope .rs-module:has(.rs-slide-fullscreen.is-active) .tparrows svg {
+  stroke: #fff;
+}
+
+@media (max-width: 778px) {
+  .goldiama-services-scope .rs-slide-fullscreen .rs-slide-content-overlay {
+    width: 100%;
+    max-width: 100%;
+    justify-content: flex-end;
+    padding-bottom: clamp(48px, 10vw, 80px);
+  }
+}
+
+/* Text layers — Goldiama Poppins typography */
+.goldiama-services-scope .rs-parallax-wrap {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  z-index: 8;
+  perspective: 601px;
+  left: clamp(12px, 13.2vw, 253px);
+}
+
+.goldiama-services-scope .rs-slide-fullscreen .rs-parallax-wrap {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  perspective: 601px;
+  left: clamp(12px, 13.2vw, 253px);
+}
+
+.goldiama-services-scope .rs-layer-title-top-wrap {
+  top: clamp(80px, 11.1vw, 160px);
+  z-index: 8;
+}
+
+.goldiama-services-scope .rs-layer-title-bold-wrap {
+  top: clamp(105px, 14.6vw, 210px);
+  z-index: 9;
+}
+
+.goldiama-services-scope .rs-layer-subtitle-wrap {
+  top: clamp(180px, 19.4vw, 280px);
+  z-index: 10;
+}
+
+.goldiama-services-scope .rs-layer-btn-wrap {
+  top: clamp(240px, 25vw, 360px);
+  z-index: 11;
+}
+
+.goldiama-services-scope .rs-slide.is-active .rs-parallax-wrap {
+  pointer-events: auto;
+}
+
+.goldiama-services-scope .rs-layer {
+  font-family: Poppins, sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0;
+}
+
+.goldiama-services-scope .rs-layer-title-top {
+  font-weight: 400;
+  font-size: clamp(30px, 3.47vw, 48px);
+  line-height: clamp(34px, 3.8vw, 52px);
+  letter-spacing: 0.02em;
+  white-space: normal;
+}
+
+.goldiama-services-scope .rs-layer-title-bold {
+  font-weight: 600;
+  font-size: clamp(30px, 3.47vw, 48px);
+  line-height: clamp(34px, 3.8vw, 52px);
+  letter-spacing: 0.02em;
+  white-space: normal;
+}
+
+.goldiama-services-scope .rs-layer-subtitle {
+  font-weight: 600;
+  font-size: clamp(16px, 1.45vw, 20px);
+  line-height: clamp(22px, 1.8vw, 26px);
+  letter-spacing: 0.04em;
+  white-space: normal;
+  max-width: 100%;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.goldiama-services-scope .rs-layer-items {
+  list-style: none;
+  margin: clamp(6px, 0.8vw, 10px) 0 0;
+  padding: 0;
+  width: 100%;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.5;
+  text-transform: none;
+}
+
+.goldiama-services-scope .rs-layer-items li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: clamp(2px, 0.35vw, 4px);
+}
+
+.goldiama-services-scope .rs-layer-items li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.goldiama-services-scope .rs-layer-section-label {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: clamp(6px, 0.7vw, 8px) 0 4px;
+}
+
+.goldiama-services-scope .rs-layer-categories,
+.goldiama-services-scope .rs-layer-shapes {
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: clamp(13px, 1.1vw, 16px);
+  line-height: 1.45;
+  text-transform: none;
+  margin: 0;
+}
+
+.goldiama-services-scope .rs-layer-categories-wrap,
+.goldiama-services-scope .rs-layer-shapes-wrap {
+  width: 100%;
+}
+
+.goldiama-services-scope .rs-layer-items.text-dark {
+  color: #2d2d2d;
+}
+
+.goldiama-services-scope .rs-layer-categories-wrap.text-dark,
+.goldiama-services-scope .rs-layer-shapes-wrap.text-dark {
+  color: #2d2d2d;
+}
+
+.goldiama-services-scope .rs-layer.text-light,
+.goldiama-services-scope .rs-layer-subtitle.text-light {
+  color: #fff;
+}
+
+.goldiama-services-scope .rs-layer.text-dark,
+.goldiama-services-scope .rs-layer-subtitle.text-dark {
+  color: #2d2d2d;
+}
+
+/* rev-btn pill button */
+.goldiama-services-scope .rev-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Poppins, sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(12px, 0.97vw, 14px);
+  line-height: 18px;
+  letter-spacing: 1px;
+  padding: clamp(7px, 0.69vw, 10px) clamp(16px, 2.08vw, 30px);
+  border-radius: 30px;
+  border: 2px solid #2d2d2d;
+  background: transparent;
+  color: #2d2d2d;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.goldiama-services-scope .rev-btn.text-light {
+  color: #fff;
+  border-color: #fff;
+}
+
+.goldiama-services-scope .rev-btn:hover {
+  color: #000;
+  background: #fff;
+  border-color: transparent;
+}
+
+.goldiama-services-scope .rev-btn .fa-chevron-right {
+  display: inline-block;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: width 0.2s, opacity 0.2s, margin 0.2s;
+  margin-left: 0;
+}
+
+.goldiama-services-scope .rev-btn:hover .fa-chevron-right {
+  width: 12px;
+  opacity: 1;
+  margin-left: 4px;
+}
+
+.goldiama-services-scope .rev-btn .fa-chevron-right::before {
+  content: "›";
+  font-style: normal;
+  font-size: 14px;
+}
+
+/* Layer entrance animations */
+@keyframes rs-layer-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rs-layer-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rs-layer-from-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rs-layer-from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.goldiama-services-scope .rs-slide.is-active .rs-layer-title-bold.animate-in {
+  animation: rs-layer-from-left 0.8s ease 0.15s both;
+}
+
+.goldiama-services-scope .rs-slide.is-active .rs-layer-subtitle.animate-in {
+  animation: rs-layer-from-bottom 0.8s ease 0.25s both;
+}
+
+.goldiama-services-scope .rs-slide.is-active .rs-layer-title-top.animate-in {
+  animation: rs-layer-from-bottom 0.8s ease 0.1s both;
+}
+
+.goldiama-services-scope .rs-slide.is-active .rs-layer-items.animate-in {
+  animation: rs-layer-from-bottom 0.8s ease 0.35s both;
+}
+
+.goldiama-services-scope .rs-slide.is-active .rs-layer-categories-wrap.animate-in,
+.goldiama-services-scope .rs-slide.is-active .rs-layer-shapes-wrap.animate-in {
+  animation: rs-layer-from-bottom 0.8s ease 0.45s both;
+}
+
+/* Uranus arrows */
+.goldiama-services-scope .tparrows {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  padding: 0;
+}
+
+.goldiama-services-scope .rs-module-wrap:hover .tparrows,
+.goldiama-services-scope .rs-module:focus-within .tparrows {
+  opacity: 1;
+}
+
+.goldiama-services-scope .tp-leftarrow {
+  left: 0;
+  transform: translate(30px, -25px);
+}
+
+.goldiama-services-scope .tp-rightarrow {
+  right: 0;
+  left: auto;
+  transform: translate(-80px, -25px);
+}
+
+.goldiama-services-scope .rs-module-wrap:hover .tp-leftarrow,
+.goldiama-services-scope .rs-module:focus-within .tp-leftarrow {
+  transform: translate(0, -25px);
+}
+
+.goldiama-services-scope .rs-module-wrap:hover .tp-rightarrow,
+.goldiama-services-scope .rs-module:focus-within .tp-rightarrow {
+  transform: translate(0, -25px);
+}
+
+.goldiama-services-scope .tparrows.uranus::before {
+  display: none;
+}
+
+.goldiama-services-scope .tparrows svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 1.5;
+  pointer-events: none;
+}
+
+.goldiama-services-scope .rs-module:has(.rs-slide-split.is-active) .tparrows svg {
+  stroke: #2d2d2d;
+}
+
+/* Hesperiden bullets */
+.goldiama-services-scope .tp-bullets {
+  position: absolute;
+  z-index: 30;
+  top: 100%;
+  left: 0;
+  transform: translate(clamp(20px, 13.2vw, 253px), -38px);
+  width: auto;
+  height: 18px;
+  display: flex;
+  gap: 0;
+  opacity: 1;
+}
+
+.goldiama-services-scope .tp-bullet {
+  width: 11px;
+  height: 11px;
+  margin-right: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(45, 45, 45, 0.4);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.goldiama-services-scope .tp-bullet.selected {
+  background: transparent;
+  border-color: #2d2d2d;
+  transform: scale(1.2);
+}
+
+.goldiama-services-scope .tp-bullet:hover:not(.selected) {
+  border-color: #2d2d2d;
+}
+
+.goldiama-services-scope .tp-bullets.light-bullets .tp-bullet {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.goldiama-services-scope .tp-bullets.light-bullets .tp-bullet.selected {
+  background: transparent;
+  border-color: #fff;
+  transform: scale(1.2);
+}
+
+/* Progress bar */
+.goldiama-services-scope .rs-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 30;
+  overflow: hidden;
+}
+
+.goldiama-services-scope .rs-progress-bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+}
+
+.goldiama-services-scope .rs-progress-bar.is-running {
+  animation: rs-progress-fill var(--autoplay-ms, 5000ms) linear forwards;
+}
+
+@keyframes rs-progress-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}

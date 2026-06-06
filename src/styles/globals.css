@@ -1,0 +1,203 @@
+/* Typography — matches Services slide headers (Poppins) */
+.type-eyebrow {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.type-section-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.type-slide-title-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: clamp(30px, 3.47vw, 48px);
+  line-height: clamp(34px, 3.8vw, 52px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.type-slide-title-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: clamp(30px, 3.47vw, 48px);
+  line-height: clamp(34px, 3.8vw, 52px);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.type-subtitle {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: clamp(16px, 1.45vw, 20px);
+  line-height: clamp(22px, 1.8vw, 26px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.type-body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.5;
+}
+
+.type-body-lg {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.6;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 88px;
+  }
+}
+
+[id] {
+  scroll-margin-top: 80px;
+}
+
+@media (min-width: 1024px) {
+  [id] {
+    scroll-margin-top: 88px;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2563eb, #1e40af);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1e40af, #1e3a8a);
+}
+
+/* Glassmorphism utility classes */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Premium gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shine effect */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(30deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(30deg);
+  }
+}
+
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(37, 99, 235, 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Selection styling */
+::selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Premium focus states */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
