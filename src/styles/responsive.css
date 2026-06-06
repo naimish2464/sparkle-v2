@@ -1,0 +1,279 @@
+/**
+ * Site-wide responsive media queries
+ * Breakpoints: xs ≤479 | sm 480–767 | md 768–1023 | lg 1024–1279 | xl ≥1280
+ */
+
+/* ── Base: all viewports ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Safe area for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* ── Extra-small phones (≤479px) ── */
+@media (max-width: 479px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  [id] {
+    scroll-margin-top: 72px;
+  }
+
+  .type-section-title,
+  .type-slide-title-light,
+  .type-slide-title-bold {
+    font-size: clamp(22px, 6.5vw, 30px);
+    line-height: 1.2;
+  }
+
+  .type-subtitle {
+    font-size: clamp(13px, 3.8vw, 16px);
+    line-height: 1.35;
+  }
+
+  .type-body,
+  .type-body-lg {
+    font-size: clamp(13px, 3.6vw, 15px);
+  }
+
+  .type-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+
+  /* Hero */
+  #home .hero-logo-block {
+    margin-bottom: 1rem;
+  }
+
+  #home .hero-logo {
+    width: clamp(120px, 32vw, 180px) !important;
+  }
+
+  #home .hero-scroll-indicator {
+    display: none;
+  }
+
+  /* Header */
+  .site-header .site-logo {
+    height: 2.25rem;
+  }
+
+  /* Footer legal row */
+  .site-footer .footer-legal {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .site-footer .footer-legal .separator-dot {
+    display: none;
+  }
+}
+
+/* ── Small phones & large phones (480px–767px) ── */
+@media (min-width: 480px) and (max-width: 767px) {
+  html {
+    scroll-padding-top: 76px;
+  }
+
+  [id] {
+    scroll-margin-top: 76px;
+  }
+}
+
+/* ── Phones (≤767px) ── */
+@media (max-width: 767px) {
+  #home {
+    min-height: 100dvh;
+    min-height: 100svh;
+  }
+
+  #home .hero-inner {
+    padding-top: 4rem;
+    padding-bottom: 2.5rem;
+  }
+
+  #home .hero-subtitle-pipes {
+    word-break: break-word;
+    hyphens: auto;
+    font-size: clamp(12px, 3.4vw, 15px);
+    line-height: 1.4;
+  }
+
+  #home .hero-body-text {
+    font-size: clamp(13px, 3.5vw, 15px);
+    line-height: 1.55;
+  }
+
+  #home .hero-countries {
+    gap: 0.5rem 1rem;
+    font-size: clamp(12px, 3.2vw, 14px);
+  }
+
+  #home .hero-cta-btn {
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 0.9375rem;
+  }
+
+  /* About trust row — allow wrap on narrow screens */
+  #about .trust-item {
+    white-space: normal;
+  }
+
+  /* Consultancy — globe as background on mobile */
+  #consultancy {
+    min-height: auto;
+  }
+
+  #consultancy .consultancy-globe-wrap {
+    opacity: 0.35;
+    height: 55%;
+    top: auto;
+    bottom: 0;
+  }
+
+  #consultancy .consultancy-content {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Contact form grid spacing */
+  #contact .contact-grid {
+    gap: 2.5rem;
+  }
+
+  /* Footer link columns */
+  .site-footer .footer-links-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ── Tablets portrait (768px–1023px) ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .site-footer .footer-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .site-footer .footer-brand-col {
+    grid-column: 1 / -1;
+  }
+
+  #consultancy .consultancy-content {
+    max-width: 58%;
+  }
+}
+
+/* ── Touch devices: always show carousel controls ── */
+@media (hover: none), (pointer: coarse) {
+  .goldiama-services-scope .tparrows {
+    opacity: 0.85;
+  }
+
+  .goldiama-services-scope .tp-leftarrow {
+    transform: translate(8px, -25px);
+  }
+
+  .goldiama-services-scope .tp-rightarrow {
+    transform: translate(-8px, -25px);
+  }
+
+  .goldiama-services-scope .tparrows {
+    width: 44px;
+    height: 44px;
+  }
+
+  .goldiama-services-scope .tparrows svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ── Landscape phones ── */
+@media (max-width: 896px) and (orientation: landscape) {
+  #home .hero-inner {
+    padding-top: 3.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  #home .hero-logo-block {
+    margin-bottom: 0.75rem;
+  }
+
+  #home .hero-logo {
+    width: clamp(100px, 18vw, 160px) !important;
+  }
+
+  #home .hero-body-text {
+    display: none;
+  }
+
+  #home .hero-scroll-indicator {
+    display: none;
+  }
+
+  #about {
+    min-height: auto;
+  }
+
+  #about .about-image-col {
+    height: 50vh;
+  }
+}
+
+/* ── Large desktops (≥1440px) ── */
+@media (min-width: 1440px) {
+  .site-container-xl {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ── Ultra-wide (≥1920px) ── */
+@media (min-width: 1920px) {
+  .type-section-title {
+    font-size: 52px;
+  }
+
+  .type-slide-title-light,
+  .type-slide-title-bold {
+    font-size: 52px;
+    line-height: 56px;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

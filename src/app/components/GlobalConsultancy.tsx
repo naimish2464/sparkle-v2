@@ -98,7 +98,7 @@ export function GlobalConsultancy() {
       {/* Interactive globe — right visual anchor */}
       <motion.div
         style={{ y: globeY, opacity: globeOpacity }}
-        className="absolute inset-y-0 right-0 w-full lg:w-[62%] xl:w-[58%] pointer-events-none z-0"
+        className="consultancy-globe-wrap absolute inset-y-0 right-0 w-full lg:w-[62%] xl:w-[58%] pointer-events-none z-0"
         aria-hidden="true"
       >
         <div className="relative w-full h-full min-h-[420px] lg:min-h-0">
@@ -112,7 +112,7 @@ export function GlobalConsultancy() {
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
         <motion.div
           style={{ y: contentY }}
-          className="py-16 sm:py-20 lg:py-28 xl:py-32 lg:min-h-screen lg:flex lg:flex-col lg:justify-center lg:max-w-[720px] xl:max-w-[760px]"
+          className="consultancy-content py-16 sm:py-20 lg:py-28 xl:py-32 lg:min-h-screen lg:flex lg:flex-col lg:justify-center lg:max-w-[720px] xl:max-w-[760px] max-lg:pb-8"
         >
           {/* Label */}
           <motion.p

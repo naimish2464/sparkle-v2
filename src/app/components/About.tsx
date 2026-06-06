@@ -46,7 +46,7 @@ export function About() {
       {/* ── Layered image column (45%) ── */}
       <div
         ref={imageRef}
-        className="relative lg:absolute lg:inset-y-0 lg:left-0 lg:w-[45%] h-[34vh] sm:h-[38vh] lg:h-full overflow-hidden"
+        className="about-image-col relative lg:absolute lg:inset-y-0 lg:left-0 lg:w-[45%] h-[34vh] sm:h-[38vh] lg:h-full overflow-hidden"
       >
         <motion.div
           style={{ y: imageY, scale: imageScale }}
@@ -131,7 +131,7 @@ export function About() {
                       aria-hidden="true"
                     />
                   )}
-                  <span className="type-body text-white/85 font-medium whitespace-nowrap">
+                  <span className="trust-item type-body text-white/85 font-medium">
                     {item}
                   </span>
                 </div>

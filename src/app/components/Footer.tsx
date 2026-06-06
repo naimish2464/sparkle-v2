@@ -45,7 +45,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-b from-gray-900 to-black text-white overflow-hidden">
+    <footer className="site-footer relative bg-gradient-to-b from-gray-900 to-black text-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -60,11 +60,11 @@ export function Footer() {
       {/* Top Accent Line */}
       <div className="h-1 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600"></div>
 
-      <div className="container mx-auto px-6 lg:px-12 py-20 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20 relative z-10">
         {/* Top Section */}
-        <div className="grid lg:grid-cols-6 gap-12 mb-16">
+        <div className="footer-links-grid grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-10 lg:gap-12 mb-12 lg:mb-16">
           {/* Brand Column - Spans 2 columns */}
-          <div className="lg:col-span-2">
+          <div className="footer-brand-col sm:col-span-2 md:col-span-3 lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -141,7 +141,7 @@ export function Footer() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="p-8 lg:p-12 rounded-3xl bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-blue-500/20 backdrop-blur-sm mb-16"
+          className="p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-blue-500/20 backdrop-blur-sm mb-12 lg:mb-16"
         >
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
@@ -209,7 +209,7 @@ export function Footer() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="flex items-center space-x-6 text-sm"
+              className="footer-legal flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-6 text-sm"
             >
               <a
                 href="#"
@@ -217,14 +217,14 @@ export function Footer() {
               >
                 Privacy Policy
               </a>
-              <span className="text-gray-700">•</span>
+              <span className="separator-dot text-gray-700 hidden sm:inline">•</span>
               <a
                 href="#"
                 className="text-gray-500 hover:text-blue-400 transition-colors"
               >
                 Terms of Service
               </a>
-              <span className="text-gray-700">•</span>
+              <span className="separator-dot text-gray-700 hidden sm:inline">•</span>
               <a
                 href="#"
                 className="text-gray-500 hover:text-blue-400 transition-colors"

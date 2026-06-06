@@ -296,6 +296,12 @@
   white-space: normal;
 }
 
+@media (max-width: 1023px) {
+  .goldiama-services-scope .rs-slide-split .rs-slide-content-pane {
+    padding: clamp(20px, 3.5vw, 40px) clamp(18px, 3vw, 36px);
+  }
+}
+
 @media (max-width: 778px) {
   .goldiama-services-scope .rs-slide-split {
     flex-direction: column;
@@ -310,11 +316,35 @@
 
   .goldiama-services-scope .rs-slide-split .rs-slide-content-pane {
     order: 2;
-    padding: clamp(24px, 5vw, 40px) clamp(20px, 4vw, 28px);
+    padding: clamp(20px, 4.5vw, 36px) clamp(16px, 4vw, 24px);
   }
 
   .goldiama-services-scope .rs-slide-split .rs-slide-image-pane {
     order: 1;
+    min-height: clamp(180px, 38vw, 320px);
+  }
+
+  .goldiama-services-scope .rs-layer-title-top,
+  .goldiama-services-scope .rs-layer-title-bold {
+    font-size: clamp(22px, 5.5vw, 36px);
+    line-height: 1.2;
+  }
+
+  .goldiama-services-scope .rs-layer-subtitle {
+    font-size: clamp(14px, 3.5vw, 18px);
+  }
+
+  .goldiama-services-scope .rs-layer-items {
+    font-size: clamp(13px, 3.2vw, 15px);
+  }
+
+  .goldiama-services-scope .tp-bullets {
+    transform: translate(clamp(16px, 4vw, 28px), -32px) !important;
+  }
+
+  .goldiama-services-scope .rs-module:has(.rs-slide-split.is-active) .tp-bullets,
+  .goldiama-services-scope .rs-module:has(.rs-slide-fullscreen.is-active) .tp-bullets {
+    transform: translate(clamp(16px, 4vw, 28px), -32px) !important;
   }
 }
 
@@ -817,5 +847,58 @@
   }
   to {
     transform: scaleX(1);
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 779px) and (max-width: 1023px) {
+  .goldiama-services-scope .rs-fw-forcer {
+    height: clamp(420px, 52vw, 600px);
+  }
+
+  .goldiama-services-scope .rs-slide-split .rs-slide-content-pane {
+    padding: clamp(24px, 2.5vw, 40px) clamp(20px, 2.8vw, 44px);
+  }
+}
+
+/* Small phones — tighter slider height */
+@media (max-width: 374px) {
+  .goldiama-services-scope .rs-fw-forcer {
+    height: clamp(520px, 150vw, 720px);
+  }
+
+  .goldiama-services-scope .rs-services-header {
+    padding-top: clamp(28px, 8vw, 40px);
+    padding-bottom: clamp(16px, 4vw, 24px);
+  }
+
+  .goldiama-services-scope .tparrows {
+    width: 40px;
+    height: 40px;
+  }
+
+  .goldiama-services-scope .tp-leftarrow {
+    transform: translate(4px, -20px) !important;
+  }
+
+  .goldiama-services-scope .tp-rightarrow {
+    transform: translate(-4px, -20px) !important;
+  }
+}
+
+/* Touch: keep arrows visible without hover */
+@media (hover: none), (pointer: coarse) {
+  .goldiama-services-scope .tparrows {
+    opacity: 0.9;
+  }
+
+  .goldiama-services-scope .rs-module-wrap:hover .tp-leftarrow,
+  .goldiama-services-scope .rs-module:focus-within .tp-leftarrow {
+    transform: translate(8px, -25px);
+  }
+
+  .goldiama-services-scope .rs-module-wrap:hover .tp-rightarrow,
+  .goldiama-services-scope .rs-module:focus-within .tp-rightarrow {
+    transform: translate(-8px, -25px);
   }
 }

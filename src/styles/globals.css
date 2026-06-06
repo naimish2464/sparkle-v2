@@ -61,7 +61,19 @@
 /* Smooth Scroll */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 72px;
+}
+
+@media (min-width: 480px) {
+  html {
+    scroll-padding-top: 76px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 80px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -71,7 +83,19 @@ html {
 }
 
 [id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 72px;
+}
+
+@media (min-width: 480px) {
+  [id] {
+    scroll-margin-top: 76px;
+  }
+}
+
+@media (min-width: 768px) {
+  [id] {
+    scroll-margin-top: 80px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -201,8 +225,8 @@ html {
   -webkit-backface-visibility: hidden;
 }
 
-/* Hero logo — no transforms; stable centered anchor */
-.hero-logo-anchor {
+/* Hero layout — logo and content stack in flow (no overlap) */
+.hero-logo-block {
   contain: layout style;
 }
 
@@ -210,6 +234,14 @@ html {
   display: block;
   transform: none;
   will-change: auto;
+}
+
+#home .hero-inner {
+  gap: 0;
+}
+
+#home .hero-content-wrap {
+  min-height: 0;
 }
 
 /* Prevent horizontal scroll */

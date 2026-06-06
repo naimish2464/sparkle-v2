@@ -367,7 +367,7 @@ export function Contact() {
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
         <div className="py-20 sm:py-24 lg:py-28 xl:py-32">
           {/* Asymmetrical editorial grid: 40% / 60% */}
-          <div className="grid lg:grid-cols-[2fr_3fr] gap-14 lg:gap-16 xl:gap-24 items-start">
+          <div className="contact-grid grid lg:grid-cols-[2fr_3fr] gap-10 sm:gap-14 lg:gap-16 xl:gap-24 items-start">
             {/* ── Left: Editorial content ── */}
             <div className="lg:max-w-[480px] xl:max-w-[520px]">
               <motion.p
