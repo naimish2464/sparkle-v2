@@ -10,10 +10,18 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const hero = document.getElementById("home");
+      const heroBottom = hero ? hero.offsetHeight - 80 : window.innerHeight - 80;
+      setScrolled(window.scrollY > heroBottom);
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   const navItems = [
@@ -55,10 +63,18 @@ export function Header() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
-                className="type-body font-medium text-white/90 hover:text-blue-400 transition-colors duration-300 relative group"
+                className={`type-body font-medium transition-colors duration-300 relative group ${
+                  scrolled
+                    ? "text-blue-900 hover:text-blue-700"
+                    : "text-white/90 hover:text-blue-400"
+                }`}
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+                <span
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
+                    scrolled ? "bg-blue-900" : "bg-blue-400"
+                  }`}
+                ></span>
               </motion.a>
             ))}
           </div>
@@ -81,7 +97,11 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors"
+            className={`lg:hidden p-2 transition-colors ${
+              scrolled
+                ? "text-blue-900 hover:text-blue-700"
+                : "text-white/90 hover:text-blue-400"
+            }`}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>

@@ -186,6 +186,32 @@ html {
   color: white;
 }
 
+/* Hero video — GPU layer + paint containment for smooth playback */
+.hero-video-container {
+  contain: strict;
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+.hero-video,
+.hero-poster {
+  object-fit: cover;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Hero logo — no transforms; stable centered anchor */
+.hero-logo-anchor {
+  contain: layout style;
+}
+
+.hero-logo {
+  display: block;
+  transform: none;
+  will-change: auto;
+}
+
 /* Prevent horizontal scroll */
 body {
   overflow-x: hidden;
