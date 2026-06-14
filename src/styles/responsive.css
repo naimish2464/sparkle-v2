@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-img,
+img:not(.site-logo),
 video,
 svg {
   max-width: 100%;
@@ -70,9 +70,10 @@ svg {
     display: none;
   }
 
-  /* Header */
+  /* Header logo — xs phones */
   .site-header .site-logo {
-    height: 2.25rem;
+    max-height: 48px;
+    max-width: 130px;
   }
 
   /* Footer legal row */
@@ -101,8 +102,8 @@ svg {
 /* ── Phones (≤767px) ── */
 @media (max-width: 767px) {
   #home {
-    min-height: 100dvh;
-    min-height: 100svh;
+    height: calc(100svh - 70px);
+    height: calc(100dvh - 70px);
   }
 
   #home .hero-inner {

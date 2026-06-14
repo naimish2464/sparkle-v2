@@ -1,7 +1,6 @@
-import { motion, useInView, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
-
-const luxuryEase = [0.22, 1, 0.36, 1] as const;
+import { motion, useScroll, useTransform } from "motion/react";
+import { luxuryEase, useReveal } from "./useReveal";
+import aboutImage from "../../../assests/services/diamond_manufacturing.png";
 
 const description = [
   "We are your complete partner for natural and lab-grown diamonds — from rough scanning to polished stones and global sales.",
@@ -18,126 +17,108 @@ const trustItems = [
 ];
 
 export function About() {
-  const sectionRef = useRef(null);
-  const imageRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+  const { ref: sectionRef, isInView } = useReveal();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1.12, 1.08]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"]);
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative h-auto lg:h-screen lg:max-h-screen bg-[#1a2744] overflow-hidden"
+      className="relative bg-[#fafafa] overflow-hidden"
     >
-      {/* Soft ambient gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a2744] via-[#152038] to-[#0f172a] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#2a3f6b]/30 to-transparent pointer-events-none" />
-
-      {/* Decorative thin lines */}
-      <div className="absolute top-20 left-[45%] hidden lg:block w-px h-16 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-      <div className="absolute bottom-24 right-[12%] hidden lg:block w-12 h-px bg-gradient-to-r from-white/25 to-transparent" />
-
-      {/* ── Layered image column (45%) ── */}
-      <div
-        ref={imageRef}
-        className="about-image-col relative lg:absolute lg:inset-y-0 lg:left-0 lg:w-[45%] h-[34vh] sm:h-[38vh] lg:h-full overflow-hidden"
-      >
-        <motion.div
-          style={{ y: imageY, scale: imageScale }}
-          className="absolute inset-0 w-full h-[115%] -top-[7%]"
-        >
-          <img
-            src="https://images.unsplash.com/photo-1631561381360-75e4b03ef9b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600"
-            alt="Diamond manufacturing and precision craftsmanship"
-            className="w-full h-full object-cover object-center"
-          />
-        </motion.div>
-
-        {/* Layered edge blend — image dissolves into navy content */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-[#1a2744] lg:to-[#1a2744]/95 hidden lg:block" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a2744] via-transparent to-transparent lg:hidden" />
-      </div>
-
-      {/* ── Editorial content ── */}
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-0 lg:h-full">
-        <div className="lg:ml-[45%] lg:w-[55%] w-full lg:pl-10 xl:pl-14 py-10 sm:py-12 lg:py-0 lg:h-full lg:flex lg:flex-col lg:justify-center lg:pr-6 xl:pr-10">
-          {/* Label */}
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.1, ease: luxuryEase }}
-            className="type-eyebrow text-white/60 mb-4 lg:mb-5"
-          >
-            About Sparkle Solitaires
-          </motion.p>
-
-          {/* Statement headline — hero of the section */}
-          <motion.h2
-            initial={{ opacity: 0, y: 36 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.3, delay: 0.12, ease: luxuryEase }}
-            className="type-slide-title-bold text-white w-full max-w-3xl xl:max-w-4xl mb-5 lg:mb-6"
-          >
-            Your Complete Partner Across the{" "}
-            <span className="block sm:inline">Diamond Value Chain</span>
-          </motion.h2>
-
-          {/* Thin premium divider */}
+      <div className="w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 items-center pb-20 sm:pb-24 lg:pb-32 xl:pb-36 pt-0">
+          {/* Large manufacturing image */}
           <motion.div
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
-            transition={{ duration: 1.4, delay: 0.28, ease: luxuryEase }}
-            className="w-12 h-px bg-white/30 origin-left mb-5 lg:mb-6"
-          />
-
-          {/* Staggered narrative paragraphs */}
-          <div className="w-full max-w-3xl xl:max-w-4xl space-y-3 lg:space-y-3.5 mb-6 lg:mb-8">
-            {description.map((paragraph, index) => (
-              <motion.p
-                key={index}
-                initial={{ opacity: 0, y: 28 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 1.1,
-                  delay: 0.38 + index * 0.14,
-                  ease: luxuryEase,
-                }}
-                className="type-body-lg text-white/75"
-              >
-                {paragraph}
-              </motion.p>
-            ))}
-          </div>
-
-          {/* Trust row — no cards, elegant dividers only */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.1, delay: 0.95, ease: luxuryEase }}
-            className="w-full max-w-3xl xl:max-w-4xl pt-5 lg:pt-6 border-t border-white/15"
+            initial={{ opacity: 0, x: -32 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1.2, ease: luxuryEase }}
+            className="relative order-2 lg:order-1"
           >
-            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-y-3 sm:gap-y-0">
-              {trustItems.map((item, index) => (
-                <div key={item} className="flex items-center">
-                  {index > 0 && (
-                    <span
-                      className="hidden sm:block w-px h-3.5 bg-white/25 mx-4 lg:mx-5 shrink-0"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <span className="trust-item type-body text-white/85 font-medium">
-                    {item}
-                  </span>
-                </div>
-              ))}
+            <div className="relative overflow-hidden rounded-[20px] md:rounded-[28px] aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5]">
+              <motion.img
+                style={{ y: imageY }}
+                src={aboutImage}
+                alt="Diamond manufacturing and precision craftsmanship"
+                className="absolute inset-0 w-full h-[110%] -top-[5%] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/20 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
+
+          {/* Editorial content */}
+          <div className="order-1 lg:order-2 lg:py-8">
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1.1, ease: luxuryEase }}
+              className="type-eyebrow text-[#0a1628]/45 mb-5 lg:mb-6 tracking-[0.2em]"
+            >
+              About Sparkle Solitaires
+            </motion.p>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 36 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1.3, delay: 0.1, ease: luxuryEase }}
+              className="type-slide-title-bold text-[#0a1628] max-w-xl mb-6 lg:mb-8"
+            >
+              Your Complete Partner Across the Diamond Value Chain
+            </motion.h2>
+
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
+              transition={{ duration: 1.2, delay: 0.2, ease: luxuryEase }}
+              className="w-14 h-px bg-[#0a1628]/20 origin-left mb-7 lg:mb-8"
+            />
+
+            <div className="space-y-4 lg:space-y-5 mb-8 lg:mb-10 max-w-xl">
+              {description.map((paragraph, index) => (
+                <motion.p
+                  key={index}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{
+                    duration: 1.05,
+                    delay: 0.28 + index * 0.12,
+                    ease: luxuryEase,
+                  }}
+                  className="type-body-lg text-[#0a1628]/65"
+                >
+                  {paragraph}
+                </motion.p>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 1.1, delay: 0.75, ease: luxuryEase }}
+              className="pt-6 lg:pt-8 border-t border-[#0a1628]/10 max-w-xl"
+            >
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-y-3">
+                {trustItems.map((item, index) => (
+                  <div key={item} className="flex items-center">
+                    {index > 0 && (
+                      <span
+                        className="hidden sm:block w-px h-3.5 bg-[#0a1628]/15 mx-4 lg:mx-5 shrink-0"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <span className="type-body text-[#0a1628]/80 font-medium tracking-wide">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

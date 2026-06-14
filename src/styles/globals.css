@@ -1,10 +1,10 @@
-/* Typography — matches Services slide headers (Poppins) */
+/* Premium typography system */
 .type-eyebrow {
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: clamp(14px, 1.2vw, 17px);
+  font-weight: 500;
+  font-size: clamp(11px, 1vw, 13px);
   line-height: 1.35;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
@@ -19,19 +19,19 @@
 
 .type-slide-title-light {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: clamp(30px, 3.47vw, 48px);
-  line-height: clamp(34px, 3.8vw, 52px);
-  letter-spacing: 0.02em;
+  font-weight: 300;
+  font-size: clamp(28px, 3.8vw, 52px);
+  line-height: 1.12;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .type-slide-title-bold {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  font-size: clamp(30px, 3.47vw, 48px);
-  line-height: clamp(34px, 3.8vw, 52px);
-  letter-spacing: 0.02em;
+  font-size: clamp(28px, 3.8vw, 52px);
+  line-height: 1.12;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -47,15 +47,15 @@
 .type-body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  font-size: clamp(14px, 1.2vw, 17px);
-  line-height: 1.5;
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.65;
 }
 
 .type-body-lg {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  font-size: clamp(15px, 1.35vw, 18px);
-  line-height: 1.6;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.7;
 }
 
 /* Smooth Scroll */
@@ -104,117 +104,32 @@ html {
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar — navy premium */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f6f5f2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #2563eb, #1e40af);
-  border-radius: 5px;
+  background: #0a1628;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #1e40af, #1e3a8a);
+  background: #15253f;
 }
 
-/* Glassmorphism utility classes */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.glass-dark {
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Premium gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Shine effect */
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) translateY(-100%) rotate(30deg);
-  }
-  100% {
-    transform: translateX(100%) translateY(100%) rotate(30deg);
-  }
-}
-
-.shine-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.shine-effect::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  animation: shine 3s infinite;
-}
-
-/* Floating animation */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-.float-animation {
-  animation: float 6s ease-in-out infinite;
-}
-
-/* Pulse glow */
-@keyframes pulse-glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(37, 99, 235, 0.6);
-  }
-}
-
-.pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Selection styling */
-::selection {
-  background-color: #3b82f6;
-  color: white;
-}
-
-/* Hero video — GPU layer + paint containment for smooth playback */
+/* Hero video — GPU layer for smooth playback */
 .hero-video-container {
-  contain: strict;
+  contain: layout style;
   transform: translateZ(0);
-  isolation: isolate;
+}
+
+.hero-overlay {
+  background-color: rgba(10, 0, 111, 0.4);
 }
 
 .hero-video,
@@ -225,37 +140,71 @@ html {
   -webkit-backface-visibility: hidden;
 }
 
-/* Hero layout — logo and content stack in flow (no overlap) */
-.hero-logo-block {
-  contain: layout style;
-}
-
-.hero-logo {
-  display: block;
-  transform: none;
-  will-change: auto;
-}
-
-#home .hero-inner {
-  gap: 0;
-}
-
-#home .hero-content-wrap {
-  min-height: 0;
-}
-
 /* Prevent horizontal scroll */
 body {
   overflow-x: hidden;
 }
 
-/* Smooth transitions for all interactive elements */
-a, button {
-  transition: all 0.3s ease;
-}
-
 /* Premium focus states */
 *:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #0a1628;
   outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background-color: #0a1628;
+  color: white;
+}
+
+/* Smooth transitions for interactive elements */
+a,
+button {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Premium button base */
+.btn-premium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Section rhythm */
+section {
+  position: relative;
+}
+
+/* Header logo — explicit sizing (overrides global img { height: auto }) */
+.site-header .header-logo-link {
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.site-header .site-logo {
+  display: block;
+  height: auto;
+  max-height: 50px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (min-width: 640px) {
+  .site-header .site-logo {
+    max-height: 58px;
+    max-width: 150px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header .site-logo {
+    max-height: 62px;
+    max-width: 160px;
+  }
 }

@@ -1,262 +1,134 @@
 import { motion } from "motion/react";
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Youtube,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import logoFile from "../../../assests/Sparkle Solitaire LOGO.png";
+
+const navItems = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Services", href: "#services" },
+  { name: "Manufacturing", href: "#manufacturing" },
+  { name: "Consultancy", href: "#consultancy" },
+  { name: "Contact", href: "#contact" },
+];
 
 export function Footer() {
-  const footerLinks = {
-    Company: ["About Us", "Our Team", "Careers", "Press & Media", "Investors"],
-    Services: [
-      "Diamond Polishing",
-      "3D Scanning",
-      "Manufacturing",
-      "Consulting",
-      "Certification",
-    ],
-    Resources: [
-      "Knowledge Base",
-      "Case Studies",
-      "White Papers",
-      "Industry News",
-      "FAQs",
-    ],
-    Support: [
-      "Contact Us",
-      "Customer Portal",
-      "Technical Support",
-      "Training",
-      "Documentation",
-    ],
-  };
-
-  const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Youtube, href: "#", label: "YouTube" },
-  ];
-
   return (
-    <footer className="site-footer relative bg-gradient-to-b from-gray-900 to-black text-white overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0)`,
-            backgroundSize: "40px 40px",
-          }}
-        ></div>
-      </div>
+    <footer className="site-footer relative bg-[#0a1628] text-white overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      {/* Top Accent Line */}
-      <div className="h-1 bg-gradient-to-r from-blue-600 via-blue-400 to-blue-600"></div>
+      <div className="w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-14 sm:py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10 mb-14 lg:mb-16">
+          {/* Logo & brand */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-1"
+          >
+            <img
+              src={logoFile}
+              alt="Sparkle Solitaires"
+              className="h-9 w-auto object-contain brightness-0 invert mb-5"
+            />
+            <p className="type-body text-white/50 max-w-xs leading-relaxed">
+              Your complete partner for Natural &amp; Lab-Grown Diamonds — from Rough Scanning to Polished Stones and Global Sales.
+            </p>
+          </motion.div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 lg:py-20 relative z-10">
-        {/* Top Section */}
-        <div className="footer-links-grid grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-10 lg:gap-12 mb-12 lg:mb-16">
-          {/* Brand Column - Spans 2 columns */}
-          <div className="footer-brand-col sm:col-span-2 md:col-span-3 lg:col-span-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-6"
-            >
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
-                  <div className="w-6 h-6 border-2 border-white rotate-45"></div>
-                </div>
-                <div>
-                  <div className="type-slide-title-bold tracking-tight">DIAMOND</div>
-                  <div className="type-eyebrow text-blue-400 -mt-1">
-                    PRECISION TECH
-                  </div>
-                </div>
-              </div>
-
-              <p className="type-body-lg text-gray-400 mb-6">
-                Leading the global diamond industry with innovative technology,
-                unmatched expertise, and commitment to excellence for over 50
-                years.
-              </p>
-
-              {/* Contact Quick Links */}
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3 text-gray-400 hover:text-blue-400 transition-colors">
-                  <Mail size={18} />
-                  <span className="text-sm">info@diamondtech.com</span>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-400 hover:text-blue-400 transition-colors">
-                  <Phone size={18} />
-                  <span className="text-sm">+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center space-x-3 text-gray-400">
-                  <MapPin size={18} />
-                  <span className="text-sm">New York, NY 10001</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Links Columns */}
-          {Object.entries(footerLinks).map(([title, links], index) => (
-            <motion.div
-              key={title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <h3 className="type-eyebrow mb-6">{title}</h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-gray-400 hover:text-blue-400 transition-colors text-sm inline-block group"
-                    >
-                      <span className="relative">
-                        {link}
-                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-blue-400 group-hover:w-full transition-all duration-300"></span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Newsletter Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-blue-500/20 backdrop-blur-sm mb-12 lg:mb-16"
-        >
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="type-subtitle mb-3">
-                Stay Updated with Industry Insights
-              </h3>
-              <p className="text-gray-400">
-                Subscribe to our newsletter for the latest in diamond technology,
-                market trends, and exclusive offers.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 h-14 px-6 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-400 backdrop-blur-sm"
-              />
-              <button className="h-14 px-8 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Bottom Section */}
-        <div className="pt-8 border-t border-gray-800">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-            {/* Copyright */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-gray-500 text-sm"
-            >
-              © {new Date().getFullYear()} Diamond Precision Tech. All rights
-              reserved.
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="flex items-center space-x-4"
-            >
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-10 h-10 bg-white/5 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 border border-white/10 hover:border-blue-500"
-                  aria-label={social.label}
-                >
-                  <social.icon size={18} />
-                </motion.a>
+          {/* Navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.08 }}
+          >
+            <h3 className="type-eyebrow text-white/40 mb-5 tracking-[0.18em]">Navigation</h3>
+            <ul className="space-y-3">
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className="type-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                  >
+                    {item.name}
+                  </a>
+                </li>
               ))}
-            </motion.div>
+            </ul>
+          </motion.div>
 
-            {/* Legal Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="footer-legal flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-6 text-sm"
-            >
+          {/* Contact */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.16 }}
+          >
+            <h3 className="type-eyebrow text-white/40 mb-5 tracking-[0.18em]">Contact</h3>
+            <div className="space-y-3">
               <a
-                href="#"
-                className="text-gray-500 hover:text-blue-400 transition-colors"
+                href="mailto:sparklessolitaire@gmail.com"
+                className="flex items-start gap-2.5 type-body text-sm text-white/60 hover:text-white transition-colors duration-300"
               >
-                Privacy Policy
+                <Mail size={14} className="mt-0.5 shrink-0 text-white/35" strokeWidth={1.5} />
+                sparklessolitaire@gmail.com
               </a>
-              <span className="separator-dot text-gray-700 hidden sm:inline">•</span>
               <a
-                href="#"
-                className="text-gray-500 hover:text-blue-400 transition-colors"
+                href="tel:+15513591202"
+                className="flex items-center gap-2.5 type-body text-sm text-white/60 hover:text-white transition-colors duration-300"
               >
-                Terms of Service
+                <Phone size={14} className="shrink-0 text-white/35" strokeWidth={1.5} />
+                +1 551 359 1202
               </a>
-              <span className="separator-dot text-gray-700 hidden sm:inline">•</span>
+              <div className="flex items-start gap-2.5 type-body text-sm text-white/60">
+                <MapPin size={14} className="mt-0.5 shrink-0 text-white/35" strokeWidth={1.5} />
+                <span>Surat, Gujarat – 395004</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Social */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.24 }}
+          >
+            <h3 className="type-eyebrow text-white/40 mb-5 tracking-[0.18em]">Connect</h3>
+            <div className="flex items-center gap-4">
               <a
-                href="#"
-                className="text-gray-500 hover:text-blue-400 transition-colors"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 flex items-center justify-center border border-white/15 rounded-full text-white/60 hover:text-white hover:border-white/30 transition-all duration-300"
               >
-                Cookie Policy
+                <Instagram size={18} strokeWidth={1.5} />
               </a>
-            </motion.div>
-          </div>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 flex items-center justify-center border border-white/15 rounded-full text-white/60 hover:text-white hover:border-white/30 transition-all duration-300"
+              >
+                <Linkedin size={18} strokeWidth={1.5} />
+              </a>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Certifications Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-12 flex flex-wrap justify-center gap-6 pt-8 border-t border-gray-800"
-        >
-          {["ISO 9001:2015", "RJC Certified", "Kimberley Process", "GIA Partner"].map(
-            (cert, index) => (
-              <div
-                key={index}
-                className="px-4 py-2 bg-white/5 rounded-lg border border-white/10 text-xs text-gray-400"
-              >
-                {cert}
-              </div>
-            )
-          )}
-        </motion.div>
+        {/* Bottom bar */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="type-body text-xs text-white/35 tracking-wide">
+            © {new Date().getFullYear()} Sparkle Solitaires. All rights reserved.
+          </p>
+          <p className="type-body text-xs text-white/35 tracking-wide">
+            India · New York · Hong Kong · China
+          </p>
+        </div>
       </div>
-
-      {/* Decorative Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-blue-600/10 blur-3xl"></div>
     </footer>
   );
 }
