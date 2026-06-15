@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { MapPin, Mail, Phone, Globe, Instagram, Linkedin, ExternalLink } from "lucide-react";
+import { MapPin, Mail, Phone, Globe, Instagram, Linkedin } from "lucide-react";
 import { luxuryEase, useReveal } from "./useReveal";
 import { SectionHeader } from "./SectionHeader";
 import { SectionImage } from "./SectionImage";
@@ -16,9 +16,6 @@ const addressLines = [
 ];
 
 const emails = ["sparklessolitaire@gmail.com", "sparkle.solitaires@gmail.com"];
-
-const MAP_EMBED_URL =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.0!2d72.831!3d21.228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDEzJzQwLjgiTiA3MsKwNDknNTEuNiJF!5e0!3m2!1sen!2sin!4v1";
 
 export function Contact() {
   const { ref: sectionRef, isInView } = useReveal();
@@ -161,34 +158,6 @@ export function Contact() {
             </motion.div>
           </div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, delay: 0.3, ease: luxuryEase }}
-          className="mt-10 lg:mt-12"
-        >
-          <div className="relative overflow-hidden rounded-2xl md:rounded-3xl aspect-[16/7] sm:aspect-[16/6] lg:aspect-[16/5] bg-brand/5 section-image-frame">
-            <iframe
-              title="Sparkle Solitaires location on Google Maps"
-              src={MAP_EMBED_URL}
-              className="absolute inset-0 w-full h-full border-0 grayscale-[20%] contrast-[1.05]"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-            <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-brand/10 rounded-2xl md:rounded-3xl" />
-          </div>
-          <a
-            href="https://maps.google.com/?q=Katargam+Road+Surat+Gujarat+395004"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-4 type-eyebrow hover:text-brand transition-colors duration-300 tracking-[0.14em]"
-          >
-            Open in Google Maps
-            <ExternalLink size={14} strokeWidth={1.5} />
-          </a>
-        </motion.div>
       </div>
     </section>
   );
