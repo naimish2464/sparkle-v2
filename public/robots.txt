@@ -1,0 +1,19 @@
+# Sparkle Solitaires — production robots.txt
+# https://sparklesolitaire.com
+
+User-agent: *
+Allow: /
+
+# Block source maps and dev-only paths if exposed on the server
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.map$
+
+# Googlebot — full access to public pages
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://sparklesolitaire.com/sitemap.xml

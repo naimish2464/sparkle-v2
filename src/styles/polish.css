@@ -1,0 +1,251 @@
+/**
+ * Luxury UI polish — visual refinement only.
+ * Does not alter responsive breakpoints or layout structure.
+ */
+
+/* ── Refined hero atmosphere (text hierarchy — overlay handled in hero-media.css) ── */
+#home .hero-content {
+  gap: 0;
+}
+
+#home .type-hero-title {
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.12);
+}
+
+#home .hero-body-text {
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 34rem;
+}
+
+#home .hero-subtitle-pipes {
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 400;
+}
+
+/* ── Premium CTAs ── */
+.cta-primary {
+  box-shadow:
+    0 2px 12px rgba(10, 0, 111, 0.22),
+    0 1px 3px rgba(10, 0, 111, 0.12);
+  transition:
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cta-primary:hover {
+  box-shadow:
+    0 6px 28px rgba(10, 0, 111, 0.32),
+    0 2px 8px rgba(10, 0, 111, 0.16);
+  transform: translateY(-1px);
+}
+
+.cta-primary:active {
+  transform: translateY(0);
+  box-shadow:
+    0 2px 12px rgba(10, 0, 111, 0.22),
+    0 1px 3px rgba(10, 0, 111, 0.12);
+}
+
+.cta-secondary {
+  backdrop-filter: blur(4px);
+  transition:
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cta-secondary:hover {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+/* ── Section rhythm & breathing room ── */
+.section-padding {
+  padding-top: clamp(3rem, 5vw + 0.75rem, 5rem);
+  padding-bottom: clamp(3rem, 5vw + 0.75rem, 5rem);
+}
+
+.section-flow > * + * {
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+/* ── Typography luxury refinements ── */
+.type-section-heading {
+  letter-spacing: 0.025em;
+  line-height: 1.28;
+}
+
+.type-section-subtitle {
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.type-body-lg {
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+.type-body {
+  line-height: 1.7;
+  letter-spacing: 0.005em;
+}
+
+.type-eyebrow {
+  letter-spacing: 0.18em;
+}
+
+/* Section header divider — editorial accent */
+.section-divider {
+  width: 2.75rem;
+  height: 1px;
+  opacity: 0.9;
+}
+
+/* ── Trust & stat cards ── */
+.trust-item {
+  transition:
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease;
+}
+
+.trust-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(10, 0, 111, 0.12);
+}
+
+/* ── Capability lists ── */
+.capability-item {
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  line-height: 1.7;
+  transition:
+    color 0.35s ease,
+    padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.galaxy-capability-item {
+  transition: opacity 0.35s ease;
+}
+
+.galaxy-capability-mark {
+  transition:
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease;
+}
+
+/* ── Editorial image treatment ── */
+.section-image-frame {
+  box-shadow:
+    0 8px 32px rgba(10, 0, 111, 0.06),
+    0 2px 8px rgba(10, 0, 111, 0.04);
+}
+
+.section-image-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 60px rgba(10, 0, 111, 0.03);
+  z-index: 1;
+}
+
+.section-image-frame:hover {
+  box-shadow:
+    0 16px 48px rgba(10, 0, 111, 0.09),
+    0 4px 16px rgba(10, 0, 111, 0.05);
+}
+
+#services .galaxy-editorial-image {
+  box-shadow:
+    0 20px 56px -12px rgba(10, 0, 111, 0.12),
+    0 8px 24px -8px rgba(10, 0, 111, 0.07);
+}
+
+#services .galaxy-editorial-image img {
+  object-fit: contain;
+  object-position: center center;
+}
+
+/* ── Contact detail blocks ── */
+.contact-detail-block {
+  padding-bottom: 0.25rem;
+}
+
+.contact-detail-block .type-eyebrow {
+  color: rgba(10, 0, 111, 0.45);
+}
+
+.contact-detail-block a {
+  transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── About global presence ── */
+.about-global-statement {
+  border-top-color: transparent;
+}
+
+/* ── Header nav polish ── */
+.site-header a[href^="#"] {
+  transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header .cta-primary {
+  letter-spacing: 0.16em;
+}
+
+/* ── Footer refinement ── */
+.site-footer a {
+  transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Subtle section transitions (white sections) ── */
+#about,
+#custom-jewelry,
+#contact {
+  isolation: isolate;
+}
+
+/* ── Dark sections — depth without redesign ── */
+#manufacturing,
+#consultancy {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ── Touch: disable hover lift on coarse pointers ── */
+@media (hover: none), (pointer: coarse) {
+  .cta-primary:hover,
+  .cta-secondary:hover,
+  .trust-item:hover {
+    transform: none;
+  }
+
+  .section-image-frame:hover {
+    box-shadow:
+      0 8px 32px rgba(10, 0, 111, 0.06),
+      0 2px 8px rgba(10, 0, 111, 0.04);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .cta-primary,
+  .cta-secondary,
+  .trust-item,
+  .capability-item {
+    transition-duration: 0.01ms !important;
+  }
+
+  .cta-primary:hover,
+  .cta-secondary:hover,
+  .trust-item:hover {
+    transform: none;
+  }
+}

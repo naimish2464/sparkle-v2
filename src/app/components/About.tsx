@@ -1,124 +1,151 @@
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
+import { Globe } from "lucide-react";
 import { luxuryEase, useReveal } from "./useReveal";
-import aboutImage from "../../../assests/services/diamond_manufacturing.png";
+import { SectionHeader } from "./SectionHeader";
 
 const description = [
-  "We are your complete partner for natural and lab-grown diamonds — from rough scanning to polished stones and global sales.",
-  "With over 20 years of hands-on diamond industry experience, we deliver precise, secure, and tailored solutions across the full value chain.",
-  "We combine cutting-edge technology with expert craftsmanship to ensure accuracy, strict quality control, secure handling, and reliable performance at every step.",
-  "Global presence: India, Botswana, New York, Hong Kong, China — serving the world's top diamond markets.",
+  "Sparkle Solitaires is a global luxury diamond manufacturing and consultancy firm — your trusted partner for natural and lab-grown diamonds, from rough scanning through polished stones to international distribution.",
+  "With more than 20 years of hands-on industry expertise, we deliver precision, security, and tailored solutions across the entire diamond value chain.",
+  "Our advanced Galaxy™ scanning technology and master craftsmanship ensure rigorous quality control, fully insured handling, and consistent results at every stage.",
 ];
 
+const GLOBAL_HUBS = ["India", "Botswana", "New York", "Hong Kong", "China"];
+
+function GlobalPresenceStatement({ isInView }: { isInView: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 1.05, delay: 0.48, ease: luxuryEase }}
+      className="about-global-statement mt-10 lg:mt-12 pt-8 lg:pt-10 relative max-w-2xl"
+    >
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{ duration: 1.1, delay: 0.52, ease: luxuryEase }}
+        className="absolute top-0 left-0 w-16 h-px bg-brand/30 origin-left"
+        aria-hidden="true"
+      />
+
+      <div className="flex items-center gap-2.5 mb-5">
+        <Globe
+          size={14}
+          strokeWidth={1.5}
+          className="text-brand/50 shrink-0"
+          aria-hidden="true"
+        />
+        <span className="type-eyebrow text-brand/55 tracking-[0.22em]">
+          Global presence:
+        </span>
+      </div>
+
+      <p className="leading-relaxed">
+        <span className="sr-only">
+          Global presence: India, Botswana, New York, Hong Kong, China — serving
+          the world&apos;s top diamond markets.
+        </span>
+
+        <span className="flex flex-wrap items-baseline gap-x-1.5 gap-y-2 mb-4" aria-hidden="true">
+          {GLOBAL_HUBS.map((hub, index) => (
+            <span key={hub} className="inline-flex items-baseline">
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.85,
+                  delay: 0.58 + index * 0.07,
+                  ease: luxuryEase,
+                }}
+                className="text-brand font-medium text-[clamp(0.9375rem,1.35vw,1.1875rem)] tracking-[0.14em] uppercase"
+              >
+                {hub}
+              </motion.span>
+              {index < GLOBAL_HUBS.length - 1 && (
+                <span className="text-brand/20 mx-1.5 sm:mx-2 font-light select-none">
+                  ·
+                </span>
+              )}
+            </span>
+          ))}
+        </span>
+
+        <span className="type-body-lg text-muted-default block">
+          Serving the world&apos;s leading diamond markets.
+        </span>
+      </p>
+    </motion.div>
+  );
+}
+
 const trustItems = [
-  "20+ Years Experience",
-  "Global Presence",
-  "Advanced Technology",
-  "Worldwide Network",
+  { label: "20+", sub: "Years Experience" },
+  { label: "5", sub: "Global Markets" },
+  { label: "100%", sub: "Quality Commitment" },
+  { label: "24/7", sub: "Partner Support" },
 ];
 
 export function About() {
   const { ref: sectionRef, isInView } = useReveal();
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"]);
-
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      className="relative bg-[#fafafa] overflow-hidden"
-    >
-      <div className="w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 items-center pb-20 sm:pb-24 lg:pb-32 xl:pb-36 pt-0">
-          {/* Large manufacturing image */}
-          <motion.div
-            initial={{ opacity: 0, x: -32 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 1.2, ease: luxuryEase }}
-            className="relative order-2 lg:order-1"
-          >
-            <div className="relative overflow-hidden rounded-[20px] md:rounded-[28px] aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5]">
-              <motion.img
-                style={{ y: imageY }}
-                src={aboutImage}
-                alt="Diamond manufacturing and precision craftsmanship"
-                className="absolute inset-0 w-full h-[110%] -top-[5%] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628]/20 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </motion.div>
-
-          {/* Editorial content */}
-          <div className="order-1 lg:order-2 lg:py-8">
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1.1, ease: luxuryEase }}
-              className="type-eyebrow text-[#0a1628]/45 mb-5 lg:mb-6 tracking-[0.2em]"
-            >
-              About Sparkle Solitaires
-            </motion.p>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 36 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1.3, delay: 0.1, ease: luxuryEase }}
-              className="type-slide-title-bold text-[#0a1628] max-w-xl mb-6 lg:mb-8"
-            >
-              Your Complete Partner Across the Diamond Value Chain
-            </motion.h2>
-
-            <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
-              transition={{ duration: 1.2, delay: 0.2, ease: luxuryEase }}
-              className="w-14 h-px bg-[#0a1628]/20 origin-left mb-7 lg:mb-8"
+    <section id="about" ref={sectionRef} className="relative bg-white overflow-hidden">
+      <div className="site-container-xl w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 section-padding">
+        <div className="about-grid grid lg:grid-cols-[1.15fr_1fr] gap-8 sm:gap-10 lg:gap-14 xl:gap-16 items-start min-w-0">
+          <div className="min-w-0 order-1">
+            <SectionHeader
+              title="About Sparkle Solitaires"
+              subtitle="Your Complete Partner Across the Diamond Value Chain"
+              isInView={isInView}
+              singleLine={false}
+              className="mb-8 lg:mb-10"
             />
 
-            <div className="space-y-4 lg:space-y-5 mb-8 lg:mb-10 max-w-xl">
+            <div className="space-y-5 sm:space-y-6 max-w-2xl section-flow">
               {description.map((paragraph, index) => (
                 <motion.p
                   key={index}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{
-                    duration: 1.05,
-                    delay: 0.28 + index * 0.12,
+                    duration: 0.95,
+                    delay: 0.25 + index * 0.08,
                     ease: luxuryEase,
                   }}
-                  className="type-body-lg text-[#0a1628]/65"
+                  className="type-body-lg"
                 >
                   {paragraph}
                 </motion.p>
               ))}
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1.1, delay: 0.75, ease: luxuryEase }}
-              className="pt-6 lg:pt-8 border-t border-[#0a1628]/10 max-w-xl"
-            >
-              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-y-3">
-                {trustItems.map((item, index) => (
-                  <div key={item} className="flex items-center">
-                    {index > 0 && (
-                      <span
-                        className="hidden sm:block w-px h-3.5 bg-[#0a1628]/15 mx-4 lg:mx-5 shrink-0"
-                        aria-hidden="true"
-                      />
-                    )}
-                    <span className="type-body text-[#0a1628]/80 font-medium tracking-wide">
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+            <GlobalPresenceStatement isInView={isInView} />
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, delay: 0.15, ease: luxuryEase }}
+            className="about-trust-grid grid grid-cols-2 gap-4 sm:gap-5 order-2 min-w-0 mt-2 lg:mt-0"
+          >
+            {trustItems.map((item, index) => (
+              <motion.div
+                key={item.sub}
+                initial={{ opacity: 0, y: 16 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.9,
+                  delay: 0.3 + index * 0.06,
+                  ease: luxuryEase,
+                }}
+                className="trust-item group bg-brand-surface rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-brand-subtle shadow-[0_2px_20px_rgba(10,0,111,0.04)] min-w-0"
+              >
+                <p className="text-2xl sm:text-3xl font-light text-brand tracking-[0.02em] mb-1.5 break-words">
+                  {item.label}
+                </p>
+                <p className="type-eyebrow text-[10px] sm:text-[11px]">{item.sub}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

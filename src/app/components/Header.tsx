@@ -34,7 +34,7 @@ export function Header() {
       { threshold: 0.2, rootMargin: "-80px 0px -50% 0px" }
     );
 
-    const sections = ["home", "about", "services", "manufacturing", "consultancy", "contact"];
+    const sections = ["home", "about", "services", "manufacturing", "custom-jewelry", "consultancy", "contact"];
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -48,11 +48,24 @@ export function Header() {
     };
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Manufacturing", href: "#manufacturing" },
+    { name: "Jewelry", href: "#custom-jewelry" },
     { name: "Consultancy", href: "#consultancy" },
     { name: "Contact", href: "#contact" },
   ];
@@ -62,12 +75,12 @@ export function Header() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`site-header fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#0a1628]/[0.06] transition-shadow duration-300 ${
+      className={`site-header fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-brand-subtle transition-shadow duration-300 ${
         scrolled ? "shadow-sm" : ""
       }`}
     >
-      <nav className="w-full max-w-[1600px] mx-auto px-2 sm:px-3 lg:px-4 xl:px-5">
-        <div className="grid grid-cols-[1fr_auto] lg:grid-cols-[auto_1fr_auto] items-center h-[70px] sm:h-[80px] gap-4">
+      <nav className="relative w-full max-w-[1600px] mx-auto px-3 sm:px-4 lg:px-5 xl:px-6">
+        <div className="grid grid-cols-[1fr_auto] lg:grid-cols-[auto_1fr_auto] items-center h-[70px] sm:h-[80px] gap-2 sm:gap-4 min-w-0">
           {/* Logo — flush left */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -78,27 +91,27 @@ export function Header() {
             <a href="#home" className="header-logo-link flex items-center h-full py-1.5 sm:py-2" aria-label="Sparkle Solitaires — Home">
               <img
                 src={logoFile}
-                alt="Sparkle Solitaires"
+                alt="Sparkle Solitaires logo — luxury diamond manufacturer"
                 className="site-logo"
               />
             </a>
           </motion.div>
 
           {/* Center: Desktop Navigation */}
-          <div className="hidden lg:flex items-center justify-center space-x-8 xl:space-x-10">
+          <div className="hidden lg:flex items-center justify-center space-x-6 xl:space-x-8">
             {navItems.map((item) => {
               const isActive = activeSection === item.href;
               return (
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`text-[12px] xl:text-[13px] tracking-[0.2em] uppercase font-medium transition-colors duration-300 relative group py-2 ${
-                    isActive ? "text-[#0a1628]" : "text-[#0a1628]/45 hover:text-[#0a1628]"
+                  className={`text-[11px] xl:text-[12px] tracking-[0.16em] uppercase font-medium transition-colors duration-300 relative group py-2 ${
+                    isActive ? "text-brand" : "text-muted-default hover:text-brand"
                   }`}
                 >
                   {item.name}
                   <span
-                    className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-[#0a1628] transition-all duration-300 ${
+                    className={`absolute -bottom-0.5 left-0 h-[1.5px] bg-brand transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover:w-full"
                     }`}
                   ></span>
@@ -107,18 +120,11 @@ export function Header() {
             })}
           </div>
 
-          {/* Right: CTA buttons + mobile menu */}
+          {/* Right: CTA + mobile menu */}
           <div className="justify-self-end flex items-center gap-3">
-            <div className="hidden lg:flex items-center space-x-3">
+            <div className="hidden lg:flex items-center">
               <Button
-                variant="outline"
-                className="border-slate-200 text-slate-700 hover:border-[#0a006f] hover:text-[#0a006f] px-5 py-3.5 rounded-full text-[10px] xl:text-xs font-semibold uppercase tracking-wider h-auto transition-all duration-300 bg-transparent shadow-none"
-                onClick={() => window.open("https://wa.me/yourphonenumber", "_blank")}
-              >
-                WhatsApp
-              </Button>
-              <Button
-                className="bg-[#0a006f] hover:bg-[#080058] text-white px-6 py-3.5 rounded-full text-[10px] xl:text-xs font-semibold uppercase tracking-wider h-auto transition-all duration-300 shadow-none"
+                className="cta-primary bg-brand hover:bg-[#080058] text-white px-6 py-3 rounded-full text-[10px] xl:text-[11px] font-semibold uppercase tracking-[0.16em] h-auto shadow-none"
                 onClick={() => {
                   const contactSec = document.getElementById("contact");
                   if (contactSec) {
@@ -132,8 +138,9 @@ export function Header() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-600 hover:text-[#0a1628] transition-colors"
+              className="lg:hidden p-2.5 -mr-1 text-muted-default hover:text-brand transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -148,7 +155,7 @@ export function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden absolute top-[70px] sm:top-[80px] left-0 right-0 bg-white border-b border-slate-100 shadow-lg px-6 py-6 overflow-hidden"
+              className="mobile-nav-drawer lg:hidden absolute top-[70px] sm:top-[80px] left-0 right-0 bg-white border-b border-brand-subtle shadow-lg px-4 sm:px-6 py-5 sm:py-6 overflow-y-auto max-h-[calc(100dvh-70px)] sm:max-h-[calc(100dvh-80px)]"
             >
               <div className="flex flex-col space-y-4">
                 {navItems.map((item) => {
@@ -158,27 +165,17 @@ export function Header() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`text-sm tracking-widest uppercase font-medium transition-colors py-2 block ${
-                        isActive ? "text-[#0a1628]" : "text-slate-600 hover:text-[#0a1628]"
+                      className={`text-sm tracking-[0.14em] uppercase font-medium transition-colors py-2 block ${
+                        isActive ? "text-brand" : "text-body-default hover:text-brand"
                       }`}
                     >
                       {item.name}
                     </a>
                   );
                 })}
-                <div className="pt-4 border-t border-slate-100 flex flex-col gap-3">
+                <div className="pt-4 border-t border-brand-subtle">
                   <Button 
-                    variant="outline" 
-                    className="border-slate-200 text-slate-700 w-full py-4 rounded-full text-xs font-semibold uppercase tracking-wider h-auto bg-transparent shadow-none"
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      window.open("https://wa.me/yourphonenumber", "_blank");
-                    }}
-                  >
-                    WhatsApp
-                  </Button>
-                  <Button 
-                    className="bg-[#0a006f] hover:bg-[#080058] text-white w-full py-4 rounded-full text-xs font-semibold uppercase tracking-wider h-auto shadow-none"
+                    className="cta-primary bg-brand hover:bg-[#080058] text-white w-full py-3.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.16em] h-auto shadow-none"
                     onClick={() => {
                       setMobileMenuOpen(false);
                       const contactSec = document.getElementById("contact");

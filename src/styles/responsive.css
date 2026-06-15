@@ -1,6 +1,11 @@
 /**
  * Site-wide responsive media queries
- * Breakpoints: xs ≤479 | sm 480–767 | md 768–1023 | lg 1024–1279 | xl ≥1280
+ * Breakpoints:
+ *   xs  320–480px   (mobile)
+ *   sm  481–768px   (large mobile)
+ *   md  769–1024px  (tablet)
+ *   lg  1025–1439px (desktop)
+ *   xl  ≥1440px     (large screens)
  */
 
 /* ── Base: all viewports ── */
@@ -10,11 +15,22 @@
   box-sizing: border-box;
 }
 
-img:not(.site-logo),
+html {
+  overflow-x: clip;
+}
+
+img:not(.site-logo):not(.hero-media):not([class*="object-cover"]),
 video,
 svg {
   max-width: 100%;
   height: auto;
+}
+
+/* Prevent horizontal scroll from decorative overflows */
+main,
+.site-footer,
+section {
+  max-width: 100%;
 }
 
 /* Safe area for notched devices */
@@ -23,10 +39,15 @@ svg {
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
+
+  .whatsapp-float {
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    right: max(1rem, env(safe-area-inset-right));
+  }
 }
 
-/* ── Extra-small phones (≤479px) ── */
-@media (max-width: 479px) {
+/* ── Mobile: 320px – 480px ── */
+@media (max-width: 480px) {
   html {
     scroll-padding-top: 72px;
   }
@@ -35,16 +56,38 @@ svg {
     scroll-margin-top: 72px;
   }
 
+  .section-padding {
+    padding-top: clamp(2.25rem, 6vw, 3rem);
+    padding-bottom: clamp(2.25rem, 6vw, 3rem);
+  }
+
+  .type-section-heading,
   .type-section-title,
   .type-slide-title-light,
   .type-slide-title-bold {
-    font-size: clamp(22px, 6.5vw, 30px);
-    line-height: 1.2;
+    font-size: clamp(1.125rem, 4.8vw, 1.375rem);
+    line-height: 1.32;
+    letter-spacing: 0.02em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .type-section-subtitle {
+    font-size: clamp(0.75rem, 3.2vw, 0.875rem);
+    line-height: 1.45;
+    letter-spacing: 0.06em;
+  }
+
+  .type-hero-title {
+    font-size: clamp(1.375rem, 5.8vw, 1.875rem);
+    letter-spacing: 0.1em;
+    line-height: 1.15;
+    overflow-wrap: break-word;
   }
 
   .type-subtitle {
-    font-size: clamp(13px, 3.8vw, 16px);
-    line-height: 1.35;
+    font-size: clamp(13px, 3.6vw, 16px);
+    line-height: 1.4;
   }
 
   .type-body,
@@ -53,17 +96,44 @@ svg {
   }
 
   .type-eyebrow {
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.08em;
   }
 
   /* Hero */
   #home .hero-logo-block {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   #home .hero-logo {
-    width: clamp(120px, 32vw, 180px) !important;
+    width: clamp(72px, 22vw, 140px) !important;
+  }
+
+  #home .hero-inner {
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+  }
+
+  #home .hero-subtitle-pipes {
+    word-break: break-word;
+    hyphens: auto;
+    letter-spacing: 0.1em;
+    font-size: clamp(9px, 2.8vw, 11px);
+    line-height: 1.45;
+  }
+
+  #home .hero-body-text {
+    font-size: clamp(12px, 3.4vw, 14px);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  #home .hero-cta-btn {
+    width: 100%;
+    padding-top: 0.875rem;
+    padding-bottom: 0.875rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
   }
 
   #home .hero-scroll-indicator {
@@ -72,8 +142,27 @@ svg {
 
   /* Header logo — xs phones */
   .site-header .site-logo {
-    max-height: 48px;
-    max-width: 130px;
+    max-height: 44px;
+    max-width: 120px;
+  }
+
+  /* About trust cards */
+  #about .about-trust-grid {
+    gap: 0.625rem;
+  }
+
+  #about .trust-item {
+    padding: 0.875rem;
+  }
+
+  /* Contact */
+  #contact .contact-grid {
+    gap: 1.75rem;
+  }
+
+  #contact a[href^="mailto:"] {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   /* Footer legal row */
@@ -86,10 +175,27 @@ svg {
   .site-footer .footer-legal .separator-dot {
     display: none;
   }
+
+  .site-footer .footer-links-grid {
+    gap: 2rem;
+  }
+
+  /* Galaxy services */
+  #services .galaxy-capability-item {
+    gap: 0.875rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  /* Disable single-line headings on small screens */
+  .type-section-heading--single {
+    white-space: normal;
+    font-size: inherit;
+  }
 }
 
-/* ── Small phones & large phones (480px–767px) ── */
-@media (min-width: 480px) and (max-width: 767px) {
+/* ── Large mobile: 481px – 768px ── */
+@media (min-width: 481px) and (max-width: 768px) {
   html {
     scroll-padding-top: 76px;
   }
@@ -97,24 +203,36 @@ svg {
   [id] {
     scroll-margin-top: 76px;
   }
+
+  .type-hero-title {
+    font-size: clamp(1.625rem, 4.5vw, 2.125rem);
+    letter-spacing: 0.12em;
+  }
 }
 
-/* ── Phones (≤767px) ── */
-@media (max-width: 767px) {
+/* ── Phones & large phones (≤768px) ── */
+@media (max-width: 768px) {
   #home {
     height: calc(100svh - 70px);
     height: calc(100dvh - 70px);
   }
 
+  @media (min-width: 481px) {
+    #home {
+      height: calc(100svh - 80px);
+      height: calc(100dvh - 80px);
+    }
+  }
+
   #home .hero-inner {
-    padding-top: 4rem;
-    padding-bottom: 2.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1.75rem;
   }
 
   #home .hero-subtitle-pipes {
     word-break: break-word;
     hyphens: auto;
-    font-size: clamp(12px, 3.4vw, 15px);
+    font-size: clamp(10px, 2.8vw, 12px);
     line-height: 1.4;
   }
 
@@ -123,43 +241,55 @@ svg {
     line-height: 1.55;
   }
 
-  #home .hero-countries {
-    gap: 0.5rem 1rem;
-    font-size: clamp(12px, 3.2vw, 14px);
-  }
-
   #home .hero-cta-btn {
     width: 100%;
+    max-width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
   }
 
-  /* About trust row — allow wrap on narrow screens */
+  #home .hero-cta-group {
+    width: 100%;
+  }
+
+  /* About */
   #about .trust-item {
     white-space: normal;
   }
 
-  /* Consultancy — globe as background on mobile */
-  #consultancy {
-    min-height: auto;
-  }
-
-  #consultancy .consultancy-globe-wrap {
-    opacity: 0.35;
-    height: 55%;
-    top: auto;
-    bottom: 0;
-  }
-
-  #consultancy .consultancy-content {
-    position: relative;
-    z-index: 10;
-  }
-
-  /* Contact form grid spacing */
+  /* Contact — image first on mobile */
   #contact .contact-grid {
-    gap: 2.5rem;
+    gap: 2rem;
+  }
+
+  #contact .contact-image-col {
+    order: -1;
+  }
+
+  /* Manufacturing — text before image on mobile (Tailwind order utilities) */
+  #manufacturing .manufacturing-content-col {
+    order: 1;
+  }
+
+  #manufacturing .manufacturing-image-col {
+    order: 2;
+  }
+
+  /* Galaxy — prevent decorative bleed */
+  #services .galaxy-services-visual {
+    overflow: hidden;
+  }
+
+  #services .galaxy-editorial-image {
+    max-width: 100%;
+  }
+
+  #services .galaxy-editorial-image img {
+    object-fit: contain;
+    object-position: center center;
   }
 
   /* Footer link columns */
@@ -167,10 +297,41 @@ svg {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
+  /* Consultancy sticky off on mobile */
+  @media (max-width: 1023px) {
+    #consultancy .consultancy-sticky-image {
+      position: relative;
+      top: auto;
+    }
+  }
+
+  /* Capability items — long lines wrap cleanly */
+  .capability-item {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* WhatsApp — ensure it doesn't overlap footer CTAs */
+  .whatsapp-float {
+    z-index: 40;
+  }
+
+  main {
+    padding-bottom: 4.5rem;
+  }
 }
 
-/* ── Tablets portrait (768px–1023px) ── */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* ── Tablet: 769px – 1024px ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  [id] {
+    scroll-margin-top: 80px;
+  }
+
   .site-footer .footer-links-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
@@ -180,49 +341,45 @@ svg {
     grid-column: 1 / -1;
   }
 
-  #consultancy .consultancy-content {
-    max-width: 58%;
+  #consultancy .consultancy-grid {
+    gap: 2.5rem;
+  }
+
+  #services .galaxy-services-content {
+    padding-right: 0;
   }
 }
 
-/* ── Touch devices: always show carousel controls ── */
-@media (hover: none), (pointer: coarse) {
-  .goldiama-services-scope .tparrows {
-    opacity: 0.85;
+/* ── Desktop: 1025px – 1439px ── */
+@media (min-width: 1025px) and (max-width: 1439px) {
+  html {
+    scroll-padding-top: 88px;
   }
 
-  .goldiama-services-scope .tp-leftarrow {
-    transform: translate(8px, -25px);
-  }
-
-  .goldiama-services-scope .tp-rightarrow {
-    transform: translate(-8px, -25px);
-  }
-
-  .goldiama-services-scope .tparrows {
-    width: 44px;
-    height: 44px;
-  }
-
-  .goldiama-services-scope .tparrows svg {
-    width: 16px;
-    height: 16px;
+  [id] {
+    scroll-margin-top: 88px;
   }
 }
 
-/* ── Landscape phones ── */
+/* ── Large desktops (≥1440px) ── */
 @media (max-width: 896px) and (orientation: landscape) {
+  #home {
+    height: auto;
+    min-height: calc(100svh - 70px);
+    min-height: calc(100dvh - 70px);
+  }
+
   #home .hero-inner {
-    padding-top: 3.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1.25rem;
   }
 
   #home .hero-logo-block {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   #home .hero-logo {
-    width: clamp(100px, 18vw, 160px) !important;
+    width: clamp(64px, 14vw, 120px) !important;
   }
 
   #home .hero-body-text {
@@ -233,12 +390,13 @@ svg {
     display: none;
   }
 
-  #about {
-    min-height: auto;
+  #home .hero-cta-btn {
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
   }
 
-  #about .about-image-col {
-    height: 50vh;
+  #about {
+    min-height: auto;
   }
 }
 
@@ -253,14 +411,19 @@ svg {
 
 /* ── Ultra-wide (≥1920px) ── */
 @media (min-width: 1920px) {
+  .type-section-heading,
   .type-section-title {
-    font-size: 52px;
+    font-size: 1.875rem;
+  }
+
+  .type-section-subtitle {
+    font-size: 1rem;
   }
 
   .type-slide-title-light,
   .type-slide-title-bold {
-    font-size: 52px;
-    line-height: 56px;
+    font-size: 1.875rem;
+    line-height: 1.3;
   }
 }
 

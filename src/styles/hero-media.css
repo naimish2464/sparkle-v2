@@ -1,0 +1,192 @@
+/**
+ * Hero background media — focal point, scaling, and overlay.
+ * Layout and content unchanged; video/poster framing only.
+ */
+
+/* ── Base: desktop cinematic framing ── */
+.hero-video-container {
+  background-color: #0a006f;
+}
+
+.hero-video,
+.hero-poster,
+.hero-media {
+  object-fit: cover;
+  -webkit-object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ── Overlay: readability without over-darkening ── */
+.hero-overlay {
+  background:
+    radial-gradient(
+      ellipse 85% 65% at 50% 48%,
+      rgba(10, 0, 111, 0.22) 0%,
+      transparent 68%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(10, 0, 111, 0.5) 0%,
+      rgba(10, 0, 111, 0.34) 48%,
+      rgba(10, 0, 111, 0.46) 100%
+    );
+}
+
+/* ── Small mobile: ≤320px ── */
+@media (max-width: 320px) {
+  .hero-video,
+  .hero-poster,
+  .hero-media {
+    object-position: 50% 35%;
+    transform: translate3d(0, 0, 0) scale(1.04);
+    transform-origin: 50% 35%;
+  }
+
+  .hero-overlay {
+    background:
+      radial-gradient(
+        ellipse 110% 78% at 50% 36%,
+        rgba(10, 0, 111, 0.42) 0%,
+        rgba(10, 0, 111, 0.16) 48%,
+        transparent 68%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(10, 0, 111, 0.58) 0%,
+        rgba(10, 0, 111, 0.32) 40%,
+        rgba(10, 0, 111, 0.52) 100%
+      );
+  }
+}
+
+/* ── iPhone standard: 321px – 375px ── */
+@media (min-width: 321px) and (max-width: 375px) {
+  .hero-video,
+  .hero-poster,
+  .hero-media {
+    object-position: 50% 38%;
+    transform: translate3d(0, 0, 0) scale(1.03);
+    transform-origin: 50% 38%;
+  }
+
+  .hero-overlay {
+    background:
+      radial-gradient(
+        ellipse 105% 74% at 50% 38%,
+        rgba(10, 0, 111, 0.4) 0%,
+        rgba(10, 0, 111, 0.15) 50%,
+        transparent 70%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(10, 0, 111, 0.56) 0%,
+        rgba(10, 0, 111, 0.3) 42%,
+        rgba(10, 0, 111, 0.5) 100%
+      );
+  }
+}
+
+/* ── Large mobile: 376px – 425px ── */
+@media (min-width: 376px) and (max-width: 425px) {
+  .hero-video,
+  .hero-poster,
+  .hero-media {
+    object-position: 50% 40%;
+    transform: translate3d(0, 0, 0) scale(1.025);
+    transform-origin: 50% 40%;
+  }
+
+  .hero-overlay {
+    background:
+      radial-gradient(
+        ellipse 100% 72% at 50% 40%,
+        rgba(10, 0, 111, 0.38) 0%,
+        rgba(10, 0, 111, 0.14) 52%,
+        transparent 72%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(10, 0, 111, 0.54) 0%,
+        rgba(10, 0, 111, 0.3) 44%,
+        rgba(10, 0, 111, 0.48) 100%
+      );
+  }
+}
+
+/* ── General mobile: 426px – 768px ── */
+@media (min-width: 426px) and (max-width: 768px) {
+  .hero-video,
+  .hero-poster,
+  .hero-media {
+    object-position: 50% 42%;
+    transform: translate3d(0, 0, 0) scale(1.02);
+    transform-origin: 50% 42%;
+  }
+
+  .hero-overlay {
+    background:
+      radial-gradient(
+        ellipse 95% 70% at 50% 42%,
+        rgba(10, 0, 111, 0.36) 0%,
+        rgba(10, 0, 111, 0.13) 54%,
+        transparent 72%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(10, 0, 111, 0.52) 0%,
+        rgba(10, 0, 111, 0.32) 46%,
+        rgba(10, 0, 111, 0.46) 100%
+      );
+  }
+}
+
+/* ── Landscape phones ── */
+@media (max-width: 896px) and (orientation: landscape) {
+  .hero-video,
+  .hero-poster,
+  .hero-media {
+    object-position: 50% 32%;
+    transform: translate3d(0, 0, 0) scale(1.04);
+    transform-origin: 50% 32%;
+  }
+
+  .hero-overlay {
+    background:
+      radial-gradient(
+        ellipse 80% 90% at 50% 35%,
+        rgba(10, 0, 111, 0.4) 0%,
+        transparent 65%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(10, 0, 111, 0.5) 0%,
+        rgba(10, 0, 111, 0.28) 50%,
+        rgba(10, 0, 111, 0.5) 100%
+      );
+  }
+}
+
+/* ── Tablet & desktop: full cinematic center ── */
+@media (min-width: 769px) {
+  .hero-video,
+  .hero-poster,
+  .hero-media {
+    object-position: center center;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video,
+  .hero-poster,
+  .hero-media {
+    transform: translate3d(0, 0, 0) !important;
+  }
+}

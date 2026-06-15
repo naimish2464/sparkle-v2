@@ -1,6 +1,9 @@
-import { motion, useScroll, useTransform } from "motion/react";
+import { useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import { luxuryEase, useReveal } from "./useReveal";
-import jewelryImage from "../../../assests/services/custom-jwellary.jpg";
+import { SectionHeader } from "./SectionHeader";
+import { SectionImage } from "./SectionImage";
+import jewelryImage from "../../../assests/images/Jewellery.png";
 
 const capabilities = [
   "Made-to-order designs",
@@ -25,96 +28,58 @@ export function CustomJewelry() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.06, 1, 1.06]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1, 1.04]);
 
   return (
-    <section
-      id="custom-jewelry"
-      ref={sectionRef}
-      className="relative overflow-hidden"
-    >
-      {/* Full-bleed immersive image */}
-      <div className="relative min-h-[70vh] lg:min-h-[85vh] flex items-end">
-        <motion.div
-          style={{ scale: imageScale }}
-          className="absolute inset-0"
-        >
-          <img
-            src={jewelryImage}
-            alt="Custom jewelry manufacturing"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] via-[#0a1628]/60 to-[#0a1628]/20 pointer-events-none" />
+    <section id="custom-jewelry" ref={sectionRef} className="relative bg-white overflow-hidden">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 section-padding">
+        <div className="jewelry-grid grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center min-w-0">
+          <div className="min-w-0">
+            <SectionHeader
+              title="Bespoke Creations"
+              subtitle="Custom Jewelry Manufacturing"
+              isInView={isInView}
+              className="mb-8 lg:mb-10"
+            />
 
-        {/* Content overlay */}
-        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 pb-16 sm:pb-20 lg:pb-24 pt-32 sm:pt-40">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-end">
-            <div>
-              <motion.p
-                initial={{ opacity: 0, y: 24 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 1.1, ease: luxuryEase }}
-                className="type-eyebrow text-white/45 mb-5 tracking-[0.2em]"
-              >
-                Bespoke Creations
-              </motion.p>
-
-              <motion.h2
-                initial={{ opacity: 0, y: 36 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 1.3, delay: 0.08, ease: luxuryEase }}
-                className="mb-6 lg:mb-8"
-              >
-                <span className="type-slide-title-light text-white block">
-                  Custom Jewelry
-                </span>
-                <span className="type-slide-title-bold text-white block mt-1">
-                  Manufacturing
-                </span>
-              </motion.h2>
-
-              <motion.div
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
-                transition={{ duration: 1.2, delay: 0.18, ease: luxuryEase }}
-                className="w-14 h-px bg-white/25 origin-left mb-8"
-              />
-
-              <div className="space-y-0 max-w-md">
-                {capabilities.map((line, index) => (
-                  <motion.p
-                    key={line}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{
-                      duration: 1,
-                      delay: 0.26 + index * 0.08,
-                      ease: luxuryEase,
-                    }}
-                    className="type-body py-3 border-b border-white/[0.08] last:border-b-0 text-white/70"
-                  >
-                    {line}
-                  </motion.p>
-                ))}
-              </div>
+            <div className="space-y-0 max-w-md mb-8 lg:mb-10">
+              {capabilities.map((line, index) => (
+                <motion.p
+                  key={line}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{
+                    duration: 0.9,
+                    delay: 0.22 + index * 0.06,
+                    ease: luxuryEase,
+                  }}
+                  className="capability-item border-brand-subtle"
+                >
+                  {line}
+                </motion.p>
+              ))}
             </div>
 
-            {/* Categories — elegant inline presentation */}
             <motion.div
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1.1, delay: 0.5, ease: luxuryEase }}
-              className="lg:text-right lg:pb-2"
+              transition={{ duration: 0.95, delay: 0.45, ease: luxuryEase }}
+              className="pt-6 border-t border-brand-subtle"
             >
-              <p className="type-eyebrow text-white/40 mb-5 tracking-[0.18em]">
-                Product Categories
-              </p>
-              <p className="type-body-lg text-white/60 leading-loose tracking-wide">
-                {categories.join(" · ")}
-              </p>
+              <p className="type-eyebrow mb-4">Product Categories</p>
+              <p className="type-body-lg tracking-wide break-words">{categories.join(" · ")}</p>
             </motion.div>
           </div>
+
+          <SectionImage
+            src={jewelryImage}
+            alt="Custom jewelry manufacturing — rings, pendants, and bespoke creations"
+            isInView={isInView}
+            aspect="landscape"
+            imageScale={imageScale}
+            objectPosition="center"
+            delay={0.12}
+          />
         </div>
       </div>
     </section>

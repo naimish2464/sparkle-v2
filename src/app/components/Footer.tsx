@@ -7,32 +7,33 @@ const navItems = [
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
   { name: "Manufacturing", href: "#manufacturing" },
+  { name: "Jewelry", href: "#custom-jewelry" },
   { name: "Consultancy", href: "#consultancy" },
   { name: "Contact", href: "#contact" },
 ];
 
 export function Footer() {
   return (
-    <footer className="site-footer relative bg-[#0a1628] text-white overflow-hidden">
+    <footer className="site-footer relative bg-brand text-white overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className="w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-14 sm:py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10 mb-14 lg:mb-16">
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-10 sm:py-12 lg:py-14">
+        <div className="footer-links-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-10 lg:mb-12">
           {/* Logo & brand */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-1"
+            className="footer-brand-col lg:col-span-1"
           >
             <img
               src={logoFile}
-              alt="Sparkle Solitaires"
+              alt="Sparkle Solitaires logo — luxury diamond manufacturer"
               className="h-9 w-auto object-contain brightness-0 invert mb-5"
             />
             <p className="type-body text-white/50 max-w-xs leading-relaxed">
-              Your complete partner for Natural &amp; Lab-Grown Diamonds — from Rough Scanning to Polished Stones and Global Sales.
+              Your trusted partner for natural and lab-grown diamonds — from Galaxy™ rough scanning to polished stones and global sales.
             </p>
           </motion.div>
 
@@ -69,7 +70,7 @@ export function Footer() {
             <div className="space-y-3">
               <a
                 href="mailto:sparklessolitaire@gmail.com"
-                className="flex items-start gap-2.5 type-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                className="flex items-start gap-2.5 type-body text-sm text-white/60 hover:text-white transition-colors duration-300 break-all"
               >
                 <Mail size={14} className="mt-0.5 shrink-0 text-white/35" strokeWidth={1.5} />
                 sparklessolitaire@gmail.com
@@ -98,7 +99,7 @@ export function Footer() {
             <h3 className="type-eyebrow text-white/40 mb-5 tracking-[0.18em]">Connect</h3>
             <div className="flex items-center gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/sparklesolitaire/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -107,7 +108,7 @@ export function Footer() {
                 <Instagram size={18} strokeWidth={1.5} />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/sparklesolitaire/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -120,12 +121,20 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="footer-legal pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
           <p className="type-body text-xs text-white/35 tracking-wide">
             © {new Date().getFullYear()} Sparkle Solitaires. All rights reserved.
           </p>
           <p className="type-body text-xs text-white/35 tracking-wide">
-            India · New York · Hong Kong · China
+            <span>India</span>
+            <span className="separator-dot mx-2 hidden sm:inline" aria-hidden="true">·</span>
+            <span className="block sm:inline">Botswana</span>
+            <span className="separator-dot mx-2 hidden sm:inline" aria-hidden="true">·</span>
+            <span className="block sm:inline">New York</span>
+            <span className="separator-dot mx-2 hidden sm:inline" aria-hidden="true">·</span>
+            <span className="block sm:inline">Hong Kong</span>
+            <span className="separator-dot mx-2 hidden sm:inline" aria-hidden="true">·</span>
+            <span className="block sm:inline">China</span>
           </p>
         </div>
       </div>
