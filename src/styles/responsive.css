@@ -213,14 +213,16 @@ section {
 /* ── Phones & large phones (≤768px) ── */
 @media (max-width: 768px) {
   #home {
-    height: calc(100svh - 70px);
-    height: calc(100dvh - 70px);
+    min-height: calc(100svh - 70px);
+    min-height: calc(100dvh - 70px);
+    height: auto;
   }
 
   @media (min-width: 481px) {
     #home {
-      height: calc(100svh - 80px);
-      height: calc(100dvh - 80px);
+      min-height: calc(100svh - 80px);
+      min-height: calc(100dvh - 80px);
+      height: auto;
     }
   }
 

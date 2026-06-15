@@ -205,6 +205,15 @@ html {
 /* Prevent horizontal scroll */
 body {
   overflow-x: hidden;
+  overflow-y: auto;
+}
+
+html {
+  overflow-y: auto;
+}
+
+body.scroll-locked {
+  overflow: hidden !important;
 }
 
 /* Premium focus states */

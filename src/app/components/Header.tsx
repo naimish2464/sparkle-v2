@@ -3,6 +3,14 @@ import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import logoFile from "../../../logo.png";
+import {
+  ensurePageScrollable,
+  lockPageScroll,
+  unlockPageScroll,
+} from "../../utils/ensurePageScrollable";
+import { preloadCriticalAsset } from "../../utils/preloadCriticalAsset";
+
+preloadCriticalAsset(logoFile, "image");
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,17 +56,32 @@ export function Header() {
     };
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll only while mobile menu is open; always restore on close/unmount/reload
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+      lockPageScroll();
     } else {
-      document.body.style.overflow = "";
+      unlockPageScroll();
     }
     return () => {
-      document.body.style.overflow = "";
+      unlockPageScroll();
     };
   }, [mobileMenuOpen]);
+
+  // Reset menu + scroll state on mount and when restored from bfcache
+  useEffect(() => {
+    const resetScrollState = () => {
+      setMobileMenuOpen(false);
+      ensurePageScrollable();
+    };
+
+    resetScrollState();
+    window.addEventListener("pageshow", resetScrollState);
+    return () => {
+      window.removeEventListener("pageshow", resetScrollState);
+      ensurePageScrollable();
+    };
+  }, []);
 
   const navItems = [
     { name: "Home", href: "#home" },
@@ -92,6 +115,11 @@ export function Header() {
               <img
                 src={logoFile}
                 alt="Sparkle Solitaires logo — luxury diamond manufacturer"
+                width={160}
+                height={62}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="site-logo"
               />
             </a>

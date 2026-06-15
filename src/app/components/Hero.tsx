@@ -4,7 +4,10 @@ import { ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import videoFile from "../../imports/file__1_.mp4";
 import logoFile from "../../../assests/Sparkle Solitaire LOGO.png";
+import { preloadCriticalAsset } from "../../utils/preloadCriticalAsset";
 
+preloadCriticalAsset(logoFile, "image");
+preloadCriticalAsset(videoFile, "video", { type: "video/mp4" });
 // Framer motion animation variants for the luxury fade-up sequence
 const fadeInUpVariants = {
   hidden: { opacity: 0, y: 14 },
@@ -93,6 +96,7 @@ function HeroVideo() {
         src="/hero-poster.jpg"
         alt=""
         aria-hidden="true"
+        loading="eager"
         fetchPriority="high"
         decoding="sync"
         className={`hero-media hero-poster absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out rounded-[12px] md:rounded-[16px] lg:rounded-[20px] ${
@@ -122,10 +126,8 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full mt-[70px] sm:mt-[80px] min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] h-[calc(100svh-70px)] sm:h-[calc(100svh-80px)] px-2 sm:px-3 lg:px-4 xl:px-5 bg-white flex items-stretch"
-    >
-      <div className="relative w-full h-full min-h-0 rounded-[12px] md:rounded-[16px] lg:rounded-[20px] overflow-hidden bg-[#0a006f] flex flex-col">
-        <HeroVideo />
+      className="relative w-full mt-[70px] sm:mt-[80px] min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] px-2 sm:px-3 lg:px-4 xl:px-5 bg-white flex items-stretch"
+    >      <div className="relative w-full min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] rounded-[12px] md:rounded-[16px] lg:rounded-[20px] overflow-hidden bg-[#0a006f] flex flex-col">        <HeroVideo />
 
         {/* Permanent brand overlay — always above video, below content */}
         <div
@@ -133,8 +135,7 @@ export function Hero() {
           aria-hidden="true"
         />
 
-        <div className="hero-inner relative z-10 flex flex-col justify-between min-h-0 flex-1 overflow-y-auto overscroll-contain py-5 sm:py-8 lg:py-10 px-3 sm:px-6 lg:px-8">
-          {/* Top spacer to balance vertical height */}
+        <div className="hero-inner relative z-10 flex flex-col justify-between min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] flex-1 py-5 sm:py-8 lg:py-10 px-3 sm:px-6 lg:px-8">          {/* Top spacer to balance vertical height */}
           <div className="w-full shrink-0 h-2 sm:h-4 hidden sm:block" />
 
           {/* Center content container */}
@@ -150,9 +151,13 @@ export function Hero() {
               <img
                 src={logoFile}
                 alt="Sparkle Solitaires brand logo"
+                width={120}
+                height={120}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="hero-logo w-[clamp(72px,18vw,120px)] h-auto object-contain mx-auto"
-              />
-            </motion.div>
+              />            </motion.div>
 
             {/* Company Name */}
             <motion.h1
