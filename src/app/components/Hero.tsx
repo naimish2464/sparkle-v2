@@ -178,19 +178,24 @@ export function Hero() {
               custom={0.5}
               className="hero-subtitle-pipes text-[10px] sm:text-[11px] md:text-xs tracking-[0.14em] sm:tracking-[0.18em] uppercase mb-5 sm:mb-6 max-w-[90%] sm:max-w-[95%] mx-auto leading-relaxed"
             >
-              Scanning | Contract Manufacturing | Global Trade Consultancy
+              Diamond Manufacturing | Global Trading
             </motion.p>
 
-            {/* Short supporting sentence */}
-            <motion.p
+            {/* Supporting copy */}
+            <motion.div
               variants={fadeInUpVariants}
               initial="hidden"
               animate="visible"
               custom={0.65}
-              className="hero-body-text text-[13px] sm:text-sm md:text-base max-w-[620px] mx-auto mb-6 sm:mb-10 leading-[1.7] font-light px-1"
+              className="hero-body-text w-full max-w-[640px] mx-auto mb-5 sm:mb-8 px-1 space-y-2.5 sm:space-y-3 text-center"
             >
-              Your trusted partner for natural &amp; lab-grown diamonds — from Galaxy™ rough scanning and contract manufacturing to polished stones and global sales.
-            </motion.p>
+              <p className="text-[13px] sm:text-sm md:text-[15px] leading-[1.55] font-medium text-white/90">
+                Fancy Color Lab-Grown Diamonds. Manufactured with Precision.
+              </p>
+              <p className="text-[12px] sm:text-[13px] md:text-sm leading-[1.65] font-light text-white/75">
+                We specialize in Fancy Color Lab-Grown Diamonds, and manufacture CVD and HPHT diamonds to exact client specifications — from size and shape to color and layout. Every stone we produce is backed by consistent quality standards and reliable delivery, with deep expertise in custom layouts, CVD &amp; HPHT production, and made-to-order jewelry — built for wholesalers, manufacturers, and international buyers who expect consistent quality.
+              </p>
+            </motion.div>
 
             {/* Pill CTA buttons with premium hover effects */}
             <motion.div
@@ -200,78 +205,64 @@ export function Hero() {
               custom={0.8}
               className="hero-cta-group flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center w-full max-w-sm sm:max-w-none sm:w-auto px-2 sm:px-4"
             >
-            <Button 
-              className="cta-primary hero-cta-btn w-full sm:w-auto px-8 py-[1.125rem] sm:py-5 rounded-full text-[11px] font-semibold uppercase tracking-[0.18em] bg-[#0a006f] text-white border border-[#0a006f] hover:bg-[#080058] hover:border-[#080058] h-auto"
-              onClick={() => {
-                const servicesSec = document.getElementById("services");
-                if (servicesSec) {
-                  servicesSec.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-            >
-              Explore Our Services
-            </Button>
-            <Button
-              variant="outline"
-              className="cta-secondary hero-cta-btn w-full sm:w-auto px-8 py-[1.125rem] sm:py-5 rounded-full text-[11px] font-semibold uppercase tracking-[0.18em] bg-white/5 text-white border border-white/80 hover:bg-white hover:text-[#0a006f] hover:border-white h-auto"
-              onClick={() => {
-                const contactSec = document.getElementById("contact");
-                if (contactSec) {
-                  contactSec.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-            >
-              Contact Us
-            </Button>
-          </motion.div>
+              <Button
+                className="cta-primary hero-cta-btn w-full sm:w-auto px-8 py-[1.125rem] sm:py-5 rounded-full text-[11px] font-medium uppercase tracking-[0.18em] bg-[#0a006f] text-white border border-[#0a006f] hover:bg-[#080058] hover:border-[#080058] h-auto"
+                onClick={() => {
+                  const manufacturingSec = document.getElementById("manufacturing");
+                  if (manufacturingSec) {
+                    manufacturingSec.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
+                Explore Our Services
+              </Button>
+              <Button
+                variant="outline"
+                className="cta-secondary hero-cta-btn w-full sm:w-auto px-8 py-[1.125rem] sm:py-5 rounded-full text-[11px] font-medium uppercase tracking-[0.18em] bg-white/5 text-white border border-white/80 hover:bg-white hover:text-[#0a006f] hover:border-white h-auto"
+                onClick={() => {
+                  const contactSec = document.getElementById("contact");
+                  if (contactSec) {
+                    contactSec.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
+                Contact Us
+              </Button>
+            </motion.div>
           </div>
 
-          {/* Bottom Area (Symmetrical side statements + Scroll indicator) */}
+          {/* Bottom — Global Presence + Scroll */}
           <motion.div
             variants={bottomVariants}
             initial="hidden"
             animate="visible"
-            className="hero-bottom shrink-0 grid grid-cols-1 md:grid-cols-3 items-end w-full max-w-[1400px] mx-auto gap-2 sm:gap-4 pt-2 sm:pt-0"
+            className="hero-bottom shrink-0 flex flex-col items-center justify-center w-full max-w-[1400px] mx-auto gap-2.5 sm:gap-3 pt-4 sm:pt-2"
           >
-            {/* Bottom Left Area */}
-            <div className="text-left hidden md:block">
-              <span className="text-[10px] lg:text-xs font-semibold tracking-[0.2em] uppercase text-white/60 block max-w-[240px] leading-relaxed">
-                Natural &amp; Lab-Grown Diamond Solutions
-              </span>
-            </div>
-
-            {/* Bottom Center Scroll Indicator */}
-            <div className="hero-scroll-indicator flex flex-col items-center justify-center">
-              <button
-                type="button"
-                className="flex flex-col items-center text-white/80 cursor-pointer pointer-events-auto bg-transparent border-0 p-1"
-                onClick={() => {
-                  const nextSection = document.getElementById("about");
+            <span className="text-[10px] sm:text-[11px] lg:text-xs font-medium tracking-[0.14em] sm:tracking-[0.18em] uppercase text-white/70 leading-relaxed text-center px-2">
+              Global Presence : India • New York • Hong Kong • China
+            </span>
+            <button
+              type="button"
+              className="hero-scroll-indicator flex flex-col items-center text-white/80 cursor-pointer pointer-events-auto bg-transparent border-0 p-1"
+              onClick={() => {
+                const nextSection = document.getElementById("expertise");
                   if (nextSection) {
                     nextSection.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
-                aria-label="Scroll to About section"
-              >
-                <span className="text-[10px] tracking-[0.25em] font-medium mb-1.5 uppercase text-white/50">
-                  SCROLL
-                </span>
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="text-white/50 flex items-center justify-center"
-                >
-                  <ChevronDown size={14} />
-                </motion.div>
-              </button>
-            </div>
-
-            {/* Bottom Right Area */}
-            <div className="text-right hidden md:block">
-              <span className="text-[10px] lg:text-xs font-semibold tracking-[0.2em] uppercase text-white/60 block ml-auto max-w-[240px] leading-relaxed">
-                Global Presence Across Leading Diamond Markets
+                aria-label="Scroll to Expertise section"
+            >
+              <span className="text-[10px] tracking-[0.25em] font-medium mb-1.5 uppercase text-white/50">
+                SCROLL
               </span>
-            </div>
+              <motion.div
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="text-white/50 flex items-center justify-center"
+              >
+                <ChevronDown size={14} />
+              </motion.div>
+            </button>
           </motion.div>
         </div>
       </div>

@@ -1,6 +1,11 @@
-import { useScroll, useTransform } from "motion/react";
-import { motion } from "motion/react";
-import { luxuryEase, useReveal } from "./useReveal";
+import { useScroll, useTransform, motion } from "motion/react";
+import {
+  getRevealAnimate,
+  getRevealInitial,
+  getRevealTransition,
+  REVEAL,
+  useReveal,
+} from "./useReveal";
 import { SectionHeader } from "./SectionHeader";
 import { SectionImage } from "./SectionImage";
 import consultancyImage from "../../../assests/images/Consultancy.png";
@@ -22,13 +27,19 @@ const capabilities = [
 const hubLocations = ["India", "Botswana", "New York", "Hong Kong", "China"];
 
 export function GlobalConsultancy() {
-  const { ref: sectionRef, isInView } = useReveal();
+  const { ref: sectionRef, isInView, prefersReducedMotion } = useReveal();
+  const initial = getRevealInitial(prefersReducedMotion);
+  const animate = getRevealAnimate(isInView, prefersReducedMotion);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-2%", "2%"]);
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? ["0%", "0%"] : ["-2%", "2%"]
+  );
 
   return (
     <section id="consultancy" ref={sectionRef} className="relative overflow-hidden bg-brand">
@@ -40,16 +51,18 @@ export function GlobalConsultancy() {
           <div className="order-1 lg:order-none min-w-0">
             <SectionHeader
               title="Global Presence"
-              subtitle="Global Diamond Market Consultancy"
               isInView={isInView}
               variant="dark"
               className="mb-7 lg:mb-9"
             />
 
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.95, delay: 0.22, ease: luxuryEase }}
+              initial={initial}
+              animate={animate}
+              transition={getRevealTransition(prefersReducedMotion, {
+                delay: 0.1,
+                isInView,
+              })}
               className="flex flex-wrap items-center gap-x-5 gap-y-3 mb-7 lg:mb-8 pb-6 border-b border-white/[0.08]"
             >
               {hubLocations.map((location, index) => (
@@ -71,13 +84,12 @@ export function GlobalConsultancy() {
               {capabilities.map((line, index) => (
                 <motion.p
                   key={line}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{
-                    duration: 0.9,
-                    delay: 0.28 + index * 0.04,
-                    ease: luxuryEase,
-                  }}
+                  initial={initial}
+                  animate={animate}
+                  transition={getRevealTransition(prefersReducedMotion, {
+                    delay: 0.12 + index * 0.04,
+                    isInView,
+                  })}
                   className={`capability-item capability-item--dark ${
                     index === 0 ? "!text-white/90" : ""
                   }`}
@@ -95,7 +107,7 @@ export function GlobalConsultancy() {
             aspect="landscape"
             variant="dark"
             imageY={imageY}
-            delay={0.1}
+            delay={REVEAL.stagger}
             objectPosition="center"
             className="consultancy-sticky-image lg:sticky lg:top-28 order-2 lg:order-none"
           />

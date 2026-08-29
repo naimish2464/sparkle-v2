@@ -65,23 +65,23 @@ section {
   .type-section-title,
   .type-slide-title-light,
   .type-slide-title-bold {
-    font-size: clamp(1.125rem, 4.8vw, 1.375rem);
-    line-height: 1.32;
-    letter-spacing: 0.02em;
+    font-size: clamp(1.25rem, 5vw, 1.625rem);
+    line-height: 1.25;
+    letter-spacing: 0.05em;
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
 
   .type-section-subtitle {
-    font-size: clamp(0.75rem, 3.2vw, 0.875rem);
-    line-height: 1.45;
-    letter-spacing: 0.06em;
+    font-size: clamp(0.6875rem, 3vw, 0.8125rem);
+    line-height: 1.5;
+    letter-spacing: 0.12em;
   }
 
   .type-hero-title {
-    font-size: clamp(1.375rem, 5.8vw, 1.875rem);
-    letter-spacing: 0.1em;
-    line-height: 1.15;
+    font-size: clamp(1.625rem, 6.2vw, 2.125rem);
+    letter-spacing: 0.08em;
+    line-height: 1.1;
     overflow-wrap: break-word;
   }
 
@@ -146,38 +146,25 @@ section {
     max-width: 120px;
   }
 
-  /* About trust cards */
-  #about .about-trust-grid {
-    gap: 0.625rem;
+  #color-scale .csi-chart-img {
+    max-height: 280px;
   }
 
-  #about .trust-item {
-    padding: 0.875rem;
+  #color-scale .csi-scale-connector {
+    width: 0.75rem;
   }
 
-  /* Contact */
-  #contact .contact-grid {
-    gap: 1.75rem;
-  }
-
-  #contact a[href^="mailto:"] {
+  .site-footer a[href^="mailto:"] {
     overflow-wrap: anywhere;
     word-break: break-word;
   }
 
-  /* Footer legal row */
   .site-footer .footer-legal {
-    flex-direction: column;
-    gap: 0.75rem;
     text-align: center;
   }
 
-  .site-footer .footer-legal .separator-dot {
-    display: none;
-  }
-
-  .site-footer .footer-links-grid {
-    gap: 2rem;
+  .site-footer .footer-main-grid {
+    gap: 2.25rem;
   }
 
   /* Galaxy services */
@@ -205,8 +192,8 @@ section {
   }
 
   .type-hero-title {
-    font-size: clamp(1.625rem, 4.5vw, 2.125rem);
-    letter-spacing: 0.12em;
+    font-size: clamp(1.75rem, 4.8vw, 2.35rem);
+    letter-spacing: 0.1em;
   }
 }
 
@@ -257,18 +244,18 @@ section {
     width: 100%;
   }
 
-  /* About */
-  #about .trust-item {
-    white-space: normal;
+  /* Expertise */
+  #expertise .expertise-image {
+    max-height: 180px;
   }
 
-  /* Contact — image first on mobile */
-  #contact .contact-grid {
+  #expertise .expertise-compose {
     gap: 2rem;
   }
 
-  #contact .contact-image-col {
-    order: -1;
+  /* Footer */
+  .site-footer .footer-main-grid {
+    gap: 2.5rem;
   }
 
   /* Manufacturing — text before image on mobile (Tailwind order utilities) */
@@ -295,9 +282,9 @@ section {
   }
 
   /* Footer link columns */
-  .site-footer .footer-links-grid {
+  .site-footer .footer-main-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.25rem;
   }
 
   /* Consultancy sticky off on mobile */
@@ -334,13 +321,12 @@ section {
     scroll-margin-top: 80px;
   }
 
-  .site-footer .footer-links-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .site-footer .footer-main-grid {
     gap: 2.5rem;
   }
 
   .site-footer .footer-brand-col {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 
   #consultancy .consultancy-grid {
@@ -397,7 +383,7 @@ section {
     padding-bottom: 0.625rem;
   }
 
-  #about {
+  #expertise {
     min-height: auto;
   }
 }
@@ -415,17 +401,17 @@ section {
 @media (min-width: 1920px) {
   .type-section-heading,
   .type-section-title {
-    font-size: 1.875rem;
+    font-size: 2.125rem;
   }
 
   .type-section-subtitle {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 
   .type-slide-title-light,
   .type-slide-title-bold {
-    font-size: 1.875rem;
-    line-height: 1.3;
+    font-size: 2.125rem;
+    line-height: 1.22;
   }
 }
 

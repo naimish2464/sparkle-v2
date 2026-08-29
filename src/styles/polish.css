@@ -10,11 +10,16 @@
 
 #home .type-hero-title {
   text-shadow: 0 1px 24px rgba(0, 0, 0, 0.12);
+  font-weight: 400;
 }
 
 #home .hero-body-text {
   color: rgba(255, 255, 255, 0.72);
-  max-width: 34rem;
+  max-width: 40rem;
+}
+
+#home .hero-bottom {
+  text-align: center;
 }
 
 #home .hero-subtitle-pipes {
@@ -75,12 +80,13 @@
 
 /* ── Typography luxury refinements ── */
 .type-section-heading {
-  letter-spacing: 0.025em;
-  line-height: 1.28;
+  letter-spacing: 0.06em;
+  line-height: 1.22;
+  font-weight: 500;
 }
 
 .type-section-subtitle {
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-muted);
@@ -93,11 +99,12 @@
 
 .type-body {
   line-height: 1.7;
-  letter-spacing: 0.005em;
+  letter-spacing: 0.01em;
 }
 
 .type-eyebrow {
   letter-spacing: 0.18em;
+  font-weight: 500;
 }
 
 /* Section header divider — editorial accent */
@@ -174,22 +181,132 @@
   object-position: center center;
 }
 
-/* ── Contact detail blocks ── */
-.contact-detail-block {
-  padding-bottom: 0.25rem;
+/* ── Footer — unified single composition ── */
+.site-footer .footer-main-grid {
+  align-items: start;
 }
 
-.contact-detail-block .type-eyebrow {
-  color: rgba(10, 0, 111, 0.45);
-}
-
-.contact-detail-block a {
+.site-footer .footer-main-grid a {
   transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── About global presence ── */
-.about-global-statement {
-  border-top-color: transparent;
+/* ── Expertise section — seamless, unboxed ── */
+#expertise .expertise-compose {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#expertise .expertise-image {
+  max-width: 100%;
+  background: transparent;
+}
+
+#expertise .expertise-options-list {
+  line-height: 1.6;
+}
+
+/* ── Color, Scale & Intensity ── */
+.csi-section {
+  --csi-gold: #b8956c;
+  --csi-gold-soft: rgba(184, 149, 108, 0.45);
+  --csi-gold-faint: rgba(184, 149, 108, 0.22);
+}
+
+.csi-gold-rule {
+  width: 3rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--csi-gold) 20%,
+    var(--csi-gold) 80%,
+    transparent
+  );
+}
+
+.csi-scale-list {
+  row-gap: 0.75rem;
+}
+
+.csi-scale-label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(0.6875rem, 0.6rem + 0.35vw, 0.8125rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--csi-gold);
+  white-space: nowrap;
+  padding: 0 0.35rem;
+}
+
+.csi-scale-connector {
+  display: inline-block;
+  width: clamp(1.25rem, 2.5vw, 2.25rem);
+  height: 1px;
+  margin: 0 0.15rem;
+  background: var(--csi-gold-soft);
+  vertical-align: middle;
+}
+
+.csi-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.csi-chart {
+  margin: 0;
+  min-width: 0;
+}
+
+.csi-chart-caption {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--csi-gold);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.csi-chart-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+  object-position: center top;
+  background: transparent;
+}
+
+@media (min-width: 640px) {
+  .csi-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem 1.5rem;
+  }
+
+  .csi-chart-img {
+    max-height: 420px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .csi-gallery {
+    gap: 1.75rem 2rem;
+  }
+
+  .csi-chart-img {
+    max-height: 480px;
+  }
+
+  .csi-scale-label {
+    letter-spacing: 0.18em;
+  }
 }
 
 /* ── Header nav polish ── */
@@ -207,9 +324,9 @@
 }
 
 /* ── Subtle section transitions (white sections) ── */
-#about,
-#custom-jewelry,
-#contact {
+#expertise,
+#color-scale,
+#custom-jewelry {
   isolation: isolate;
 }
 

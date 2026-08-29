@@ -1,5 +1,10 @@
-import { motion, type MotionValue } from "motion/react";
-import { luxuryEase } from "./useReveal";
+import { motion, useReducedMotion, type MotionValue } from "motion/react";
+import {
+  getRevealAnimate,
+  getRevealInitial,
+  getRevealTransition,
+  REVEAL,
+} from "./useReveal";
 
 type SectionImageProps = {
   src: string;
@@ -24,10 +29,12 @@ export function SectionImage({
   className = "",
   imageY,
   imageScale,
-  delay = 0.12,
+  delay = REVEAL.stagger,
   objectPosition = "center",
   loading = "lazy",
 }: SectionImageProps) {
+  const prefersReducedMotion = !!useReducedMotion();
+
   const aspectClass =
     aspect === "portrait"
       ? "aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5]"
@@ -42,10 +49,15 @@ export function SectionImage({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 1, delay, ease: luxuryEase }}
+      initial={getRevealInitial(prefersReducedMotion)}
+      animate={getRevealAnimate(isInView, prefersReducedMotion)}
+      transition={getRevealTransition(prefersReducedMotion, {
+        delay,
+        image: true,
+        isInView,
+      })}
       className={`group relative min-w-0 ${className}`}
+      style={{ willChange: isInView ? "auto" : "opacity, transform" }}
     >
       <div
         className={`section-image-frame relative overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl ${aspectClass}`}

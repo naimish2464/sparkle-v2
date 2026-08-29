@@ -1,140 +1,188 @@
-import { motion } from "motion/react";
 import { Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import logoFile from "../../../assests/Sparkle Solitaire LOGO.png";
 
 const navItems = [
   { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
+  { name: "Expertise", href: "#expertise" },
   { name: "Manufacturing", href: "#manufacturing" },
   { name: "Jewelry", href: "#custom-jewelry" },
-  { name: "Consultancy", href: "#consultancy" },
   { name: "Contact", href: "#contact" },
 ];
 
+const addressLines = [
+  "2nd Floor, Wing A, Om Siya House",
+  "Behind Ghodiya-Pir Dargah",
+  "Opposite Katargam Police Station",
+  "Katargam Road",
+  "Surat, Gujarat – 395004",
+];
+
+const emails = ["sparklessolitaire@gmail.com", "sparkle.solitaires@gmail.com"];
+
+const globalLocations = ["India", "Botswana", "New York", "Hong Kong", "China"];
+
+const INQUIRE_MAILTO =
+  "mailto:sparklessolitaire@gmail.com?subject=" +
+  encodeURIComponent("Inquiry — Sparkle Solitaires") +
+  "&body=" +
+  encodeURIComponent(
+    "Hello Sparkle Solitaires,\n\nI would like to inquire about your diamond manufacturing and consultancy services.\n\n"
+  );
+
 export function Footer() {
   return (
-    <footer className="site-footer relative bg-brand text-white overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-10 sm:py-12 lg:py-14">
-        <div className="footer-links-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-8 mb-10 lg:mb-12">
-          {/* Logo & brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="footer-brand-col lg:col-span-1"
-          >
+    <footer
+      id="contact"
+      className="site-footer relative bg-brand text-white overflow-hidden"
+    >
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-12 sm:py-14 lg:py-16">
+        {/* One unified footer grid */}
+        <div className="footer-main-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-10 lg:gap-8 xl:gap-10">
+          {/* Brand */}
+          <div className="footer-brand-col sm:col-span-2 lg:col-span-3 min-w-0">
             <img
               src={logoFile}
-              alt="Sparkle Solitaires logo — luxury diamond manufacturer"
+              alt="Sparkle Solitaires"
               className="h-9 w-auto object-contain brightness-0 invert mb-5"
             />
-            <p className="type-body text-white/50 max-w-xs leading-relaxed">
-              Your trusted partner for natural and lab-grown diamonds — from Galaxy™ rough scanning to polished stones and global sales.
+            <p className="type-body text-sm text-white/50 max-w-[240px] leading-relaxed mb-6">
+              Your trusted partner for natural and lab-grown diamonds — from Galaxy™
+              rough scanning to polished stones and global sales.
             </p>
-          </motion.div>
+            <a
+              href={INQUIRE_MAILTO}
+              className="inline-flex items-center text-[11px] font-medium uppercase tracking-[0.16em] text-white/85 hover:text-white transition-colors duration-300 border-b border-white/30 hover:border-white pb-0.5"
+            >
+              Send an Inquiry
+            </a>
+          </div>
+
+          {/* Contact Us — same column language as Navigation */}
+          <div className="footer-contact-col sm:col-span-1 lg:col-span-4 min-w-0">
+            <h2 className="type-eyebrow text-white/45 mb-5 tracking-[0.18em]">
+              Contact Us
+            </h2>
+            <p className="type-body text-sm text-white/50 leading-relaxed mb-6 max-w-sm">
+              Whether you require Galaxy™ diamond scanning, contract manufacturing,
+              bespoke jewelry, or global consultancy — our team is ready to assist.
+            </p>
+
+            <div className="space-y-5">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <MapPin size={13} className="text-white/35 shrink-0" strokeWidth={1.5} />
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-white/40 font-medium">
+                    Address
+                  </span>
+                </div>
+                <p className="type-body text-sm text-white/80 font-medium mb-1">
+                  Sparkle Solitaires
+                </p>
+                {addressLines.map((line) => (
+                  <p
+                    key={line}
+                    className="type-body text-sm text-white/50 leading-relaxed"
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
+
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Mail size={13} className="text-white/35 shrink-0" strokeWidth={1.5} />
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-white/40 font-medium">
+                    Email
+                  </span>
+                </div>
+                <div className="space-y-1.5">
+                  {emails.map((email) => (
+                    <a
+                      key={email}
+                      href={`mailto:${email}`}
+                      className="block type-body text-sm text-white/55 hover:text-white transition-colors duration-300 break-all"
+                    >
+                      {email}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <Phone size={13} className="text-white/35 shrink-0" strokeWidth={1.5} />
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-white/40 font-medium">
+                    Phone
+                  </span>
+                </div>
+                <a
+                  href="tel:+15513591202"
+                  className="type-body text-sm text-white/55 hover:text-white transition-colors duration-300"
+                >
+                  +1 551 359 1202
+                </a>
+              </div>
+            </div>
+          </div>
 
           {/* Navigation */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.08 }}
-          >
-            <h3 className="type-eyebrow text-white/40 mb-5 tracking-[0.18em]">Navigation</h3>
-            <ul className="space-y-3">
+          <div className="footer-nav-col lg:col-span-2 min-w-0">
+            <h3 className="type-eyebrow text-white/45 mb-5 tracking-[0.18em]">
+              Navigation
+            </h3>
+            <ul className="space-y-2.5">
               {navItems.map((item) => (
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className="type-body text-sm text-white/60 hover:text-white transition-colors duration-300"
+                    className="type-body text-sm text-white/55 hover:text-white transition-colors duration-300"
                   >
                     {item.name}
                   </a>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Contact */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.16 }}
-          >
-            <h3 className="type-eyebrow text-white/40 mb-5 tracking-[0.18em]">Contact</h3>
-            <div className="space-y-3">
-              <a
-                href="mailto:sparklessolitaire@gmail.com"
-                className="flex items-start gap-2.5 type-body text-sm text-white/60 hover:text-white transition-colors duration-300 break-all"
-              >
-                <Mail size={14} className="mt-0.5 shrink-0 text-white/35" strokeWidth={1.5} />
-                sparklessolitaire@gmail.com
-              </a>
-              <a
-                href="tel:+15513591202"
-                className="flex items-center gap-2.5 type-body text-sm text-white/60 hover:text-white transition-colors duration-300"
-              >
-                <Phone size={14} className="shrink-0 text-white/35" strokeWidth={1.5} />
-                +1 551 359 1202
-              </a>
-              <div className="flex items-start gap-2.5 type-body text-sm text-white/60">
-                <MapPin size={14} className="mt-0.5 shrink-0 text-white/35" strokeWidth={1.5} />
-                <span>Surat, Gujarat – 395004</span>
-              </div>
-            </div>
-          </motion.div>
+          {/* Presence + Social */}
+          <div className="footer-connect-col lg:col-span-3 min-w-0">
+            <h3 className="type-eyebrow text-white/45 mb-5 tracking-[0.18em]">
+              Global Presence
+            </h3>
+            <p className="type-body text-sm text-white/55 leading-relaxed tracking-wide mb-8">
+              {globalLocations.join(" · ")}
+            </p>
 
-          {/* Social */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.24 }}
-          >
-            <h3 className="type-eyebrow text-white/40 mb-5 tracking-[0.18em]">Connect</h3>
-            <div className="flex items-center gap-4">
+            <h3 className="type-eyebrow text-white/45 mb-4 tracking-[0.18em]">
+              Follow Us
+            </h3>
+            <div className="flex flex-col gap-2.5">
               <a
                 href="https://www.instagram.com/sparklesolitaire/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-10 h-10 flex items-center justify-center border border-white/15 rounded-full text-white/60 hover:text-white hover:border-white/30 transition-all duration-300"
+                className="inline-flex items-center gap-2.5 type-body text-sm text-white/55 hover:text-white transition-colors duration-300"
               >
-                <Instagram size={18} strokeWidth={1.5} />
+                <Instagram size={15} strokeWidth={1.5} className="text-white/35" />
+                Instagram
               </a>
               <a
                 href="https://www.linkedin.com/in/sparklesolitaire/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="w-10 h-10 flex items-center justify-center border border-white/15 rounded-full text-white/60 hover:text-white hover:border-white/30 transition-all duration-300"
+                className="inline-flex items-center gap-2.5 type-body text-sm text-white/55 hover:text-white transition-colors duration-300"
               >
-                <Linkedin size={18} strokeWidth={1.5} />
+                <Linkedin size={15} strokeWidth={1.5} className="text-white/35" />
+                LinkedIn
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="footer-legal pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
-          <p className="type-body text-xs text-white/35 tracking-wide">
+        {/* Legal — single quiet line, no duplicated presence */}
+        <div className="footer-legal mt-12 sm:mt-14 pt-6 border-t border-white/[0.08]">
+          <p className="type-body text-xs text-white/35 tracking-wide text-center sm:text-left">
             © {new Date().getFullYear()} Sparkle Solitaires. All rights reserved.
-          </p>
-          <p className="type-body text-xs text-white/35 tracking-wide">
-            <span>India</span>
-            <span className="separator-dot mx-2 hidden sm:inline" aria-hidden="true">·</span>
-            <span className="block sm:inline">Botswana</span>
-            <span className="separator-dot mx-2 hidden sm:inline" aria-hidden="true">·</span>
-            <span className="block sm:inline">New York</span>
-            <span className="separator-dot mx-2 hidden sm:inline" aria-hidden="true">·</span>
-            <span className="block sm:inline">Hong Kong</span>
-            <span className="separator-dot mx-2 hidden sm:inline" aria-hidden="true">·</span>
-            <span className="block sm:inline">China</span>
           </p>
         </div>
       </div>

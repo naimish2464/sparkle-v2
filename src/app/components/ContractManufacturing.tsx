@@ -1,6 +1,11 @@
-import { useScroll, useTransform } from "motion/react";
-import { motion } from "motion/react";
-import { luxuryEase, useReveal } from "./useReveal";
+import { useScroll, useTransform, motion } from "motion/react";
+import {
+  getRevealAnimate,
+  getRevealInitial,
+  getRevealTransition,
+  REVEAL,
+  useReveal,
+} from "./useReveal";
 import { SectionHeader } from "./SectionHeader";
 import { SectionImage } from "./SectionImage";
 import manufacturingImage from "../../../assests/images/Diamond Manufactering.png";
@@ -17,13 +22,19 @@ const capabilities = [
 ];
 
 export function ContractManufacturing() {
-  const { ref: sectionRef, isInView } = useReveal();
+  const { ref: sectionRef, isInView, prefersReducedMotion } = useReveal();
+  const initial = getRevealInitial(prefersReducedMotion);
+  const animate = getRevealAnimate(isInView, prefersReducedMotion);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-3%", "3%"]);
+  const imageY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? ["0%", "0%"] : ["-3%", "3%"]
+  );
 
   return (
     <section id="manufacturing" ref={sectionRef} className="relative bg-brand overflow-hidden">
@@ -40,15 +51,14 @@ export function ContractManufacturing() {
             imageY={imageY}
             className="manufacturing-image-col order-2 lg:order-1"
             objectPosition="center"
+            delay={REVEAL.stagger}
           />
 
           <div className="manufacturing-content-col order-1 lg:order-2 min-w-0">
             <SectionHeader
-              title="End-to-End Rough-to-Polished Solutions"
-              subtitle="Contract Manufacturing"
+              title="Contract Manufacturing"
               isInView={isInView}
               variant="dark"
-              singleLine={false}
               className="mb-8 lg:mb-10"
             />
 
@@ -56,13 +66,12 @@ export function ContractManufacturing() {
               {capabilities.map((line, index) => (
                 <motion.p
                   key={line}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{
-                    duration: 0.9,
-                    delay: 0.22 + index * 0.05,
-                    ease: luxuryEase,
-                  }}
+                  initial={initial}
+                  animate={animate}
+                  transition={getRevealTransition(prefersReducedMotion, {
+                    delay: 0.1 + index * 0.05,
+                    isInView,
+                  })}
                   className="capability-item capability-item--dark"
                 >
                   {line}

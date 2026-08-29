@@ -42,7 +42,7 @@ export function Header() {
       { threshold: 0.2, rootMargin: "-80px 0px -50% 0px" }
     );
 
-    const sections = ["home", "about", "services", "manufacturing", "custom-jewelry", "consultancy", "contact"];
+    const sections = ["home", "expertise", "color-scale", "manufacturing", "custom-jewelry", "contact"];
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -85,11 +85,9 @@ export function Header() {
 
   const navItems = [
     { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
+    { name: "Expertise", href: "#expertise" },
     { name: "Manufacturing", href: "#manufacturing" },
     { name: "Jewelry", href: "#custom-jewelry" },
-    { name: "Consultancy", href: "#consultancy" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -152,7 +150,7 @@ export function Header() {
           <div className="justify-self-end flex items-center gap-3">
             <div className="hidden lg:flex items-center">
               <Button
-                className="cta-primary bg-brand hover:bg-[#080058] text-white px-6 py-3 rounded-full text-[10px] xl:text-[11px] font-semibold uppercase tracking-[0.16em] h-auto shadow-none"
+                className="cta-primary bg-brand hover:bg-[#080058] text-white px-6 py-3 rounded-full text-[10px] xl:text-[11px] font-medium uppercase tracking-[0.16em] h-auto shadow-none"
                 onClick={() => {
                   const contactSec = document.getElementById("contact");
                   if (contactSec) {
@@ -203,7 +201,7 @@ export function Header() {
                 })}
                 <div className="pt-4 border-t border-brand-subtle">
                   <Button 
-                    className="cta-primary bg-brand hover:bg-[#080058] text-white w-full py-3.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.16em] h-auto shadow-none"
+                    className="cta-primary bg-brand hover:bg-[#080058] text-white w-full py-3.5 rounded-full text-[11px] font-medium uppercase tracking-[0.16em] h-auto shadow-none"
                     onClick={() => {
                       setMobileMenuOpen(false);
                       const contactSec = document.getElementById("contact");
