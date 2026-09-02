@@ -258,14 +258,7 @@ section {
     gap: 2.5rem;
   }
 
-  /* Manufacturing — text before image on mobile (Tailwind order utilities) */
-  #manufacturing .manufacturing-content-col {
-    order: 1;
-  }
-
-  #manufacturing .manufacturing-image-col {
-    order: 2;
-  }
+  /* Manufacturing — cinematic panels handled in polish.css */
 
   /* Galaxy — prevent decorative bleed */
   #services .galaxy-services-visual {
@@ -285,14 +278,6 @@ section {
   .site-footer .footer-main-grid {
     grid-template-columns: 1fr;
     gap: 2.25rem;
-  }
-
-  /* Consultancy sticky off on mobile */
-  @media (max-width: 1023px) {
-    #consultancy .consultancy-sticky-image {
-      position: relative;
-      top: auto;
-    }
   }
 
   /* Capability items — long lines wrap cleanly */
@@ -327,10 +312,6 @@ section {
 
   .site-footer .footer-brand-col {
     grid-column: auto;
-  }
-
-  #consultancy .consultancy-grid {
-    gap: 2.5rem;
   }
 
   #services .galaxy-services-content {

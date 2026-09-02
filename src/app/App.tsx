@@ -4,7 +4,6 @@ import { Expertise } from "./components/Expertise";
 import { ColorScaleIntensity } from "./components/ColorScaleIntensity";
 import { ContractManufacturing } from "./components/ContractManufacturing";
 import { CustomJewelry } from "./components/CustomJewelry";
-import { GlobalConsultancy } from "./components/GlobalConsultancy";
 import { Footer } from "./components/Footer";
 import { WhatsAppFloat } from "./components/WhatsAppFloat";
 
@@ -24,7 +23,6 @@ export default function App() {
         <ColorScaleIntensity />
         <ContractManufacturing />
         <CustomJewelry />
-        <GlobalConsultancy />
       </main>
       <Footer />
       <WhatsAppFloat />

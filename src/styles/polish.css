@@ -206,6 +206,291 @@
   line-height: 1.6;
 }
 
+/* ── Diamond Manufacturing — cinematic vertical panels ── */
+.mfg-cinematic {
+  --mfg-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --mfg-duration: 620ms;
+}
+
+.mfg-panels {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: clamp(420px, 62vh, 640px);
+  gap: 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mfg-panel {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  transition: flex-grow var(--mfg-duration) var(--mfg-ease);
+  isolation: isolate;
+}
+
+.mfg-panel + .mfg-panel {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mfg-panel-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.mfg-panel-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1);
+  filter: brightness(0.88) saturate(0.95);
+  transition:
+    transform var(--mfg-duration) var(--mfg-ease),
+    filter var(--mfg-duration) var(--mfg-ease);
+  will-change: transform;
+}
+
+.mfg-panel-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 0, 64, 0.15) 0%,
+    rgba(5, 0, 64, 0.25) 40%,
+    rgba(5, 0, 64, 0.78) 100%
+  );
+  transition: opacity var(--mfg-duration) var(--mfg-ease);
+  pointer-events: none;
+}
+
+.mfg-panel-content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem 1.25rem 1.75rem;
+  color: #fff;
+  pointer-events: none;
+}
+
+.mfg-panel-number {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.65rem;
+}
+
+.mfg-panel-title {
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 1.05vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.mfg-panel-short {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0.55rem 0 0;
+  max-width: 16rem;
+  opacity: 0.85;
+  transition: opacity var(--mfg-duration) var(--mfg-ease);
+}
+
+.mfg-panel-expand {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(8px);
+  transition:
+    max-height var(--mfg-duration) var(--mfg-ease),
+    opacity var(--mfg-duration) var(--mfg-ease),
+    transform var(--mfg-duration) var(--mfg-ease);
+}
+
+.mfg-panel-detail {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.85rem 0 0;
+  max-width: 22rem;
+}
+
+.mfg-panel-cta {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  padding-bottom: 2px;
+  pointer-events: auto;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.mfg-panel-cta:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Active / hover states */
+.mfg-panel.is-active .mfg-panel-img,
+.mfg-panel:focus-visible .mfg-panel-img {
+  transform: scale(1.03);
+  filter: brightness(1) saturate(1);
+}
+
+.mfg-panel.is-active .mfg-panel-scrim,
+.mfg-panel:focus-visible .mfg-panel-scrim {
+  opacity: 0.88;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 0, 64, 0.08) 0%,
+    rgba(5, 0, 64, 0.2) 35%,
+    rgba(5, 0, 64, 0.72) 100%
+  );
+}
+
+.mfg-panel.is-active .mfg-panel-short {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.mfg-panel.is-active .mfg-panel-expand,
+.mfg-panel:focus-visible .mfg-panel-expand {
+  max-height: 160px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mfg-panel.is-dimmed .mfg-panel-img {
+  filter: brightness(0.55) saturate(0.8);
+}
+
+.mfg-panel.is-dimmed .mfg-panel-content {
+  opacity: 0.55;
+}
+
+.mfg-panel:focus-visible {
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.45);
+}
+
+/* Desktop+ : hide short when expanding; show short by default on narrow panels */
+@media (min-width: 1024px) {
+  .mfg-panel-content {
+    padding: 2rem 1.5rem 2.25rem;
+  }
+
+  .mfg-panel:not(.is-active) .mfg-panel-short {
+    display: none;
+  }
+
+  .mfg-panel.is-active .mfg-panel-short {
+    display: none;
+  }
+}
+
+/* Tablet: still side-by-side but shorter */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .mfg-panels {
+    height: clamp(380px, 52vh, 520px);
+  }
+
+  .mfg-panel:not(.is-active) .mfg-panel-short {
+    display: none;
+  }
+}
+
+/* Mobile: vertical stack, no flex expand jump */
+@media (max-width: 768px) {
+  .mfg-panels {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .mfg-panel {
+    flex: none !important;
+    width: 100%;
+    height: min(52vw, 280px);
+    min-height: 220px;
+  }
+
+  .mfg-panel + .mfg-panel {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mfg-panel-content {
+    padding: 1.25rem 1.15rem 1.35rem;
+  }
+
+  .mfg-panel-expand {
+    max-height: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .mfg-panel-short {
+    display: none;
+  }
+
+  .mfg-panel-detail {
+    font-size: 12px;
+    margin-top: 0.5rem;
+  }
+
+  .mfg-panel-cta {
+    margin-top: 0.65rem;
+  }
+
+  .mfg-panel .mfg-panel-img {
+    filter: brightness(0.9) saturate(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mfg-panel,
+  .mfg-panel-img,
+  .mfg-panel-scrim,
+  .mfg-panel-expand,
+  .mfg-panel-short,
+  .mfg-panel-content {
+    transition: none !important;
+  }
+
+  .mfg-panel.is-active .mfg-panel-img {
+    transform: none;
+  }
+}
+
 /* ── Color, Scale & Intensity ── */
 .csi-section {
   --csi-gold: #b8956c;
@@ -323,6 +608,134 @@
   transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* ── Custom Jewellery — 3D ring carousel ── */
+.jewelry-section {
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 72% 48%,
+      rgba(10, 0, 111, 0.035) 0%,
+      transparent 70%
+    ),
+    #ffffff;
+}
+
+.jewelry-carousel-wrap {
+  width: 100%;
+  min-height: 360px;
+}
+
+.jewelry-ring {
+  --jr-radius: 280px;
+  --jr-card-w: 168px;
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 42vw, 460px);
+  outline: none;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.jewelry-ring.is-dragging {
+  cursor: grabbing;
+}
+
+.jewelry-ring:focus-visible {
+  outline: 1.5px solid rgba(10, 0, 111, 0.28);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+.jewelry-ring-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1100px;
+  perspective-origin: 50% 48%;
+  overflow: visible;
+}
+
+.jewelry-ring-track {
+  position: relative;
+  width: var(--jr-card-w);
+  height: calc(var(--jr-card-w) * 1.15);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.jewelry-ring-item {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.jewelry-ring-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+  border: none;
+  filter: drop-shadow(0 18px 28px rgba(10, 0, 111, 0.12));
+  -webkit-user-drag: none;
+}
+
+.jewelry-ring-item.is-front .jewelry-ring-img {
+  filter: drop-shadow(0 22px 36px rgba(10, 0, 111, 0.18));
+}
+
+.jewelry-ring-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.25rem;
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(10, 0, 111, 0.28);
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.jewelry-ring.is-dragging .jewelry-ring-hint {
+  opacity: 0;
+}
+
+@media (max-width: 1023px) {
+  .jewelry-carousel-wrap {
+    min-height: 300px;
+  }
+
+  .jewelry-ring {
+    height: clamp(280px, 78vw, 380px);
+  }
+}
+
+@media (max-width: 640px) {
+  .jewelry-ring {
+    height: clamp(260px, 88vw, 340px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jewelry-ring-item {
+    transition: none;
+  }
+}
+
 /* ── Subtle section transitions (white sections) ── */
 #expertise,
 #color-scale,
@@ -331,8 +744,7 @@
 }
 
 /* ── Dark sections — depth without redesign ── */
-#manufacturing,
-#consultancy {
+#manufacturing {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 

@@ -46,11 +46,11 @@ export function Expertise() {
               })}
               className="type-section-subtitle mt-3 sm:mt-4"
             >
-              All Shapes
+              All Colours · All Shapes
             </motion.p>
           </div>
 
-          <div className="expertise-body w-full flex flex-col items-center gap-7 sm:gap-8 lg:gap-10">
+          <div className="expertise-body relative w-full flex flex-col items-center">
             <motion.img
               initial={initial}
               animate={animate}
@@ -74,9 +74,9 @@ export function Expertise() {
                 delay: REVEAL.stagger + 0.1,
                 isInView,
               })}
-              className="expertise-options w-full max-w-[900px]"
+              className="expertise-options relative z-10 w-full max-w-[900px] -mt-6 sm:-mt-8 lg:-mt-10"
             >
-              <p className="type-eyebrow text-brand mb-4 sm:mb-5 tracking-[0.2em]">
+              <p className="type-eyebrow text-brand mb-2 sm:mb-3 tracking-[0.2em]">
                 Matched Parcels
               </p>
 

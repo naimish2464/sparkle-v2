@@ -353,30 +353,25 @@ section {
 
 /* Readability: white text on existing navy background sections only */
 #manufacturing,
-#consultancy,
 .site-footer {
   --text-heading: #ffffff;
   --text-body: rgba(255, 255, 255, 0.85);
   --text-muted: rgba(255, 255, 255, 0.7);
 }
 
-#manufacturing .type-section-heading,
-#consultancy .type-section-heading {
+#manufacturing .type-section-heading {
   color: #ffffff;
 }
 
-#manufacturing .type-section-subtitle,
-#consultancy .type-section-subtitle {
+#manufacturing .type-section-subtitle {
   color: rgba(255, 255, 255, 0.85);
 }
 
-#manufacturing .capability-item,
-#consultancy .capability-item {
+#manufacturing .capability-item {
   color: rgba(255, 255, 255, 0.85);
 }
 
-#manufacturing .capability-item:hover,
-#consultancy .capability-item:hover {
+#manufacturing .capability-item:hover {
   color: #ffffff;
 }
 
