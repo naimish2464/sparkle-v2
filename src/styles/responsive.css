@@ -163,8 +163,8 @@ section {
     text-align: center;
   }
 
-  .site-footer .footer-main-grid {
-    gap: 2.25rem;
+  .site-footer .footer-legal p {
+    text-align: center;
   }
 
   /* Galaxy services */
@@ -308,10 +308,6 @@ section {
 
   .site-footer .footer-main-grid {
     gap: 2.5rem;
-  }
-
-  .site-footer .footer-brand-col {
-    grid-column: auto;
   }
 
   #services .galaxy-services-content {
