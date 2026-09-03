@@ -246,7 +246,7 @@ section {
 
   /* Expertise */
   #expertise .expertise-image {
-    max-height: 180px;
+    max-height: 250px;
   }
 
   #expertise .expertise-compose {
