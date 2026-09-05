@@ -1,5 +1,12 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import logoFile from "../../../assests/Sparkle Solitaire LOGO.png";
+import exhibitHkBharat from "../../../assests/Exibition/HK bharat.png";
+import exhibitHkShow from "../../../assests/Exibition/HK SHOW.png";
+import exhibitJaDl from "../../../assests/Exibition/JA DL.png";
+import exhibitJaNy from "../../../assests/Exibition/JA NY.png";
+import exhibitJckShowAlt from "../../../assests/Exibition/JCK SHOW (1).png";
+import exhibitJckShow from "../../../assests/Exibition/JCK SHOW.png";
+import exhibitJisFall from "../../../assests/Exibition/JIS FALL.png";
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -21,6 +28,16 @@ const emails = ["sparklessolitaire@gmail.com", "sparkle.solitaires@gmail.com"];
 
 const globalLocations = ["India", "New York", "Hong Kong", "China"];
 
+const exhibitionStickers = [
+  { src: exhibitHkBharat, alt: "HK Bharat exhibition" },
+  { src: exhibitHkShow, alt: "Hong Kong International Diamond, Gem & Pearl Show" },
+  { src: exhibitJaDl, alt: "JA Delhi exhibition" },
+  { src: exhibitJaNy, alt: "JA New York exhibition" },
+  { src: exhibitJckShow, alt: "JCK Show exhibition" },
+  { src: exhibitJckShowAlt, alt: "JGW Hong Kong exhibition" },
+  { src: exhibitJisFall, alt: "JIS Fall exhibition" },
+];
+
 const INQUIRE_MAILTO =
   "mailto:sparklessolitaire@gmail.com?subject=" +
   encodeURIComponent("Inquiry — Sparkle Solitaires") +
@@ -30,11 +47,41 @@ const INQUIRE_MAILTO =
   );
 
 export function Footer() {
+  const marqueeStickers = [...exhibitionStickers, ...exhibitionStickers];
+
   return (
     <footer
       id="contact"
-      className="site-footer relative bg-brand text-white overflow-hidden"
+      className="site-footer relative bg-brand text-white overflow-x-clip"
     >
+      {/* Full-width exhibition showcase strip */}
+      <div className="footer-exhibit-bleed" aria-label="Exhibitions & events">
+        <p className="footer-exhibit-label">Exhibitions &amp; Events</p>
+        <div className="footer-exhibit-viewport">
+          <ul className="footer-exhibit-track">
+            {marqueeStickers.map((sticker, index) => {
+              const isDuplicate = index >= exhibitionStickers.length;
+              return (
+                <li
+                  key={`${sticker.alt}-${index}`}
+                  className={`footer-exhibit-item${isDuplicate ? " is-dup" : ""}`}
+                  aria-hidden={isDuplicate}
+                >
+                  <img
+                    src={sticker.src}
+                    alt={isDuplicate ? "" : sticker.alt}
+                    className="footer-exhibit-sticker"
+                    loading={index < 4 ? "eager" : "lazy"}
+                    decoding="async"
+                    draggable={false}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-12 sm:py-14 lg:py-16">
         <div className="footer-main-grid">
           {/* Contact Us — top left */}
