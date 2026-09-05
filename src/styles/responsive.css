@@ -245,12 +245,16 @@ section {
   }
 
   /* Expertise */
-  #expertise .expertise-image {
-    max-height: 250px;
-  }
-
   #expertise .expertise-compose {
     gap: 2rem;
+  }
+
+  #expertise .expertise-diamonds {
+    padding: 1.35rem 0.75rem 1.6rem;
+  }
+
+  #expertise .expertise-diamond {
+    --diamond-box: 110px;
   }
 
   /* Footer */

@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import type { CSSProperties } from "react";
 import {
   getRevealAnimate,
   getRevealInitial,
@@ -6,7 +7,12 @@ import {
   REVEAL,
   useReveal,
 } from "./useReveal";
-import expertiseImage from "../../../assests/experties.png";
+import diamondBlueRound from "../../../assests/diamond_shapes/round.png";
+import diamondGreen from "../../../assests/diamond_shapes/green.png";
+import diamondPink from "../../../assests/diamond_shapes/pink.png";
+import diamondPurple from "../../../assests/diamond_shapes/purple.png";
+import diamondWhite from "../../../assests/diamond_shapes/white.png";
+import diamondYellow from "../../../assests/diamond_shapes/yellow.png";
 
 const matchedParcels = [
   "Calibrated sizing",
@@ -16,13 +22,54 @@ const matchedParcels = [
   "Consistent cuts",
 ];
 
+const diamondShapes = [
+  {
+    id: "blue",
+    src: diamondBlueRound,
+    alt: "Blue round fancy color diamond",
+    /* Fills more of its frame → scale down to match peers */
+    fit: 0.72,
+  },
+  {
+    id: "white",
+    src: diamondWhite,
+    alt: "White radiant-cut diamond",
+    /* More canvas padding → scale up inside the equal box */
+    fit: 1.08,
+  },
+  {
+    id: "yellow",
+    src: diamondYellow,
+    alt: "Yellow oval fancy color diamond",
+    fit: 1.06,
+  },
+  {
+    id: "pink",
+    src: diamondPink,
+    alt: "Pink fancy color diamond",
+    fit: 1.06,
+  },
+  {
+    id: "purple",
+    src: diamondPurple,
+    alt: "Purple fancy color diamond",
+    fit: 1.06,
+  },
+  {
+    id: "green",
+    src: diamondGreen,
+    alt: "Green fancy color diamond",
+    fit: 1.06,
+  },
+];
+
 export function Expertise() {
   const { ref: sectionRef, isInView, prefersReducedMotion } = useReveal();
   const initial = getRevealInitial(prefersReducedMotion);
   const animate = getRevealAnimate(isInView, prefersReducedMotion);
 
   return (
-    <section id="expertise" ref={sectionRef} className="relative bg-white overflow-hidden">
+    <section id="expertise" ref={sectionRef} className="relative overflow-hidden">
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 section-padding">
         <div className="expertise-compose flex flex-col items-center justify-center text-center gap-8 sm:gap-10 lg:gap-12 min-h-0">
           <div className="expertise-heading">
@@ -51,7 +98,7 @@ export function Expertise() {
           </div>
 
           <div className="expertise-body relative w-full flex flex-col items-center">
-            <motion.img
+            <motion.div
               initial={initial}
               animate={animate}
               transition={getRevealTransition(prefersReducedMotion, {
@@ -59,13 +106,38 @@ export function Expertise() {
                 image: true,
                 isInView,
               })}
-              src={expertiseImage}
-              alt="Fancy color lab-grown diamonds in all shapes — pear, princess, emerald, radiant, heart, and round"
-              loading="eager"
-              decoding="async"
-              className="expertise-image block w-full max-w-[1100px] h-auto max-h-[160px] sm:max-h-[200px] md:max-h-[240px] lg:max-h-[280px] object-contain object-center mx-auto"
+              className="expertise-diamonds"
+              role="list"
+              aria-label="Diamond shapes and colours"
               style={{ willChange: isInView ? "auto" : "opacity, transform" }}
-            />
+            >
+              <div className="expertise-diamonds-glow" aria-hidden="true" />
+              <ul className="expertise-diamonds-row" role="list">
+                {diamondShapes.map((diamond) => (
+                  <li
+                    key={diamond.id}
+                    className={`expertise-diamond expertise-diamond--${diamond.id}`}
+                    role="listitem"
+                  >
+                    <span className="expertise-diamond-slot">
+                      <img
+                        src={diamond.src}
+                        alt={diamond.alt}
+                        loading="eager"
+                        decoding="async"
+                        className="expertise-diamond-img"
+                        draggable={false}
+                        style={
+                          {
+                            "--diamond-fit": String(diamond.fit),
+                          } as CSSProperties
+                        }
+                      />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
 
             <motion.div
               initial={initial}
@@ -74,7 +146,7 @@ export function Expertise() {
                 delay: REVEAL.stagger + 0.1,
                 isInView,
               })}
-              className="expertise-options relative z-10 w-full max-w-[900px] -mt-6 sm:-mt-8 lg:-mt-10"
+              className="expertise-options relative z-10 w-full max-w-[900px] mt-8 sm:mt-10"
             >
               <p className="type-eyebrow text-brand mb-2 sm:mb-3 tracking-[0.2em]">
                 Matched Parcels

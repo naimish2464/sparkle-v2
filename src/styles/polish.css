@@ -362,24 +362,45 @@
 .site-footer .footer-social-list {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.85rem;
 }
 
 .site-footer .footer-social-list a {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.65rem;
 }
 
-.site-footer .footer-social-list svg {
-  color: rgba(255, 255, 255, 0.35);
+.site-footer .footer-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
   flex-shrink: 0;
+  line-height: 0;
+}
+
+.site-footer .footer-social-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  color: inherit;
+}
+
+.site-footer .footer-social-list a:hover {
+  color: #ffffff;
+}
+
+.site-footer .footer-social-link--instagram:hover .footer-social-icon,
+.site-footer .footer-social-link--linkedin:hover .footer-social-icon {
+  transform: scale(1.08);
+  transition: transform 0.3s ease;
 }
 
 .site-footer .footer-nav-list a:hover,
 .site-footer .footer-contact-links a:hover,
-.site-footer .footer-contact-phone:hover,
-.site-footer .footer-social-list a:hover {
+.site-footer .footer-contact-phone:hover {
   color: #ffffff;
 }
 
@@ -407,29 +428,182 @@
 
 @media (min-width: 1024px) {
   .site-footer .footer-main-grid {
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr) minmax(0, 1.1fr) minmax(0, 1.15fr);
-    gap: 2.5rem 2.5rem;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr) minmax(0, 1.15fr);
+    gap: 2.5rem 2.75rem;
   }
 
   .site-footer .footer-col-title {
     margin-bottom: 1.75rem;
   }
+
+  .site-footer .footer-nav-col .footer-col-title--sub {
+    margin-top: 2rem;
+  }
 }
 
-/* ── Expertise section — seamless, unboxed ── */
+/* ── Expertise section — individual diamond row ── */
+#expertise {
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 50% 42%,
+      rgba(255, 255, 255, 0.7) 0%,
+      transparent 68%
+    ),
+    linear-gradient(180deg, #fff9fa 0%, #fceff3 55%, #fdf5f7 100%);
+}
+
 #expertise .expertise-compose {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
 }
 
-#expertise .expertise-image {
-  max-width: 100%;
+.expertise-diamonds {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.75rem 1rem 2rem;
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(
+      ellipse 55% 70% at 50% 48%,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(253, 245, 247, 0.4) 55%,
+      transparent 78%
+    ),
+    #fdf5f7;
+}
+
+.expertise-diamonds-glow {
+  position: absolute;
+  inset: 12% 8%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(252, 239, 243, 0.25) 45%,
+    transparent 72%
+  );
+}
+
+.expertise-diamonds-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+
+/* Equal fixed bounding box for every diamond — layout never shifts on hover */
+.expertise-diamond {
+  --diamond-box: 140px;
+  flex: 0 0 var(--diamond-box);
+  width: var(--diamond-box);
+  height: var(--diamond-box);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  overflow: visible;
+}
+
+.expertise-diamond-slot {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1);
+  transform-origin: center center;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.expertise-diamond-img {
+  display: block;
+  /* Normalize visual stone size across assets with different padding/viewBox */
+  width: calc(100% * var(--diamond-fit, 0.9));
+  height: calc(100% * var(--diamond-fit, 0.9));
+  max-width: calc(100% * var(--diamond-fit, 0.9));
+  max-height: calc(100% * var(--diamond-fit, 0.9));
+  object-fit: contain;
+  object-position: center center;
   background: transparent;
+  border: none;
+  filter:
+    drop-shadow(0 8px 16px rgba(120, 70, 90, 0.08))
+    brightness(1);
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.expertise-diamond:hover .expertise-diamond-slot {
+  transform: scale(1.18);
+  filter: drop-shadow(0 12px 22px rgba(120, 70, 90, 0.14));
+}
+
+.expertise-diamond:hover .expertise-diamond-img {
+  filter:
+    drop-shadow(0 14px 26px rgba(120, 70, 90, 0.16))
+    brightness(1.08);
 }
 
 #expertise .expertise-options-list {
   line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  .expertise-diamond {
+    --diamond-box: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .expertise-diamond {
+    --diamond-box: 120px;
+  }
+}
+
+@media (max-width: 640px) {
+  .expertise-diamonds {
+    padding: 1.25rem 0.65rem 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .expertise-diamonds-row {
+    justify-content: flex-start;
+    width: max-content;
+    min-width: 100%;
+    margin-inline: auto;
+    padding-inline: 0.35rem;
+    gap: 0.85rem;
+  }
+
+  .expertise-diamond {
+    --diamond-box: 100px;
+    flex: 0 0 var(--diamond-box);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .expertise-diamond-slot {
+    transition: none;
+  }
+
+  .expertise-diamond:hover .expertise-diamond-slot {
+    transform: none;
+  }
 }
 
 /* ── Diamond Manufacturing — full process diagram ── */
@@ -586,28 +760,74 @@
   transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── Custom Jewellery — 3D ring carousel ── */
+/* ── Custom Jewellery — ivory/champagne display + 3D ring ── */
 .jewelry-section {
+  --jewelry-ivory: #f3efe8;
+  --jewelry-champagne: #e7e0d5;
+  --jewelry-pearl: #f7f4ef;
+  --jewelry-taupe: #d9d0c4;
   background:
     radial-gradient(
-      ellipse 70% 55% at 72% 48%,
-      rgba(10, 0, 111, 0.035) 0%,
+      ellipse 48% 42% at 74% 48%,
+      rgba(255, 255, 255, 0.55) 0%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 36% 34% at 62% 62%,
+      rgba(184, 149, 108, 0.08) 0%,
       transparent 70%
     ),
-    #ffffff;
+    linear-gradient(155deg, var(--jewelry-ivory) 0%, var(--jewelry-champagne) 100%);
+}
+
+.jewelry-section-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 18% 28%,
+      rgba(255, 255, 255, 0.45) 0%,
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse 70% 35% at 50% 100%,
+      rgba(196, 178, 150, 0.12) 0%,
+      transparent 70%
+    );
 }
 
 .jewelry-carousel-wrap {
   width: 100%;
-  min-height: 360px;
+  min-height: 480px;
+  position: relative;
+}
+
+/* Soft radial stage behind the rotating jewellery */
+.jewelry-carousel-wrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: min(96%, 560px);
+  height: min(84%, 420px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(247, 244, 239, 0.35) 42%,
+    rgba(231, 224, 213, 0) 74%
+  );
+  pointer-events: none;
 }
 
 .jewelry-ring {
-  --jr-radius: 280px;
-  --jr-card-w: 168px;
+  --jr-radius: 380px;
+  --jr-card-w: 230px;
   position: relative;
   width: 100%;
-  height: clamp(320px, 42vw, 460px);
+  height: clamp(420px, 52vw, 580px);
   outline: none;
   cursor: grab;
   touch-action: none;
@@ -631,7 +851,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1100px;
+  perspective: 1400px;
   perspective-origin: 50% 48%;
   overflow: visible;
 }
@@ -652,7 +872,8 @@
   align-items: center;
   justify-content: center;
   transform-style: preserve-3d;
-  pointer-events: none;
+  pointer-events: auto;
+  overflow: visible;
 }
 
 .jewelry-ring-img {
@@ -664,12 +885,74 @@
   object-position: center;
   background: transparent;
   border: none;
-  filter: drop-shadow(0 18px 28px rgba(10, 0, 111, 0.12));
+  border-radius: 10px;
   -webkit-user-drag: none;
+  transform: translateY(0) scale(1) rotateY(0deg);
+  transform-origin: center center;
+  filter:
+    drop-shadow(0 14px 22px rgba(90, 70, 45, 0.14))
+    drop-shadow(0 4px 10px rgba(90, 70, 45, 0.08))
+    brightness(1);
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, filter;
+  animation: jewelry-float 5.5s ease-in-out infinite;
 }
 
 .jewelry-ring-item.is-front .jewelry-ring-img {
-  filter: drop-shadow(0 22px 36px rgba(10, 0, 111, 0.18));
+  filter:
+    drop-shadow(0 18px 28px rgba(90, 70, 45, 0.18))
+    drop-shadow(0 6px 12px rgba(90, 70, 45, 0.1))
+    brightness(1.02);
+  animation-duration: 4.8s;
+}
+
+/* Stagger float timing so pieces feel alive without chaos */
+.jewelry-ring-item:nth-child(3n) .jewelry-ring-img {
+  animation-delay: -1.2s;
+}
+
+.jewelry-ring-item:nth-child(3n + 1) .jewelry-ring-img {
+  animation-delay: -2.4s;
+}
+
+.jewelry-ring-item:nth-child(3n + 2) .jewelry-ring-img {
+  animation-delay: -3.6s;
+}
+
+@keyframes jewelry-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+/* Premium hover: zoom + subtle 3D tilt + detail lift */
+.jewelry-ring:not(.is-dragging) .jewelry-ring-item:hover {
+  z-index: 300 !important;
+}
+
+.jewelry-ring:not(.is-dragging) .jewelry-ring-item:hover .jewelry-ring-img {
+  animation: none;
+  transform: translateY(-8px) scale(1.28) rotateY(-8deg) rotateX(4deg);
+  filter:
+    drop-shadow(0 26px 40px rgba(90, 70, 45, 0.22))
+    drop-shadow(0 10px 18px rgba(90, 70, 45, 0.12))
+    brightness(1.08)
+    contrast(1.04);
+}
+
+.jewelry-ring:not(.is-dragging) .jewelry-ring-item.is-front:hover .jewelry-ring-img {
+  transform: translateY(-10px) scale(1.34) rotateY(-6deg) rotateX(5deg);
+  filter:
+    drop-shadow(0 30px 48px rgba(90, 70, 45, 0.26))
+    drop-shadow(0 12px 22px rgba(90, 70, 45, 0.14))
+    brightness(1.1)
+    contrast(1.05);
 }
 
 .jewelry-ring-hint {
@@ -683,7 +966,7 @@
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(10, 0, 111, 0.28);
+  color: rgba(10, 0, 111, 0.32);
   pointer-events: none;
   transition: opacity 0.35s ease;
 }
@@ -692,25 +975,48 @@
   opacity: 0;
 }
 
+.jewelry-ring.is-dragging .jewelry-ring-img {
+  animation-play-state: paused;
+}
+
 @media (max-width: 1023px) {
   .jewelry-carousel-wrap {
-    min-height: 300px;
+    min-height: 400px;
   }
 
   .jewelry-ring {
-    height: clamp(280px, 78vw, 380px);
+    height: clamp(360px, 88vw, 480px);
   }
 }
 
 @media (max-width: 640px) {
+  .jewelry-carousel-wrap {
+    min-height: 340px;
+  }
+
   .jewelry-ring {
-    height: clamp(260px, 88vw, 340px);
+    height: clamp(320px, 96vw, 420px);
+  }
+
+  .jewelry-ring:not(.is-dragging) .jewelry-ring-item:hover .jewelry-ring-img {
+    transform: translateY(-6px) scale(1.2) rotateY(-5deg) rotateX(3deg);
+  }
+
+  .jewelry-ring:not(.is-dragging) .jewelry-ring-item.is-front:hover .jewelry-ring-img {
+    transform: translateY(-8px) scale(1.26) rotateY(-4deg) rotateX(3deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .jewelry-ring-item {
+  .jewelry-ring-item,
+  .jewelry-ring-img {
     transition: none;
+    animation: none !important;
+  }
+
+  .jewelry-ring:not(.is-dragging) .jewelry-ring-item:hover .jewelry-ring-img,
+  .jewelry-ring:not(.is-dragging) .jewelry-ring-item.is-front:hover .jewelry-ring-img {
+    transform: none;
   }
 }
 

@@ -8,18 +8,18 @@ import {
 } from "./useReveal";
 import { JewelryRingCarousel } from "./JewelryRingCarousel";
 
-import imgJR2P96GH from "../../../assests/jwellery/JR2P96GH.png";
-import imgJRCM134A from "../../../assests/jwellery/JRCM134A.png";
-import imgJRP0250H from "../../../assests/jwellery/JRP0250H.png";
-import imgJRP0332H from "../../../assests/jwellery/JRP0332H.png";
-import imgJRP0351H from "../../../assests/jwellery/JRP0351H.png";
-import imgJRQ004GH from "../../../assests/jwellery/JRQ004GH.png";
-import imgJRW035GR from "../../../assests/jwellery/JRW035GR.png";
-import imgMarquise from "../../../assests/jwellery/marquise.png";
-import imgSR0121GP from "../../../assests/jwellery/SR0121GP.png";
-import imgJBM0020N from "../../../assests/jwellery/JBM0020N.png";
-import imgJR0M49GK from "../../../assests/jwellery/JR0M49GK.png";
-import imgRing from "../../../assests/jwellery/Ring.png";
+import imgJR2P96GH from "../../../assests/jwellery/vector1.png";
+import imgJRCM134A from "../../../assests/jwellery/vector2.png";
+import imgJRP0250H from "../../../assests/jwellery/vector3.png";
+import imgJRP0332H from "../../../assests/jwellery/vector4.png";
+import imgJRP0351H from "../../../assests/jwellery/vector5.png";
+import imgJRQ004GH from "../../../assests/jwellery/vector6.png";
+import imgJRW035GR from "../../../assests/jwellery/vector7.png";
+import imgMarquise from "../../../assests/jwellery/vector8.png";
+import imgSR0121GP from "../../../assests/jwellery/vector9.png";
+import imgJBM0020N from "../../../assests/jwellery/vector10.png";
+import imgJR0M49GK from "../../../assests/jwellery/vector11.png";
+import imgRing from "../../../assests/jwellery/vector12.png";
 
 const jewelleryPieces = [
   {
@@ -81,9 +81,10 @@ export function CustomJewelry() {
     <section
       id="custom-jewelry"
       ref={sectionRef}
-      className="jewelry-section relative bg-white overflow-hidden"
+      className="jewelry-section relative overflow-hidden"
     >
-      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 section-padding">
+      <div className="jewelry-section-glow" aria-hidden="true" />
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 section-padding relative z-10">
         <div className="jewelry-compose grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.25fr)] gap-10 lg:gap-8 xl:gap-12 items-center min-w-0">
           {/* Editorial copy */}
           <div className="jewelry-copy min-w-0 text-center lg:text-left">
@@ -162,7 +163,11 @@ export function CustomJewelry() {
             className="jewelry-carousel-wrap min-w-0"
             style={{ willChange: isInView ? "auto" : "opacity, transform" }}
           >
-            <JewelryRingCarousel items={jewelleryPieces} />
+            <JewelryRingCarousel
+              items={jewelleryPieces}
+              radius={380}
+              cardWidth={230}
+            />
           </motion.div>
         </div>
       </div>

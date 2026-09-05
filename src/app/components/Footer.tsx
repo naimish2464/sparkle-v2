@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import logoFile from "../../../assests/Sparkle Solitaire LOGO.png";
 
 const navItems = [
@@ -19,7 +19,7 @@ const addressLines = [
 
 const emails = ["sparklessolitaire@gmail.com", "sparkle.solitaires@gmail.com"];
 
-const globalLocations = ["India", "Botswana", "New York", "Hong Kong", "China"];
+const globalLocations = ["India", "New York", "Hong Kong", "China"];
 
 const INQUIRE_MAILTO =
   "mailto:sparklessolitaire@gmail.com?subject=" +
@@ -81,7 +81,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
+          {/* Navigation + Presence + Social */}
           <div className="footer-col footer-nav-col">
             <h3 className="footer-col-title">Navigation</h3>
             <ul className="footer-nav-list">
@@ -91,11 +91,10 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
 
-          {/* Presence + Social */}
-          <div className="footer-col footer-connect-col">
-            <h3 className="footer-col-title">Global Presence</h3>
+            <h3 className="footer-col-title footer-col-title--sub">
+              Global Presence
+            </h3>
             <p className="footer-presence">{globalLocations.join(" · ")}</p>
 
             <h3 className="footer-col-title footer-col-title--sub">Follow Us</h3>
@@ -104,16 +103,68 @@ export function Footer() {
                 href="https://www.instagram.com/sparklesolitaire/"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer-social-link footer-social-link--instagram"
               >
-                <Instagram size={14} strokeWidth={1.5} aria-hidden="true" />
+                <span className="footer-social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                    <defs>
+                      <linearGradient
+                        id="ig-footer-grad"
+                        x1="0%"
+                        y1="100%"
+                        x2="100%"
+                        y2="0%"
+                      >
+                        <stop offset="0%" stopColor="#F58529" />
+                        <stop offset="30%" stopColor="#FEDA77" />
+                        <stop offset="50%" stopColor="#DD2A7B" />
+                        <stop offset="70%" stopColor="#8134AF" />
+                        <stop offset="100%" stopColor="#515BD4" />
+                      </linearGradient>
+                    </defs>
+                    <rect
+                      x="2"
+                      y="2"
+                      width="20"
+                      height="20"
+                      rx="5.5"
+                      fill="url(#ig-footer-grad)"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="4.2"
+                      stroke="#fff"
+                      strokeWidth="1.8"
+                      fill="none"
+                    />
+                    <circle cx="17.35" cy="6.65" r="1.15" fill="#fff" />
+                  </svg>
+                </span>
                 Instagram
               </a>
               <a
                 href="https://www.linkedin.com/in/sparklesolitaire/"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="footer-social-link footer-social-link--linkedin"
               >
-                <Linkedin size={14} strokeWidth={1.5} aria-hidden="true" />
+                <span className="footer-social-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+                    <rect
+                      x="2"
+                      y="2"
+                      width="20"
+                      height="20"
+                      rx="3"
+                      fill="#0A66C2"
+                    />
+                    <path
+                      fill="#fff"
+                      d="M7.1 9.45h2.2v7.35H7.1V9.45zm1.1-3.5a1.28 1.28 0 1 1 0 2.56 1.28 1.28 0 0 1 0-2.56zM10.9 9.45h2.11v1.01h.03c.29-.55 1.01-1.14 2.08-1.14 2.22 0 2.63 1.46 2.63 3.36v4.12h-2.2v-3.65c0-.87-.02-1.99-1.21-1.99-1.21 0-1.4.95-1.4 1.93v3.71h-2.2V9.45z"
+                    />
+                  </svg>
+                </span>
                 LinkedIn
               </a>
             </div>

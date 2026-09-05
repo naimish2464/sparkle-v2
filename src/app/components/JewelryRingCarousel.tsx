@@ -34,8 +34,8 @@ type ItemEls = {
 export function JewelryRingCarousel({
   items,
   className = "",
-  radius = 280,
-  cardWidth = 168,
+  radius = 380,
+  cardWidth = 230,
 }: JewelryRingCarouselProps) {
   const count = items.length;
   const angleStep = 360 / Math.max(count, 1);
@@ -71,7 +71,7 @@ export function JewelryRingCarousel({
         const signed = relative > 180 ? relative - 360 : relative;
         const abs = Math.abs(signed);
         const depthT = Math.min(abs / 180, 1);
-        const scale = 1.14 - depthT * 0.48;
+        const scale = 1.22 - depthT * 0.5;
         const opacity = 1 - depthT * 0.48;
         const zIndex = Math.round(200 - abs);
 
@@ -128,7 +128,8 @@ export function JewelryRingCarousel({
           velocityRef.current = v * 0.94;
           paint(rotationRef.current);
         } else if (!reducedMotionRef.current) {
-          rotationRef.current += 0.012;
+          // Continuous auto-rotate around the ring
+          rotationRef.current += 0.085;
           velocityRef.current = 0;
           paint(rotationRef.current);
         }
@@ -147,7 +148,7 @@ export function JewelryRingCarousel({
 
     const update = () => {
       const w = el.clientWidth;
-      const scale = Math.min(1, Math.max(0.55, w / 640));
+      const scale = Math.min(1.05, Math.max(0.58, w / 700));
       el.style.setProperty("--jr-radius", `${radius * scale}px`);
       el.style.setProperty("--jr-card-w", `${cardWidth * scale}px`);
     };
