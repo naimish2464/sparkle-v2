@@ -1,12 +1,12 @@
 import { Mail, Phone, MapPin } from "lucide-react";
-import logoFile from "../../../assests/Sparkle Solitaire LOGO.png";
-import exhibitHkBharat from "../../../assests/Exibition/HK bharat.png";
-import exhibitHkShow from "../../../assests/Exibition/HK SHOW.png";
-import exhibitJaDl from "../../../assests/Exibition/JA DL.png";
-import exhibitJaNy from "../../../assests/Exibition/JA NY.png";
-import exhibitJckShowAlt from "../../../assests/Exibition/JCK SHOW (1).png";
-import exhibitJckShow from "../../../assests/Exibition/JCK SHOW.png";
-import exhibitJisFall from "../../../assests/Exibition/JIS FALL.png";
+import logoFile from "../../../assests/Sparkle Solitaire LOGO.webp";
+import exhibitHkBharat from "../../../assests/Exibition/HK bharat.webp";
+import exhibitHkShow from "../../../assests/Exibition/HK SHOW.webp";
+import exhibitJaDl from "../../../assests/Exibition/JA DL.webp";
+import exhibitJaNy from "../../../assests/Exibition/JA NY.webp";
+import exhibitJckShowAlt from "../../../assests/Exibition/JCK SHOW (1).webp";
+import exhibitJckShow from "../../../assests/Exibition/JCK SHOW.webp";
+import exhibitJisFall from "../../../assests/Exibition/JIS FALL.webp";
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -38,10 +38,8 @@ const exhibitionStickers = [
   { src: exhibitJisFall, alt: "JIS Fall exhibition" },
 ];
 
-const INQUIRE_MAILTO =
-  "mailto:sparklessolitaire@gmail.com?subject=" +
-  encodeURIComponent("Inquiry — Sparkle Solitaires") +
-  "&body=" +
+const INQUIRE_WHATSAPP =
+  "https://wa.me/15513591202?text=" +
   encodeURIComponent(
     "Hello Sparkle Solitaires,\n\nI would like to inquire about your diamond manufacturing services.\n\n"
   );
@@ -71,8 +69,10 @@ export function Footer() {
                     src={sticker.src}
                     alt={isDuplicate ? "" : sticker.alt}
                     className="footer-exhibit-sticker"
-                    loading={index < 4 ? "eager" : "lazy"}
+                    loading="lazy"
                     decoding="async"
+                    width={160}
+                    height={120}
                     draggable={false}
                   />
                 </li>
@@ -191,7 +191,7 @@ export function Footer() {
                 Instagram
               </a>
               <a
-                href="https://www.linkedin.com/in/sparklesolitaire/"
+                href="https://www.linkedin.com/company/sparklesolitaires/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-link footer-social-link--linkedin"
@@ -228,7 +228,12 @@ export function Footer() {
               Your trusted partner for natural and lab-grown diamonds — from
               Galaxy™ rough scanning to polished stones and global sales.
             </p>
-            <a href={INQUIRE_MAILTO} className="footer-inquire">
+            <a
+              href={INQUIRE_WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-inquire"
+            >
               Send an Inquiry
             </a>
           </div>

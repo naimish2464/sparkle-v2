@@ -7,12 +7,12 @@ import {
   REVEAL,
   useReveal,
 } from "./useReveal";
-import diamondBlueRound from "../../../assests/diamond_shapes/round.png";
-import diamondGreen from "../../../assests/diamond_shapes/green.png";
-import diamondPink from "../../../assests/diamond_shapes/pink.png";
-import diamondPurple from "../../../assests/diamond_shapes/purple.png";
-import diamondWhite from "../../../assests/diamond_shapes/white.png";
-import diamondYellow from "../../../assests/diamond_shapes/yellow.png";
+import diamondBlueRound from "../../../assests/diamond_shapes/round.webp";
+import diamondGreen from "../../../assests/diamond_shapes/green.webp";
+import diamondPink from "../../../assests/diamond_shapes/pink.webp";
+import diamondPurple from "../../../assests/diamond_shapes/purple.webp";
+import diamondWhite from "../../../assests/diamond_shapes/white.webp";
+import diamondYellow from "../../../assests/diamond_shapes/yellow.webp";
 
 const matchedParcels = [
   "Calibrated sizing",
@@ -123,8 +123,10 @@ export function Expertise() {
                       <img
                         src={diamond.src}
                         alt={diamond.alt}
-                        loading="eager"
+                        loading="lazy"
                         decoding="async"
+                        width={160}
+                        height={160}
                         className="expertise-diamond-img"
                         draggable={false}
                         style={

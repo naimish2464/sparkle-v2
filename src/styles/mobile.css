@@ -1,0 +1,569 @@
+/**
+ * Mobile-only UI/UX refinements (≤768px, with extra care ≤430px / ≤360px / ≤320px).
+ * Desktop (≥769px) styles are intentionally untouched.
+ */
+
+/* ── Shared mobile safety ── */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
+  /* Safer full-bleed (avoids classic 100vw scrollbar overflow) */
+  .jewelry-marquee-bleed,
+  .site-footer .footer-exhibit-bleed {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+    left: auto;
+    right: auto;
+  }
+
+  /* Header */
+  .site-header .site-logo {
+    max-height: 44px;
+    max-width: min(118px, 36vw);
+  }
+
+  .mobile-nav-drawer {
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .mobile-nav-drawer a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Hero — tighter, readable, no cut-off */
+  #home {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  #home .hero-inner {
+    padding-top: 1.75rem;
+    padding-bottom: 1.25rem;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+    min-height: 0;
+  }
+
+  #home .hero-content {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #home .hero-logo-block {
+    margin-bottom: 0.65rem;
+  }
+
+  #home .hero-logo {
+    width: clamp(64px, 20vw, 96px) !important;
+  }
+
+  #home .type-hero-title {
+    margin-bottom: 0.65rem !important;
+    padding-inline: 0.25rem;
+    font-size: clamp(1.35rem, 6.4vw, 1.85rem);
+    letter-spacing: 0.06em;
+    line-height: 1.12;
+  }
+
+  #home .hero-subtitle-pipes {
+    margin-bottom: 0.85rem !important;
+    max-width: 100%;
+    padding-inline: 0.25rem;
+    letter-spacing: 0.1em;
+    font-size: clamp(0.5625rem, 2.6vw, 0.6875rem);
+  }
+
+  #home .hero-body-text {
+    margin-bottom: 1.1rem !important;
+    padding-inline: 0.15rem;
+  }
+
+  /* Long supporting copy overwhelms small screens — keep lead, clamp detail */
+  #home .hero-presence-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  #home .hero-presence-label {
+    font-size: clamp(0.5625rem, 2.5vw, 0.625rem);
+    letter-spacing: 0.14em;
+    line-height: 1.3;
+  }
+
+  #home .hero-presence-label::after {
+    content: none;
+  }
+
+  #home .hero-presence-locs {
+    display: grid !important;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    justify-items: center;
+    column-gap: 1rem;
+    row-gap: 0.2rem;
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #home .hero-presence-locs li {
+    display: block !important;
+    font-size: clamp(0.5625rem, 2.5vw, 0.625rem);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.35;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  #home .hero-presence-locs li::after {
+    content: none !important;
+  }
+
+  #home .hero-bottom {
+    gap: 0.65rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.35rem;
+    width: 100%;
+    max-width: 100%;
+    /* Keep presence text clear of WhatsApp FAB */
+    padding-right: 3.25rem;
+    box-sizing: border-box;
+  }
+
+  /* Prefer clean lead-only copy on phones; full detail remains on desktop */
+  #home .hero-body-detail {
+    display: none;
+  }
+
+  #home .hero-cta-group {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0;
+    gap: 0.65rem;
+  }
+
+  #home .hero-cta-btn {
+    width: 100%;
+    max-width: 100%;
+    min-height: 48px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+  }
+
+  /* Expertise — wrap diamonds instead of page/section sideways scroll */
+  #expertise .expertise-diamonds {
+    overflow: visible;
+    padding: 1rem 0.5rem 1.15rem;
+  }
+
+  #expertise .expertise-diamonds-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin-inline: 0;
+    padding-inline: 0;
+    gap: 0.65rem 0.5rem;
+  }
+
+  #expertise .expertise-diamond {
+    --diamond-box: clamp(72px, 26vw, 100px);
+    flex: 0 0 var(--diamond-box);
+  }
+
+  #expertise .expertise-options {
+    margin-top: 1.5rem !important;
+    padding-inline: 0.25rem;
+  }
+
+  #expertise .expertise-options-list {
+    gap-y: 0.5rem;
+  }
+
+  #expertise .expertise-options-list span {
+    font-size: clamp(0.75rem, 3.4vw, 0.875rem);
+    padding-inline: 0.35rem;
+  }
+
+  /* Color scale — chip labels + tabbed chart viewer (see polish/mobile CSI block) */
+  #color-scale .csi-header {
+    margin-bottom: 1.5rem !important;
+    padding-inline: 0.25rem;
+  }
+
+  #color-scale .csi-scale {
+    margin-bottom: 1.5rem !important;
+  }
+
+  #color-scale .csi-scale-list {
+    gap: 0.35rem 0;
+    justify-content: center;
+  }
+
+  #color-scale .csi-scale-item {
+    margin: 0;
+  }
+
+  #color-scale .csi-scale-label {
+    display: inline;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: 0.1em;
+    font-size: clamp(0.5625rem, 2.6vw, 0.6875rem);
+    line-height: 1.35;
+    padding: 0.15rem 0.35rem;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--csi-gold, #b8956c);
+  }
+
+  #color-scale .csi-scale-connector {
+    display: inline-block;
+    width: 0.55rem;
+    height: 1px;
+    margin: 0 0.05rem;
+    background: var(--csi-gold-soft, rgba(184, 149, 108, 0.45));
+    vertical-align: middle;
+  }
+
+  /* Manufacturing diagram — swipeable for icon/label readability */
+  #manufacturing .mfg-process-visual {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    margin-inline: 0;
+    padding-inline: 0;
+    max-width: 100%;
+  }
+
+  #manufacturing .mfg-process-img {
+    min-width: 640px;
+    width: 640px;
+    max-width: none;
+  }
+
+  #manufacturing .mfg-process-visual::after {
+    content: "Swipe to view process →";
+    display: block;
+    margin-top: 0.65rem;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(10, 0, 111, 0.4);
+  }
+
+  /* Jewelry */
+  .jewelry-header-wrap {
+    padding: 1.5rem 1rem 0.85rem;
+  }
+
+  .jewelry-title-line {
+    font-size: clamp(1.35rem, 6vw, 1.85rem);
+    letter-spacing: 0.05em;
+    padding-inline: 0.25rem;
+  }
+
+  .jewelry-title-sub {
+    font-size: clamp(0.625rem, 2.8vw, 0.75rem);
+    letter-spacing: 0.12em;
+    padding-inline: 0.35rem;
+  }
+
+  .jewelry-lead {
+    white-space: normal !important;
+    width: auto !important;
+    max-width: 22rem !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-inline: 0.5rem;
+    font-size: clamp(0.8125rem, 3.5vw, 0.9375rem);
+  }
+
+  .jh-carousel {
+    --jh-size: clamp(132px, 38vw, 160px);
+    --jh-gap: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .jh-viewport {
+    padding: 0.85rem 0;
+  }
+
+  .jh-zoom-img {
+    max-width: min(92vw, 480px);
+    max-height: min(72vh, 480px);
+  }
+
+  /* Footer exhibit — mobile grid handled in polish.css (≤900px) */
+  .site-footer .footer-exhibit-bleed {
+    padding: 1.25rem 1rem 1.15rem;
+  }
+
+  .site-footer .footer-exhibit-label {
+    color: rgba(10, 0, 111, 0.55);
+    letter-spacing: 0.18em;
+    font-size: 9px;
+    margin-bottom: 0.85rem;
+  }
+
+  .site-footer .footer-exhibit-track {
+    gap: 1.1rem 0.85rem;
+    max-width: 100%;
+  }
+
+  .site-footer .footer-exhibit-sticker {
+    max-height: 72px;
+    max-width: 100%;
+    filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Center the 7th logo when alone on the last row */
+  .site-footer .footer-exhibit-item:nth-child(7):not(.is-dup) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+    max-width: 9rem;
+  }
+
+  .site-footer > .w-full {
+    padding-bottom: 5.5rem;
+  }
+
+  main {
+    padding-bottom: 5rem;
+  }
+
+  .site-footer .footer-main-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .site-footer .footer-presence {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    letter-spacing: 0.04em;
+    line-height: 1.55;
+  }
+
+  .site-footer .footer-contact-links a,
+  .site-footer .footer-contact-phone,
+  .site-footer a[href^="mailto:"] {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .site-footer .footer-brand-col {
+    align-items: center;
+    text-align: center;
+  }
+
+  .site-footer .footer-inquire {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .site-footer .footer-social-list {
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+  }
+
+  /* WhatsApp — clear of home indicator */
+  .whatsapp-float {
+    bottom: max(1.1rem, env(safe-area-inset-bottom));
+    right: max(0.85rem, env(safe-area-inset-right));
+  }
+
+  .whatsapp-float a,
+  .whatsapp-float button {
+    min-width: 48px;
+    min-height: 48px;
+  }
+}
+
+/* ── Phones ≤430px ── */
+@media (max-width: 430px) {
+  #home {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
+  #home .hero-inner {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+
+  #expertise .section-padding,
+  #color-scale .section-padding,
+  #manufacturing .section-padding,
+  section .section-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #expertise .expertise-diamond {
+    --diamond-box: clamp(68px, 24vw, 88px);
+  }
+
+  .jh-carousel {
+    --jh-size: 140px;
+    --jh-gap: 1.35rem;
+  }
+
+  #color-scale .csi-mobile-viewer {
+    max-width: 100%;
+  }
+
+  #color-scale .csi-tabs {
+    gap: 0;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  #color-scale .csi-tab {
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    min-height: 42px;
+    padding: 0.55rem 0.25rem 0.65rem;
+  }
+
+  #color-scale .csi-mobile-frame {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    margin-bottom: 3.25rem; /* clear WhatsApp FAB */
+  }
+
+  #color-scale .csi-chart-caption {
+    margin-bottom: 0.65rem;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+
+  #color-scale .csi-scale-label {
+    font-size: 0.5625rem;
+    padding: 0.1rem 0.3rem;
+    letter-spacing: 0.08em;
+  }
+
+  #color-scale .csi-scale-list {
+    row-gap: 0.4rem;
+  }
+}
+
+/* ── Narrow phones ≤360px ── */
+@media (max-width: 360px) {
+  #home .type-hero-title {
+    font-size: clamp(1.2rem, 6.8vw, 1.5rem);
+    letter-spacing: 0.045em;
+  }
+
+  #home .hero-subtitle-pipes {
+    font-size: 0.5625rem;
+    letter-spacing: 0.08em;
+  }
+
+  #home .hero-body-text > p:first-child {
+    font-size: 0.75rem;
+  }
+
+  #home .hero-cta-btn {
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    min-height: 46px;
+  }
+
+  #expertise .expertise-diamond {
+    --diamond-box: 70px;
+  }
+
+  #expertise .expertise-diamonds-row {
+    gap: 0.45rem;
+  }
+
+  .jewelry-title-line {
+    font-size: 1.25rem;
+  }
+
+  .jh-carousel {
+    --jh-size: 124px;
+    --jh-gap: 1.1rem;
+  }
+
+  .site-header .site-logo {
+    max-width: min(108px, 34vw);
+    max-height: 40px;
+  }
+}
+
+/* ── Very narrow ≤320px ── */
+@media (max-width: 320px) {
+  #home {
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+
+  #home .hero-inner {
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+    padding-top: 1.35rem;
+  }
+
+  #home .hero-logo {
+    width: 56px !important;
+  }
+
+  #home .type-hero-title {
+    font-size: 1.125rem;
+    letter-spacing: 0.04em;
+  }
+
+  #expertise .expertise-diamond {
+    --diamond-box: 64px;
+  }
+
+  #color-scale .csi-scale-connector {
+    width: 0.4rem;
+  }
+
+  .jh-carousel {
+    --jh-size: 112px;
+    --jh-gap: 0.9rem;
+  }
+
+  .site-footer .footer-col-title {
+    margin-bottom: 1rem;
+  }
+}

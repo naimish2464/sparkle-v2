@@ -1,11 +1,38 @@
+import { lazy, Suspense } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
-import { Expertise } from "./components/Expertise";
-import { ColorScaleIntensity } from "./components/ColorScaleIntensity";
-import { ContractManufacturing } from "./components/ContractManufacturing";
-import { CustomJewelry } from "./components/CustomJewelry";
-import { Footer } from "./components/Footer";
 import { WhatsAppFloat } from "./components/WhatsAppFloat";
+
+const Expertise = lazy(() =>
+  import("./components/Expertise").then((m) => ({ default: m.Expertise }))
+);
+const ColorScaleIntensity = lazy(() =>
+  import("./components/ColorScaleIntensity").then((m) => ({
+    default: m.ColorScaleIntensity,
+  }))
+);
+const ContractManufacturing = lazy(() =>
+  import("./components/ContractManufacturing").then((m) => ({
+    default: m.ContractManufacturing,
+  }))
+);
+const CustomJewelry = lazy(() =>
+  import("./components/CustomJewelry").then((m) => ({
+    default: m.CustomJewelry,
+  }))
+);
+const Footer = lazy(() =>
+  import("./components/Footer").then((m) => ({ default: m.Footer }))
+);
+
+function SectionFallback() {
+  return (
+    <div
+      className="w-full min-h-[40vh] bg-white"
+      aria-hidden="true"
+    />
+  );
+}
 
 export default function App() {
   return (
@@ -19,12 +46,14 @@ export default function App() {
       <Header />
       <main id="main-content">
         <Hero />
-        <Expertise />
-        <ColorScaleIntensity />
-        <ContractManufacturing />
-        <CustomJewelry />
+        <Suspense fallback={<SectionFallback />}>
+          <Expertise />
+          <ColorScaleIntensity />
+          <ContractManufacturing />
+          <CustomJewelry />
+          <Footer />
+        </Suspense>
       </main>
-      <Footer />
       <WhatsAppFloat />
     </div>
   );

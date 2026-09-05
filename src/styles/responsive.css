@@ -146,12 +146,8 @@ section {
     max-width: 120px;
   }
 
-  #color-scale .csi-chart-img {
+  #color-scale .csi-chart-img:not(.csi-chart-img--mobile) {
     max-height: 280px;
-  }
-
-  #color-scale .csi-scale-connector {
-    width: 0.75rem;
   }
 
   .site-footer a[href^="mailto:"] {
@@ -244,18 +240,20 @@ section {
     width: 100%;
   }
 
-  /* Expertise */
+@media (max-width: 768px) {
   #expertise .expertise-compose {
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   #expertise .expertise-diamonds {
-    padding: 1.35rem 0.75rem 1.6rem;
+    padding: 1rem 0.5rem 1.15rem;
+    overflow: visible;
   }
 
   #expertise .expertise-diamond {
-    --diamond-box: 110px;
+    --diamond-box: clamp(72px, 26vw, 100px);
   }
+}
 
   /* Footer */
   .site-footer .footer-main-grid {

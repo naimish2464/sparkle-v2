@@ -6,7 +6,7 @@ import {
   REVEAL,
   useReveal,
 } from "./useReveal";
-import diamondProcess from "../../../assests/images/Diamond_Process.png";
+import diamondProcess from "../../../assests/images/Diamond_Process.webp";
 
 export function ContractManufacturing() {
   const { ref: sectionRef, isInView, prefersReducedMotion } = useReveal();

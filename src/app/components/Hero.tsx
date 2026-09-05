@@ -2,12 +2,15 @@ import { useRef, useEffect, useCallback, useState } from "react";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
-import videoFile from "../../imports/file__1_.mp4";
-import logoFile from "../../../assests/Sparkle Solitaire LOGO.png";
+import heroDesktopMp4 from "../../imports/hero/hero-desktop.mp4";
+import heroMobileMp4 from "../../imports/hero/hero-mobile.mp4";
+import logoFile from "../../../assests/Sparkle Solitaire LOGO.webp";
 import { preloadCriticalAsset } from "../../utils/preloadCriticalAsset";
 
+const MOBILE_MQ = "(max-width: 768px)";
+
 preloadCriticalAsset(logoFile, "image");
-preloadCriticalAsset(videoFile, "video", { type: "video/mp4" });
+
 // Framer motion animation variants for the luxury fade-up sequence
 const fadeInUpVariants = {
   hidden: { opacity: 0, y: 14 },
@@ -30,14 +33,41 @@ const bottomVariants = {
     transition: {
       delay: 1.1,
       duration: 0.9,
-      ease: [0.215, 0.610, 0.355, 1.000],
+      ease: [0.215, 0.61, 0.355, 1],
     },
   },
 };
 
+function useIsMobileHero() {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia(MOBILE_MQ).matches;
+  });
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_MQ);
+    const onChange = () => setIsMobile(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  return isMobile;
+}
+
 function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const isMobile = useIsMobileHero();
+
+  // Responsive MP4 only — desktop ~2.3MB / mobile ~1.1MB (source was 10.5MB).
+  // WebM encodes were larger than MP4 at current settings; reintroduce when smaller.
+  const mp4Src = isMobile ? heroMobileMp4 : heroDesktopMp4;
+
+  useEffect(() => {
+    // Preload only the active (viewport-appropriate) file — never both.
+    preloadCriticalAsset(mp4Src, "video", { type: "video/mp4" });
+  }, [mp4Src]);
 
   const ensurePlayback = useCallback(() => {
     const video = videoRef.current;
@@ -56,6 +86,10 @@ function HeroVideo() {
 
     video.defaultPlaybackRate = 1;
     video.playbackRate = 1;
+    setIsPlaying(false);
+
+    // Force source switch when crossing mobile/desktop breakpoint.
+    video.load();
 
     const markPlaying = () => setIsPlaying(true);
 
@@ -87,25 +121,29 @@ function HeroVideo() {
       video.removeEventListener("ended", handleEnded);
       document.removeEventListener("visibilitychange", handleVisibility);
     };
-  }, [ensurePlayback]);
+  }, [ensurePlayback, mp4Src]);
 
   return (
     <div className="hero-video-container absolute inset-0 z-0 overflow-hidden rounded-[12px] md:rounded-[16px] lg:rounded-[20px] bg-[#0a006f]">
       {/* Instant poster — paints before React/video; removed once playback starts */}
-      <img
-        src="/hero-poster.jpg"
-        alt=""
-        aria-hidden="true"
-        loading="eager"
-        fetchPriority="high"
-        decoding="sync"
-        className={`hero-media hero-poster absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out rounded-[12px] md:rounded-[16px] lg:rounded-[20px] ${
-          isPlaying ? "opacity-0" : "opacity-100"
-        }`}
-      />
+      <picture>
+        <source srcSet="/hero-poster.webp" type="image/webp" />
+        <img
+          src="/hero-poster.jpg"
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          fetchPriority="high"
+          decoding="sync"
+          className={`hero-media hero-poster absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out rounded-[12px] md:rounded-[16px] lg:rounded-[20px] ${
+            isPlaying ? "opacity-0" : "opacity-100"
+          }`}
+        />
+      </picture>
       <video
         ref={videoRef}
-        src={videoFile}
+        key={isMobile ? "mobile" : "desktop"}
+        src={mp4Src}
         autoPlay
         loop
         muted
@@ -127,7 +165,9 @@ export function Hero() {
     <section
       id="home"
       className="relative w-full mt-[70px] sm:mt-[80px] min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] px-2 sm:px-3 lg:px-4 xl:px-5 bg-white flex items-stretch"
-    >      <div className="relative w-full min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] rounded-[12px] md:rounded-[16px] lg:rounded-[20px] overflow-hidden bg-[#0a006f] flex flex-col">        <HeroVideo />
+    >
+      <div className="relative w-full min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] rounded-[12px] md:rounded-[16px] lg:rounded-[20px] overflow-hidden bg-[#0a006f] flex flex-col">
+        <HeroVideo />
 
         {/* Permanent brand overlay — always above video, below content */}
         <div
@@ -135,7 +175,8 @@ export function Hero() {
           aria-hidden="true"
         />
 
-        <div className="hero-inner relative z-10 flex flex-col justify-between min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] flex-1 py-5 sm:py-8 lg:py-10 px-3 sm:px-6 lg:px-8">          {/* Top spacer to balance vertical height */}
+        <div className="hero-inner relative z-10 flex flex-col justify-between min-h-[calc(100svh-70px)] sm:min-h-[calc(100svh-80px)] flex-1 py-5 sm:py-8 lg:py-10 px-3 sm:px-6 lg:px-8">
+          {/* Top spacer to balance vertical height */}
           <div className="w-full shrink-0 h-2 sm:h-4 hidden sm:block" />
 
           {/* Center content container */}
@@ -157,7 +198,8 @@ export function Hero() {
                 fetchPriority="high"
                 decoding="async"
                 className="hero-logo w-[clamp(72px,18vw,120px)] h-auto object-contain mx-auto"
-              />            </motion.div>
+              />
+            </motion.div>
 
             {/* Company Name */}
             <motion.h1
@@ -189,10 +231,10 @@ export function Hero() {
               custom={0.65}
               className="hero-body-text w-full max-w-[640px] mx-auto mb-5 sm:mb-8 px-1 space-y-2.5 sm:space-y-3 text-center"
             >
-              <p className="text-[13px] sm:text-sm md:text-[15px] leading-[1.55] font-medium text-white/90">
+              <p className="hero-body-lead text-[13px] sm:text-sm md:text-[15px] leading-[1.55] font-medium text-white/90">
                 Fancy Color Lab-Grown Diamonds. Manufactured with Precision.
               </p>
-              <p className="text-[12px] sm:text-[13px] md:text-sm leading-[1.65] font-light text-white/75">
+              <p className="hero-body-detail text-[12px] sm:text-[13px] md:text-sm leading-[1.65] font-light text-white/75">
                 We specialize in Fancy Color Lab-Grown Diamonds, and manufacture CVD and HPHT diamonds to exact client specifications — from size and shape to color and layout. Every stone we produce is backed by consistent quality standards and reliable delivery, with deep expertise in custom layouts, CVD &amp; HPHT production, and made-to-order jewelry — built for wholesalers, manufacturers, and international buyers who expect consistent quality.
               </p>
             </motion.div>
@@ -238,19 +280,27 @@ export function Hero() {
             animate="visible"
             className="hero-bottom shrink-0 flex flex-col items-center justify-center w-full max-w-[1400px] mx-auto gap-2.5 sm:gap-3 pt-4 sm:pt-2"
           >
-            <span className="text-[10px] sm:text-[11px] lg:text-xs font-medium tracking-[0.14em] sm:tracking-[0.18em] uppercase text-white/70 leading-relaxed text-center px-2">
-              Global Presence : India • New York • Hong Kong • China
-            </span>
+            <div className="hero-presence-line text-white/70 text-center px-2">
+              <span className="hero-presence-label text-[10px] sm:text-[11px] lg:text-xs font-medium tracking-[0.14em] sm:tracking-[0.18em] uppercase">
+                Global Presence
+              </span>
+              <ul className="hero-presence-locs list-none m-0 p-0" aria-label="Global locations">
+                <li>India</li>
+                <li>New York</li>
+                <li>Hong Kong</li>
+                <li>China</li>
+              </ul>
+            </div>
             <button
               type="button"
               className="hero-scroll-indicator flex flex-col items-center text-white/80 cursor-pointer pointer-events-auto bg-transparent border-0 p-1"
               onClick={() => {
                 const nextSection = document.getElementById("expertise");
-                  if (nextSection) {
-                    nextSection.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-                aria-label="Scroll to Expertise section"
+                if (nextSection) {
+                  nextSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+              aria-label="Scroll to Expertise section"
             >
               <span className="text-[10px] tracking-[0.25em] font-medium mb-1.5 uppercase text-white/50">
                 SCROLL
@@ -269,4 +319,3 @@ export function Hero() {
     </section>
   );
 }
-

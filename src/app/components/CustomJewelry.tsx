@@ -8,35 +8,35 @@ import {
 } from "./useReveal";
 import { JewelryHorizontalCarousel } from "./JewelryHorizontalCarousel";
 
-import vector1 from "../../../assests/jwellery/vector1.png";
-import vector2 from "../../../assests/jwellery/vector2.png";
-import vector3 from "../../../assests/jwellery/vector3.png";
-import vector4 from "../../../assests/jwellery/vector4.png";
-import vector5 from "../../../assests/jwellery/vector5.png";
-import vector6 from "../../../assests/jwellery/vector6.png";
-import vector7 from "../../../assests/jwellery/vector7.png";
-import vector8 from "../../../assests/jwellery/vector8.png";
-import vector9 from "../../../assests/jwellery/vector9.png";
-import vector10 from "../../../assests/jwellery/vector10.png";
-import vector11 from "../../../assests/jwellery/vector11.png";
-import vector12 from "../../../assests/jwellery/vector12.png";
-import vector13 from "../../../assests/jwellery/vector13.png";
-import vector14 from "../../../assests/jwellery/vector14.png";
-import vector15 from "../../../assests/jwellery/vector15.png";
-import vector16 from "../../../assests/jwellery/vector16.png";
-import vector17 from "../../../assests/jwellery/vector17.png";
-import vector18 from "../../../assests/jwellery/vector18.png";
-import vector19 from "../../../assests/jwellery/vector19.png";
-import vector20 from "../../../assests/jwellery/vector20.png";
-import vector21 from "../../../assests/jwellery/vector21.png";
-import vector23 from "../../../assests/jwellery/vector23.png";
-import vector24 from "../../../assests/jwellery/vector24.png";
-import vector25 from "../../../assests/jwellery/vector25.png";
-import vector26 from "../../../assests/jwellery/vector26.png";
-import vector27 from "../../../assests/jwellery/vector27.png";
-import vector28 from "../../../assests/jwellery/vector28.png";
-import vector29 from "../../../assests/jwellery/vector29.png";
-import vector30 from "../../../assests/jwellery/vector30.png";
+import vector1 from "../../../assests/jwellery/vector1.webp";
+import vector2 from "../../../assests/jwellery/vector2.webp";
+import vector3 from "../../../assests/jwellery/vector3.webp";
+import vector4 from "../../../assests/jwellery/vector4.webp";
+import vector5 from "../../../assests/jwellery/vector5.webp";
+import vector6 from "../../../assests/jwellery/vector6.webp";
+import vector7 from "../../../assests/jwellery/vector7.webp";
+import vector8 from "../../../assests/jwellery/vector8.webp";
+import vector9 from "../../../assests/jwellery/vector9.webp";
+import vector10 from "../../../assests/jwellery/vector10.webp";
+import vector11 from "../../../assests/jwellery/vector11.webp";
+import vector12 from "../../../assests/jwellery/vector12.webp";
+import vector13 from "../../../assests/jwellery/vector13.webp";
+import vector14 from "../../../assests/jwellery/vector14.webp";
+import vector15 from "../../../assests/jwellery/vector15.webp";
+import vector16 from "../../../assests/jwellery/vector16.webp";
+import vector17 from "../../../assests/jwellery/vector17.webp";
+import vector18 from "../../../assests/jwellery/vector18.webp";
+import vector19 from "../../../assests/jwellery/vector19.webp";
+import vector20 from "../../../assests/jwellery/vector20.webp";
+import vector21 from "../../../assests/jwellery/vector21.webp";
+import vector23 from "../../../assests/jwellery/vector23.webp";
+import vector24 from "../../../assests/jwellery/vector24.webp";
+import vector25 from "../../../assests/jwellery/vector25.webp";
+import vector26 from "../../../assests/jwellery/vector26.webp";
+import vector27 from "../../../assests/jwellery/vector27.webp";
+import vector28 from "../../../assests/jwellery/vector28.webp";
+import vector29 from "../../../assests/jwellery/vector29.webp";
+import vector30 from "../../../assests/jwellery/vector30.webp";
 
 const jewelleryPieces = [
   { src: vector1, alt: "Custom diamond jewellery piece 1" },
@@ -86,7 +86,6 @@ export function CustomJewelry() {
       {/* Centered section header */}
       <div className="jewelry-header-wrap relative z-10">
         <div className="jewelry-copy jewelry-copy--center">
-
           <motion.h2
             initial={initial}
             animate={animate}

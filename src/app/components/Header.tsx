@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
-import logoFile from "../../../logo.png";
+import logoFile from "../../../logo.webp";
 import {
   ensurePageScrollable,
   lockPageScroll,
@@ -191,7 +191,7 @@ export function Header() {
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`text-sm tracking-[0.14em] uppercase font-medium transition-colors py-2 block ${
+                      className={`mobile-nav-link text-sm tracking-[0.14em] uppercase font-medium transition-colors min-h-[44px] flex items-center ${
                         isActive ? "text-brand" : "text-body-default hover:text-brand"
                       }`}
                     >
