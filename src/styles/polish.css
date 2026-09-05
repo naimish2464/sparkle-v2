@@ -877,6 +877,14 @@
     overscroll-behavior-x: contain;
     margin-inline: 0;
     padding-inline: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .mfg-process-visual::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
   }
 
   .mfg-process-img {

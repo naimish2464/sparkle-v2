@@ -261,6 +261,14 @@
     margin-inline: 0;
     padding-inline: 0;
     max-width: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* legacy Edge */
+  }
+
+  #manufacturing .mfg-process-visual::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Android */
+    width: 0;
+    height: 0;
   }
 
   #manufacturing .mfg-process-img {
